@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 
+import gui.*;
+
 public class Client extends JComponent implements Runnable {
 
     private static int portNum;
@@ -36,7 +38,7 @@ public class Client extends JComponent implements Runnable {
 
     // Temporary GUI for the sign up screen
     private void signUpScreen() {
-        JFrame frame = new JFrame("Client");
+        JFrame frame = new JFrame("sign up");
 
         Container content = frame.getContentPane();
         content.setLayout(new BorderLayout());
@@ -65,13 +67,22 @@ public class Client extends JComponent implements Runnable {
                         signUpPasswordStrField.getText(), signUpNameStrField.getText()));
                 writer.println();
                 writer.flush();
+                try {
+                    String validSignIn;
+                    validSignIn = reader.readLine();
+                    if (validSignIn.contains("success")) {
+                        // Main profile gui
+                    }
+                } catch (IOException ex) {
+
+                }
             }
         });
     }
 
     // Temporary GUI for sign in screen
     private void signInScreen() {
-        JFrame frame = new JFrame("Client");
+        JFrame frame = new JFrame("sign in");
 
         Container content = frame.getContentPane();
         content.setLayout(new BorderLayout());
@@ -99,6 +110,14 @@ public class Client extends JComponent implements Runnable {
                 writer.write(String.format("%s, %s", logInUserNameStrField.getText(), logInPasswordStrField.getText()));
                 writer.println();
                 writer.flush();
+                try {
+                    String validSignIn;
+                    validSignIn = reader.readLine();
+                    if (validSignIn.contains("success")) {
+                        // Main profile gui
+                    }
+                } catch (IOException ex) {
+                }
             }
         });
 
@@ -113,18 +132,7 @@ public class Client extends JComponent implements Runnable {
         try {
             this.clientGUI = new Client(this.portNum);
 
-            // Keeps on asking for sign in/ sign up until a valid sign in/sign up is confirmed by server
-            String validSignIn = "";
-            while (!validSignIn.contains("success")) {
-                signInScreen();
-                validSignIn = reader.readLine();
-            }
-
-            // Main GUI
-            boolean accessingProfile = true;
-            while (accessingProfile) {
-                // Put main GUI
-            }
+            signInScreen();
 
         } catch (IOException e) {
 

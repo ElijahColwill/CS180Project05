@@ -10,10 +10,15 @@ public class Client extends JComponent implements Runnable {
 
     private static int portNum;
 
-    JTextField userNameStrField;
-    JTextField passwordStrField;
+    JTextField logInUserNameStrField;
+    JTextField logInPasswordStrField;
     JButton signInButton;
     JButton signUpButton;
+
+    JTextField signUpNameStrField;
+    JTextField signUpUserNameStrField;
+    JTextField signUpPasswordStrField;
+    JButton registerButton;
 
     Client clientGUI;
 
@@ -40,6 +45,27 @@ public class Client extends JComponent implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
+
+        signUpUserNameStrField = new JTextField(10);
+        signUpPasswordStrField = new JTextField(10);
+        signUpNameStrField = new JTextField(10);
+        registerButton = new JButton("Register");
+
+        JPanel panel = new JPanel();
+        panel.add(signUpUserNameStrField);
+        panel.add(signUpPasswordStrField);
+        panel.add(signUpNameStrField);
+        panel.add(registerButton);
+        content.add(panel, BorderLayout.NORTH);
+
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                writer.write(String.format("%s, %s, %s", signUpUserNameStrField.getText(),
+                        signUpPasswordStrField.getText(), signUpNameStrField.getText()));
+                writer.println();
+                writer.flush();
+            }
+        });
     }
 
     private void signInScreen() {
@@ -54,31 +80,21 @@ public class Client extends JComponent implements Runnable {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
 
-        userNameStrField = new JTextField(20);
-        passwordStrField = new JTextField(20);
+        logInUserNameStrField = new JTextField(20);
+        logInPasswordStrField = new JTextField(20);
         signInButton = new JButton("Sign-in");
         signUpButton = new JButton("Sign-up");
 
         JPanel panel = new JPanel();
-        panel.add(userNameStrField);
-        panel.add(passwordStrField);
+        panel.add(logInUserNameStrField);
+        panel.add(logInPasswordStrField);
         panel.add(signInButton);
         panel.add(signUpButton);
         content.add(panel, BorderLayout.NORTH);
-    }
-
-    public void run() {
-        try {
-            this.clientGUI = new Client(this.portNum);
-        } catch (IOException e) {
-
-        }
-
-        signInScreen();
 
         signInButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                writer.write(String.format("%s, %s", userNameStrField.getText(), passwordStrField.getText()));
+                writer.write(String.format("%s, %s", logInUserNameStrField.getText(), logInPasswordStrField.getText()));
                 writer.println();
                 writer.flush();
             }
@@ -89,9 +105,16 @@ public class Client extends JComponent implements Runnable {
                 signUpScreen();
             }
         });
+    }
 
-        //writer.close();
-        //reader.close();
+    public void run() {
+        try {
+            this.clientGUI = new Client(this.portNum);
+        } catch (IOException e) {
+
+        }
+
+        signInScreen();
     }
 
 }

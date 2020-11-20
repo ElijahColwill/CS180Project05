@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 public class Client extends JComponent implements Runnable {
 
@@ -25,6 +24,7 @@ public class Client extends JComponent implements Runnable {
     PrintWriter writer;
     BufferedReader reader;
 
+    // Constructor for Client, needs port number
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
 
@@ -34,6 +34,7 @@ public class Client extends JComponent implements Runnable {
         this.writer = new PrintWriter(socket.getOutputStream());
     }
 
+    // Temporary GUI for the sign up screen
     private void signUpScreen() {
         JFrame frame = new JFrame("Client");
 
@@ -68,6 +69,7 @@ public class Client extends JComponent implements Runnable {
         });
     }
 
+    // Temporary GUI for sign in screen
     private void signInScreen() {
         JFrame frame = new JFrame("Client");
 
@@ -110,11 +112,23 @@ public class Client extends JComponent implements Runnable {
     public void run() {
         try {
             this.clientGUI = new Client(this.portNum);
+
+            // Keeps on asking for sign in/ sign up until a valid sign in/sign up is confirmed by server
+            String validSignIn = "";
+            while (!validSignIn.contains("success")) {
+                signInScreen();
+                validSignIn = reader.readLine();
+            }
+
+            // Main GUI
+            boolean accessingProfile = true;
+            while (accessingProfile) {
+                // Put main GUI
+            }
+
         } catch (IOException e) {
 
         }
-
-        signInScreen();
     }
 
 }

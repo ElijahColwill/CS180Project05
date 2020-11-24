@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 
 /**
  * CS180 - Project 5
- * HomeFrame.java
+ * FriendListFrame.java
  *
- * Home frame for the application.
+ * Friend list frame for the application.
  *
  * @author Henrik Berg, henrik@purdue.edu
- * @version November 19, 2020
+ * @version November 20, 2020
  */
-public final class HomeFrame extends JFrame implements ActionListener {
+public final class FriendsListFrame extends JFrame implements ActionListener {
     private final Container frameContainer;
 
     private final JPanel titlePanel;
@@ -31,8 +31,8 @@ public final class HomeFrame extends JFrame implements ActionListener {
     private final JButton enterButton;
     private final JButton exitButton;
 
-    public HomeFrame() {
-        super("Social | Welcome");
+    public FriendsListFrame() {
+        super("Social | Friends List");
 
         frameContainer = this.getContentPane();
 
@@ -41,13 +41,13 @@ public final class HomeFrame extends JFrame implements ActionListener {
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        titleLabel = new JLabel("Social");
-        descriptionLabel = new JLabel("Welcome to the social media app!");
+        titleLabel = new JLabel("Friends List");
+        descriptionLabel = new JLabel("Below is a list of your friends.");
 
         enterButton = new JButton("Enter");
         exitButton = new JButton("Exit");
 
-        this.setSize(470, 280);
+        this.setSize(470, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
@@ -97,7 +97,4 @@ public final class HomeFrame extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        HomeFrame homeFrame = new HomeFrame();
-    }
 }

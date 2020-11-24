@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  * @author Henrik Berg, henrik@purdue.edu
  * @version November 19, 2020
  */
-public class ImageUtils {
+public final class ImageUtils {
     public static ImageIcon resizeImageIcon(ImageIcon imageIcon, Integer width, Integer height) {
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
 

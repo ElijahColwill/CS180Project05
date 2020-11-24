@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 
 /**
  * CS180 - Project 5
- * HomeFrame.java
+ * SignUpFrame.java
  *
- * Home frame for the application.
+ * Sign up frame for the application.
  *
  * @author Henrik Berg, henrik@purdue.edu
- * @version November 19, 2020
+ * @version November 20, 2020
  */
-public final class HomeFrame extends JFrame implements ActionListener {
+public final class SignUpFrame extends JFrame implements ActionListener {
     private final Container frameContainer;
 
     private final JPanel titlePanel;
@@ -28,11 +28,18 @@ public final class HomeFrame extends JFrame implements ActionListener {
     private final JLabel titleLabel;
     private final JLabel descriptionLabel;
 
+    private final JTextField firstNameField;
+    private final JTextField lastNameField;
+    private final JTextField emailField;
+    private final JTextField ageField;
+    private final JTextField genderField;
+    private final JTextField passwordField;
+
     private final JButton enterButton;
     private final JButton exitButton;
 
-    public HomeFrame() {
-        super("Social | Welcome");
+    public SignUpFrame() {
+        super("Social | Sign Up");
 
         frameContainer = this.getContentPane();
 
@@ -41,8 +48,15 @@ public final class HomeFrame extends JFrame implements ActionListener {
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        titleLabel = new JLabel("Social");
-        descriptionLabel = new JLabel("Welcome to the social media app!");
+        titleLabel = new JLabel("Sign Up");
+        descriptionLabel = new JLabel("Sign up to our app below!");
+
+        firstNameField = new JTextField(20);
+        lastNameField = new JTextField(20);
+        emailField = new JTextField(40);
+        ageField = new JTextField(5);
+        genderField = new JTextField(5);
+        passwordField = new JTextField(30);
 
         enterButton = new JButton("Enter");
         exitButton = new JButton("Exit");
@@ -97,7 +111,4 @@ public final class HomeFrame extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        HomeFrame homeFrame = new HomeFrame();
-    }
 }

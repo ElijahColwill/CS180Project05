@@ -12,7 +12,7 @@ import java.awt.*;
  * @author Henrik Berg, henrik@purdue.edu
  * @version November 19, 2020
  */
-public class SwingUtils {
+public final class SwingUtils {
     public static void addComponent(JPanel panel, JComponent component, int x, int y, int width, int height, int align) {
         GridBagConstraints c = new GridBagConstraints();
 

@@ -57,6 +57,34 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    /**
+     * This method writes the user details to a file for storing this data.
+     * @param user the user object whose data is being stored.
+     */
+    public void writeUserToFile(User user) {
+
+        try {
+
+            FileOutputStream fileOutputStream = new FileOutputStream("userListFile");
+            PrintWriter writer = new PrintWriter(fileOutputStream);
+
+            writer.println(this.userName + "," + this.password + "," + this.fullName);
+
+            fileOutputStream.close();
+            writer.close();
+
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
+        }
+
+    }
 
     public void sendFriendRequest(User user) throws FriendNotFoundException {
         for (int i = 0; i < sentRequests.size(); i++) {

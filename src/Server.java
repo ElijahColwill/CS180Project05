@@ -13,11 +13,7 @@ public class Server {
 
             ServerSocket serverSocket = new ServerSocket(portNum);      //server socket creation
 
-            System.out.println("Waiting for client to connect");        //testing purposes only; remove line later
-
             Socket socket = serverSocket.accept();                      //socket creation
-
-            System.out.println("Client connected!");                    //testing purposes only; remove line later
 
             File userListFile = new File("userList");           //file that stores user object information
 
@@ -35,11 +31,11 @@ public class Server {
 
                 String[] userData = line.split(",");
 
-                String usernameData = userData[0];
-                String passwordData = userData[1];
-                String nameData = userData[2];
+                String fullNameData = userData[0];
+                String usernameData = userData[1];
+                String passwordData = userData[2];
 
-                User user = new User(usernameData, passwordData, nameData);
+                User user = new User(fullNameData, usernameData, passwordData);
                 userList.add(user);             //adding the user to the userList array
 
                 line = userReader.readLine();   //reads next line
@@ -68,7 +64,7 @@ public class Server {
 
                     for (int i = 0; i < userList.size(); i++) {     //checking to see if username already exists
 
-                        if (username.equalsIgnoreCase(userList.get(i).getUsername())) {
+                        if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
 
                             usernameExists = true;
                             writer.write("Username already taken!");
@@ -82,7 +78,7 @@ public class Server {
 
                         String name = reader.readLine();            //gets user's name from client
 
-                        User newUser = new User(username, password, name);      //creates a user object
+                        User1 newUser = new User1(username, password, name);      //creates a user object
 
                         newUser.writeUserToFile(newUser);           //writes user data to file for storage
 
@@ -106,7 +102,7 @@ public class Server {
 
                     for (int i = 0; i < userList.size(); i++) {
 
-                        if (username.equalsIgnoreCase(userList.get(i).getUsername()) &&
+                        if (username.equalsIgnoreCase(userList.get(i).getUserName()) &&
                                 password.equalsIgnoreCase(userList.get(i).getPassword())) {
 
                             invalidUsername = false;

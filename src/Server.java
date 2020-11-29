@@ -19,10 +19,10 @@ public class Server {
 
             File friendsList = new File("friendsList");     //file that stores user's friends list
 
-            FileReader userListReader = new FileReader(userListFile);       //file reader for userList
+            FileReader userFileReader = new FileReader(userListFile);       //file reader for userList
             FileReader friendsListReader = new FileReader(friendsList); //file reader for friendsList
 
-            BufferedReader userReader = new BufferedReader(userListReader); //buffered reader for userList
+            BufferedReader userReader = new BufferedReader(userFileReader); //buffered reader for userList
 
             String line = userReader.readLine();
 
@@ -42,7 +42,7 @@ public class Server {
             }
 
             userReader.close();
-            userListReader.close();
+            userFileReader.close();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
@@ -78,11 +78,103 @@ public class Server {
 
                         String name = reader.readLine();            //gets user's name from client
 
-                        User1 newUser = new User1(username, password, name);      //creates a user object
+                        User newUser = new User(name, username, password);      //creates a user object
+
+                        Profile newProfile;                             //creates a profile object for the user
 
                         newUser.writeUserToFile(newUser);           //writes user data to file for storage
 
                         writer.write("Success");                //writes back to client
+
+                        //creating a profile object using data entered by the user through the GUI
+                        //receives all the user profile data as one line separated by commas (without spaces) up
+                        //to the friendsList array list. The friendsList can be sent separately in another line
+                        //with the friend usernames separated by commas.
+
+                        String basicProfileInfo = reader.readLine();
+                        String[] basicProfileArray = basicProfileInfo.split(",");
+
+                        String ownerName = basicProfileArray[0];
+                        String bio = basicProfileArray[1];
+                        String email = basicProfileArray[2];
+                        String locationInfo = "";
+                        String interestsInfo = "";
+                        int phoneNumber = 0;
+
+                        String listOfFriends = reader.readLine();   //string of friends usernames
+                        String[] arrayOfFriends = listOfFriends.split(",");
+
+                        for (int i = 0; i < arrayOfFriends.length; i++) {
+
+                            for (int j = 0; j < userList.size(); j++) {
+
+                                if (arrayOfFriends[i].equalsIgnoreCase(userList.get(j).getUserName())) {
+
+                                    newUser.getFriendList().add(userList.get(j));   //adds the user to the friendsList
+                                }
+                            }
+                        }
+
+                        //if the user enters other data such as phone number, location, interests, etc:
+
+                        if (reader.readLine() != null) {
+
+                            String moreProfileInfo = reader.readLine();
+                            String[] moreProfileArray = moreProfileInfo.split(",");
+
+                            if (moreProfileArray.length == 1) {
+
+                                locationInfo = moreProfileArray[0];
+
+                                newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo);
+
+                            } else if (moreProfileArray.length == 2) {
+
+                                locationInfo = moreProfileArray[0];
+                                interestsInfo = moreProfileArray[1];
+
+                                newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo, interestsInfo);
+
+                            } else if (moreProfileArray.length == 3) {
+
+                                locationInfo = moreProfileArray[0];
+                                interestsInfo = moreProfileArray[1];
+                                phoneNumber = Integer.parseInt(moreProfileArray[2]);
+
+                                newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo,
+                                                        interestsInfo, phoneNumber);
+
+                            }
+
+                        } else {
+
+                            newProfile = new Profile(ownerName, bio, email, newUser.getFriendList());
+                        }
+
+                        File newProfileInfo = new File(username + "Profile.txt");   //creates a new file for each user
+
+                        FileOutputStream fos = new FileOutputStream(newProfileInfo);        //file output stream
+
+                        PrintWriter profileInfoWriter = new PrintWriter(fos);               //print writer
+
+                        profileInfoWriter.println(username);
+                        profileInfoWriter.println(ownerName + "," + bio + "," + email);
+                        profileInfoWriter.println(listOfFriends);
+
+                        if (locationInfo != null) {
+
+                            profileInfoWriter.write(locationInfo + ",");
+                        }
+
+                        if (interestsInfo != null) {
+
+                            profileInfoWriter.write(interestsInfo + ",");
+                        }
+
+                        if (phoneNumber != 0) {
+
+                            profileInfoWriter.write(phoneNumber);
+                        }
                     }
 
                 }
@@ -122,6 +214,9 @@ public class Server {
 
         } catch (IOException ioe) {
             ioe.getMessage();
+
+        } catch (NumberFormatException nfe) {
+            nfe.getMessage();
         }
 
     }

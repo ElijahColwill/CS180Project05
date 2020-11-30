@@ -5,8 +5,6 @@ import assets.utils.SwingUtils;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * CS180 - Project 5
@@ -17,87 +15,138 @@ import java.awt.event.ActionListener;
  * @author Henrik Berg, henrik@purdue.edu
  * @version November 19, 2020
  */
-public final class HomeFrame extends JFrame implements ActionListener {
+public final class HomeFrame extends JFrame {
     private final Container frameContainer;
 
-    private final JPanel titlePanel;
-    private final JPanel buttonPanel;
+    private final JPanel headerPanel;
+    private final JPanel contentPanel;
+    private final JPanel signUpPanel;
+    private final JPanel signInPanel;
+    private final JPanel signInFieldPanel;
     private final JPanel navigationPanel;
 
     private final JLabel logoLabel;
-    private final JLabel titleLabel;
-    private final JLabel descriptionLabel;
+    private final JLabel headerLabel;
+    private final JLabel signUpLabel;
+    private final JLabel signUpDescriptionLabel;
+    private final JLabel signInLabel;
+    private final JLabel signInDescriptionLabel;
+    private final JLabel usernameLabel;
+    private final JLabel passwordLabel;
 
-    private final JButton enterButton;
-    private final JButton exitButton;
+    public final JButton signUpButton;
+    public final JButton signInButton;
+    public final JButton exitButton;
+    public final JButton enterButton;
+
+    public final JTextField usernameField;
+    public final JTextField passwordField;
 
     public HomeFrame() {
         super("Social | Welcome");
 
         frameContainer = this.getContentPane();
 
-        titlePanel = new JPanel(new GridBagLayout());
-        buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        headerPanel = new JPanel(new GridBagLayout());
+        contentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        signUpPanel = new JPanel(new GridBagLayout());
+        signInPanel = new JPanel(new GridBagLayout());
+        signInFieldPanel = new JPanel(new GridBagLayout());
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
-        titleLabel = new JLabel("Social");
-        descriptionLabel = new JLabel("Welcome to the social media app!");
+        headerLabel = new JLabel("Social");
+        signUpLabel = new JLabel("Sign Up");
+        signUpDescriptionLabel = new JLabel("Press the button below to sign up.");
+        signInLabel = new JLabel("Sign In");
+        signInDescriptionLabel = new JLabel("Enter your credentials below to sign in.");
+        usernameLabel = new JLabel("Username:");
+        passwordLabel = new JLabel("Password:");
 
-        enterButton = new JButton("Enter");
+        signUpButton = new JButton("Sign Up");
+        signInButton = new JButton("Sign In");
         exitButton = new JButton("Exit");
+        enterButton = new JButton("Enter");
 
-        this.setSize(470, 280);
+        usernameField = new JTextField(20);
+        passwordField = new JTextField(20);
+
+        this.setSize(450, 475);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new BorderLayout());
         this.setResizable(false);
 
-        titleLabel.setFont(Constants.HEADER_FONT);
-        descriptionLabel.setFont(Constants.MAIN_FONT);
-        enterButton.setFont(Constants.MAIN_FONT);
+        headerLabel.setFont(Constants.HEADER_FONT);
+        signUpLabel.setFont(Constants.SUB_HEADER_FONT);
+        signInLabel.setFont(Constants.SUB_HEADER_FONT);
+
+        signUpDescriptionLabel.setFont(Constants.MAIN_FONT);
+        signInDescriptionLabel.setFont(Constants.MAIN_FONT);
+        usernameLabel.setFont(Constants.MAIN_FONT);
+        passwordLabel.setFont(Constants.MAIN_FONT);
+        signUpButton.setFont(Constants.MAIN_FONT);
+        signInButton.setFont(Constants.MAIN_FONT);
         exitButton.setFont(Constants.MAIN_FONT);
 
-        frameContainer.setBackground(Constants.HEADER_BACKGROUND_COLOR);
+        headerPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
+        navigationPanel.setBackground(Constants.BACKGROUND_COLOR);
 
+        headerPanel.setBorder(Constants.HEADER_BORDER);
+        signUpPanel.setBorder(Constants.NAVIGATION_BORDER);
         navigationPanel.setBorder(Constants.NAVIGATION_BORDER);
 
-        logoLabel.setIcon(Constants.LOGO);
+        logoLabel.setIcon(Constants.LOGO_64);
 
-        enterButton.addActionListener(this);
-        exitButton.addActionListener(this);
+        headerLabel.setForeground(Constants.YELLOW_COLOR);
 
-        SwingUtils.addComponent(titlePanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_START);
-        SwingUtils.addComponent(titlePanel, titleLabel, 0, 1, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(titlePanel, descriptionLabel, 0, 2, 1, 1, GridBagConstraints.PAGE_END);
+        SwingUtils.addComponent(headerPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(headerPanel, headerLabel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 2, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 3, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 4, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 5, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 6, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 7, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 8, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 9, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 10, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 11, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 12, 0, 1, 1, GridBagConstraints.CENTER);
 
-        buttonPanel.add(enterButton);
+        SwingUtils.addComponent(signInFieldPanel, usernameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(signInFieldPanel, usernameField, 1, 0 ,1, 1, GridBagConstraints.LINE_START);
+        SwingUtils.addComponent(signInFieldPanel, passwordLabel, 0, 1, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(signInFieldPanel, passwordField, 1, 1, 1, 1, GridBagConstraints.LINE_START);
 
-        navigationPanel.add(enterButton);
+        SwingUtils.addComponent(signInPanel, signInLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
+        SwingUtils.addComponent(signInPanel, signInDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(signInPanel, signInFieldPanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(signInPanel, signInButton, 0, 3, 1, 1, GridBagConstraints.CENTER);
+
+        SwingUtils.addComponent(signUpPanel, signUpLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
+        SwingUtils.addComponent(signUpPanel, signUpDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(signUpPanel, signUpButton, 0, 2, 1, 1, GridBagConstraints.CENTER);
+
+        contentPanel.add(signInPanel);
+        contentPanel.add(signUpPanel);
+
         navigationPanel.add(exitButton);
 
-        frameContainer.add(titlePanel, BorderLayout.NORTH);
-        frameContainer.add(buttonPanel, BorderLayout.CENTER);
+        frameContainer.add(headerPanel, BorderLayout.NORTH);
+        frameContainer.add(contentPanel, BorderLayout.CENTER);
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object buttonPressed = e.getSource();
-
-        if (buttonPressed == enterButton) {
-            MainFrame mainFrame = new MainFrame();
-            this.dispose();
-        }
-        if (buttonPressed == exitButton) {
-            return;
-        }
-
-    }
-
+    // FOR TESTING THE FRAME
     public static void main(String[] args) {
-        HomeFrame homeFrame = new HomeFrame();
+        EventQueue.invokeLater(() -> {
+            try {
+                new HomeFrame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

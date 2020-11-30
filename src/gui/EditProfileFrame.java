@@ -10,87 +10,114 @@ import java.awt.event.ActionListener;
 
 /**
  * CS180 - Project 5
- * SignUpFrame.java
+ * EditProfileFrame.java
  *
- * Sign up frame for the application.
+ * Edit profile frame for the application.
  *
  * @author Henrik Berg, henrik@purdue.edu
- * @version November 20, 2020
+ * @version November 25, 2020
  */
-public final class SignUpFrame extends JFrame {
+public final class EditProfileFrame extends JFrame {
     private final Container frameContainer;
 
     private final JPanel headerPanel;
     private final JPanel contentPanel;
-    private final JPanel signUpPanel;
+    private final JPanel editProfilePanel;
     private final JPanel namePanel;
     private final JPanel usernamePanel;
     private final JPanel emailPanel;
     private final JPanel passwordPanel;
+    private final JPanel locationPanel;
+    private final JPanel bioPanel;
+    private final JPanel interestsPanel;
     private final JPanel navigationPanel;
 
     private final JLabel logoLabel;
     private final JLabel headerLabel;
-    private final JLabel signUpLabel;
-    private final JLabel signUpDescriptionLabel;
+    private final JLabel editProfileLabel;
+    private final JLabel editProfileDescriptionLabel;
     private final JLabel nameLabel;
     private final JLabel usernameLabel;
     private final JLabel emailLabel;
     private final JLabel passwordLabel;
+    private final JLabel locationLabel;
+    private final JLabel bioLabel;
+    private final JLabel interestsLabel;
 
-    public final JButton signUpButton;
+    public final JButton updateProfileButton;
+    public final JButton deleteAccountButton;
     public final JButton backButton;
 
     public final JTextField nameField;
     public final JTextField usernameField;
     public final JTextField emailField;
     public final JPasswordField passwordField;
+    public final JTextField locationField;
+    public final JTextField bioField;
+    public final JTextField interestsField;
 
-    public SignUpFrame() {
-        super("Social | Sign Up");
+    public EditProfileFrame() {
+        super("Social | Edit Profile");
 
         frameContainer = this.getContentPane();
 
         headerPanel = new JPanel(new GridBagLayout());
         contentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        signUpPanel = new JPanel(new GridBagLayout());
+        editProfilePanel = new JPanel(new GridBagLayout());
         namePanel = new JPanel(new GridBagLayout());
         usernamePanel = new JPanel(new GridBagLayout());
         emailPanel = new JPanel(new GridBagLayout());
         passwordPanel = new JPanel(new GridBagLayout());
+        locationPanel = new JPanel(new GridBagLayout());
+        bioPanel = new JPanel(new GridBagLayout());
+        interestsPanel = new JPanel(new GridBagLayout());
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
-        signUpLabel = new JLabel("Sign Up");
-        signUpDescriptionLabel = new JLabel("Enter your details below to sign up.");
-        nameLabel = new JLabel("Name:");
+        editProfileLabel = new JLabel("Edit Profile");
+        editProfileDescriptionLabel = new JLabel("Enter your details below to edit your profile.");
+        nameLabel = new JLabel("Full Name:");
         usernameLabel = new JLabel("Username:");
         emailLabel = new JLabel("Email:        ");
         passwordLabel = new JLabel("Password:");
+        locationLabel = new JLabel("Location: ");
+        bioLabel = new JLabel("Bio:           ");
+        interestsLabel = new JLabel("Interests:  ");
 
-        signUpButton = new JButton("Sign Up");
+        updateProfileButton = new JButton("Update Profile");
+        deleteAccountButton = new JButton("Delete Account");
         backButton = new JButton("Back");
 
         nameField = new JTextField(12);
         usernameField = new JTextField(12);
         emailField = new JTextField(12);
         passwordField = new JPasswordField(12);
+        locationField = new JTextField(12);
+        bioField = new JTextField(12);
+        interestsField = new JTextField(12);
 
-        this.setSize(450, 500);
+        this.setSize(450, 650);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        headerLabel.setFont(Constants.HEADER_FONT);
-        signUpLabel.setFont(Constants.SUB_HEADER_FONT);
+        // Pre-populating user information in text fields
+        //presetFields();
 
-        signUpDescriptionLabel.setFont(Constants.MAIN_FONT);
+        headerLabel.setFont(Constants.HEADER_FONT);
+        editProfileLabel.setFont(Constants.SUB_HEADER_FONT);
+
+        editProfileDescriptionLabel.setFont(Constants.MAIN_FONT);
         nameLabel.setFont(Constants.MAIN_FONT);
         usernameLabel.setFont(Constants.MAIN_FONT);
         emailLabel.setFont(Constants.MAIN_FONT);
         passwordLabel.setFont(Constants.MAIN_FONT);
-        signUpButton.setFont(Constants.MAIN_FONT);
+        locationLabel.setFont(Constants.MAIN_FONT);
+        bioLabel.setFont(Constants.MAIN_FONT);
+        interestsLabel.setFont(Constants.MAIN_FONT);
+        updateProfileButton.setFont(Constants.MAIN_FONT);
+        deleteAccountButton.setFont(Constants.MAIN_FONT);
         backButton.setFont(Constants.MAIN_FONT);
 
         headerPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
@@ -129,15 +156,28 @@ public final class SignUpFrame extends JFrame {
         SwingUtils.addComponent(passwordPanel, passwordLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(passwordPanel, passwordField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
 
-        SwingUtils.addComponent(signUpPanel, signUpLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
-        SwingUtils.addComponent(signUpPanel, signUpDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
-        SwingUtils.addComponent(signUpPanel, namePanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(signUpPanel, usernamePanel, 0, 3, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(signUpPanel, emailPanel, 0, 4, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(signUpPanel, passwordPanel, 0, 5, 1, 1, GridBagConstraints.CENTER);
-        SwingUtils.addComponent(signUpPanel, signUpButton, 0, 6, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(locationPanel, locationLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(locationPanel, locationField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
 
-        contentPanel.add(signUpPanel);
+        SwingUtils.addComponent(bioPanel, bioLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(bioPanel, bioField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
+
+        SwingUtils.addComponent(interestsPanel, interestsLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(interestsPanel, interestsField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
+
+        SwingUtils.addComponent(editProfilePanel, editProfileLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
+        SwingUtils.addComponent(editProfilePanel, editProfileDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(editProfilePanel, namePanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, usernamePanel, 0, 3, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, emailPanel, 0, 4, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, passwordPanel, 0, 5, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, locationPanel, 0, 6, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, bioPanel, 0, 7, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, interestsPanel, 0, 8, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, updateProfileButton, 0, 9, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(editProfilePanel, deleteAccountButton, 0, 10, 1, 1, GridBagConstraints.PAGE_END);
+
+        contentPanel.add(editProfilePanel);
 
         navigationPanel.add(backButton);
 
@@ -148,11 +188,20 @@ public final class SignUpFrame extends JFrame {
         this.setVisible(true);
     }
 
+//    public void presetFields(User user) {
+//        nameField.setText(user.getName());
+//        usernameField.setText(user.getUsername());
+//        emailField.setText(user.getEmail());
+//        locationField.setText(user.getProfile().getLocation());
+//        bioField.setText(user.getProfile().getBio());
+//        interestsField.setText(user.getProfile().getInterests());
+//    }
+
     // FOR TESTING THE FRAME
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                new SignUpFrame();
+                new EditProfileFrame();
             } catch (Exception e) {
                 e.printStackTrace();
             }

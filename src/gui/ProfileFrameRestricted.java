@@ -1,0 +1,160 @@
+package gui;
+
+import assets.Constants;
+import assets.utils.SwingUtils;
+
+import javax.swing.*;
+import java.awt.*;
+
+/**
+ * CS180 - Project 5
+ * ProfileFrameRestricted.java
+ *
+ * Profile frame (restricted, can't edit) for the application.
+ *
+ * @author Henrik Berg, henrik@purdue.edu
+ * @version November 24, 2020
+ */
+public final class ProfileFrameRestricted extends JFrame {
+    private final Container frameContainer;
+
+    private final JPanel headerPanel;
+    private final JPanel contentPanel;
+    private final JPanel profilePanel;
+    private final JPanel imagePanel;
+    private final JPanel namePanel;
+    private final JPanel buttonPanel;
+    private final JPanel friendButtonPanel;
+    private final JPanel informationPanel;
+    private final JPanel navigationPanel;
+
+    private final JLabel logoLabel;
+    private final JLabel headerLabel;
+    private final JLabel imageLabel;
+    private final JLabel nameLabel;
+    private final JLabel usernameLabel;
+    private final JLabel locationHeaderLabel;
+    private final JLabel locationLabel;
+    private final JLabel bioHeaderLabel;
+    private final JLabel bioLabel;
+    private final JLabel interestsHeaderLabel;
+    private final JLabel interestsLabel;
+
+    public final JButton viewFriendsButton;
+    public final JButton backButton;
+
+    public ProfileFrameRestricted() {
+        super("Social | Profile");
+
+        frameContainer = this.getContentPane();
+
+        headerPanel = new JPanel(new GridBagLayout());
+        contentPanel = new JPanel(new GridBagLayout());
+        profilePanel = new JPanel(new GridBagLayout());
+        imagePanel = new JPanel(new GridBagLayout());
+        namePanel = new JPanel(new GridBagLayout());
+        friendButtonPanel = new JPanel(new GridBagLayout());
+        buttonPanel = new JPanel(new GridBagLayout());
+        informationPanel = new JPanel(new GridBagLayout());
+        navigationPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        logoLabel = new JLabel();
+        headerLabel = new JLabel("Social");
+        imageLabel = new JLabel();
+        nameLabel = new JLabel("Henrik Berg");
+        usernameLabel = new JLabel("@henrikbg");
+        locationHeaderLabel = new JLabel("Location");
+        locationLabel = new JLabel("West Lafayette, IN");
+        bioHeaderLabel = new JLabel("Bio");
+        bioLabel = new JLabel("Hi everyone, I'm a CS student at Purdue University.");
+        interestsHeaderLabel = new JLabel("Interests");
+        interestsLabel = new JLabel("Basketball, Video Games, and Programming");
+
+        viewFriendsButton = new JButton("View Friends");
+        backButton = new JButton("Back");
+
+        this.setSize(550, 550);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+
+        headerLabel.setFont(Constants.HEADER_FONT);
+        nameLabel.setFont(Constants.SUB_HEADER_FONT);
+
+        locationHeaderLabel.setFont(Constants.SUB_SUB_HEADER_FONT);
+        bioHeaderLabel.setFont(Constants.SUB_SUB_HEADER_FONT);
+        interestsHeaderLabel.setFont(Constants.SUB_SUB_HEADER_FONT);
+
+        usernameLabel.setFont(Constants.MAIN_FONT);
+        locationLabel.setFont(Constants.MAIN_FONT);
+        bioLabel.setFont(Constants.MAIN_FONT);
+        interestsLabel.setFont(Constants.MAIN_FONT);
+        viewFriendsButton.setFont(Constants.MAIN_FONT);
+        backButton.setFont(Constants.MAIN_FONT);
+
+        headerPanel.setBackground(Constants.HEADER_BACKGROUND_COLOR);
+        navigationPanel.setBackground(Constants.BACKGROUND_COLOR);
+
+        headerPanel.setBorder(Constants.HEADER_BORDER);
+        navigationPanel.setBorder(Constants.NAVIGATION_BORDER);
+
+        logoLabel.setIcon(Constants.LOGO_64);
+        imageLabel.setIcon(Constants.USER_100);
+
+        headerLabel.setForeground(Constants.YELLOW_COLOR);
+
+        SwingUtils.addComponent(headerPanel, logoLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+        SwingUtils.addComponent(headerPanel, headerLabel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 2, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 3, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 4, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 5, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 6, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 7, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 8, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 9, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 10, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 11, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(headerPanel, new JLabel(" "), 12, 0, 1, 1, GridBagConstraints.CENTER);
+
+        SwingUtils.addComponent(imagePanel, imageLabel, 0, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(namePanel, nameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_START);
+        SwingUtils.addComponent(namePanel, usernameLabel, 0, 1, 1, 1, GridBagConstraints.LINE_START);
+
+        SwingUtils.addComponent(profilePanel, imagePanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(profilePanel, namePanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(profilePanel, buttonPanel, 2, 0, 1, 1, GridBagConstraints.LAST_LINE_END);
+
+        SwingUtils.addComponent(informationPanel, locationHeaderLabel, 0, 0, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, locationLabel, 0, 1, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, bioHeaderLabel, 0, 2, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, bioLabel, 0, 3, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, interestsHeaderLabel, 0, 4, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, interestsLabel, 0, 5, 1, 1, GridBagConstraints.FIRST_LINE_START);
+
+        SwingUtils.addComponent(friendButtonPanel, viewFriendsButton, 0, 0, 1, 1, GridBagConstraints.LINE_END);
+
+        SwingUtils.addComponent(contentPanel, profilePanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentPanel, informationPanel, 0, 1, 1, 1, GridBagConstraints.CENTER);
+        SwingUtils.addComponent(contentPanel, friendButtonPanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
+
+        navigationPanel.add(backButton);
+
+        frameContainer.add(headerPanel, BorderLayout.NORTH);
+        frameContainer.add(contentPanel, BorderLayout.CENTER);
+        frameContainer.add(navigationPanel, BorderLayout.SOUTH);
+
+        this.setVisible(true);
+    }
+
+    // FOR TESTING THE FRAME
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                new ProfileFrameRestricted();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+}

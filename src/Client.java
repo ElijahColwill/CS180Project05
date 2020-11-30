@@ -14,7 +14,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
     PrintWriter writer;
     BufferedReader reader;
 
-    // Constructor for Client, needs port number
+    gui.HomeFrame homeFrame = new gui.HomeFrame();
+    gui.MainFrame mainFrame = new gui.MainFrame();
+    gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
+    gui.AddFriendFrame addFriendFrame = new gui.AddFriendFrame();
+    gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame();
+    gui.ProfileFrame profileFrame = new gui.ProfileFrame();
+
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
 
@@ -22,6 +28,14 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         this.reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.writer = new PrintWriter(socket.getOutputStream());
+    }
+
+    public static void main(String[] args) {
+        try {
+            SwingUtilities.invokeLater(new Client(2400));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void sendMessage(String message) {
@@ -39,19 +53,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
         return "";
     }
 
-    gui.HomeFrame homeFrame = new gui.HomeFrame();
-    gui.MainFrame mainFrame = new gui.MainFrame();
-    gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
-    gui.AddFriendFrame addFriendFrame = new gui.AddFriendFrame();
-    gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame();
-    gui.ProfileFrame profileFrame = new gui.ProfileFrame();
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
 
         if (buttonPressed == homeFrame.enterButton) {
-            sendMessage(String.format("1\n%s\n%s", homeFrame.username.getText(), homeFrame.password.getText()));
+            sendMessage(String.format("sign in\n%s\n%s", homeFrame.username.getText(), homeFrame.password.getText()));
             String signInResponse = receiveMessage();
             if (signInResponse.equals("incorrect username or password")) {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password",
@@ -68,7 +75,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
 
         if (buttonPressed == signUpFrame.signUpButton) {
-            sendMessage(String.format("2\n%s\n%s\n%s", signUpFrame.usernameField.getText(),
+            sendMessage(String.format("sign up\n%s\n%s\n%s", signUpFrame.usernameField.getText(),
                     signUpFrame.passwordField.getText(),
                     signUpFrame.lastNameField.getText() + ", " + signUpFrame.firstNameField.getText()));
             String signUpResponse = receiveMessage();
@@ -97,8 +104,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
 
         if (buttonPressed == profileFrame.updateProfileButton) {
-            sendMessage(String.format("3\n%s\n%s\n%s\n%s", profileFrame.emailField.getText(),
-                    profileFrame.ageField.getText(),
+            sendMessage(String.format("change profile\n%s\n%s\n%s\n%s", profileFrame.emailField.getText(),
+                    profileFrame.aboutMeField.getText(),
                     profileFrame.lastNameField.getText(), profileFrame.firstNameField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Error")) {

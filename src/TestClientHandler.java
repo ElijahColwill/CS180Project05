@@ -23,7 +23,7 @@ public class TestClientHandler extends Thread {
                 String message = reader.readLine();
                 if (message != null) {
                     System.out.println(message);
-                    writer.write("success");
+                    writer.write("Success");
                     writer.println();
                     writer.flush();
                     System.out.println("sent response");

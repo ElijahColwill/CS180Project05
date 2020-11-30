@@ -15,11 +15,14 @@ public class Client extends JComponent implements Runnable, ActionListener {
     BufferedReader reader;
 
     gui.HomeFrame homeFrame = new gui.HomeFrame();
-    gui.MainFrame mainFrame = new gui.MainFrame();
     gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
-    gui.AddFriendFrame addFriendFrame = new gui.AddFriendFrame();
+
     gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame();
+    gui.ManageFriendRequestsFrame manageFriendRequestsFrame = new gui.ManageFriendRequestsFrame();
+    gui.SendFriendRequestFrame sendFriendRequestFrame = new gui.SendFriendRequestFrame();
+
     gui.ProfileFrame profileFrame = new gui.ProfileFrame();
+    gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame();
 
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
@@ -57,88 +60,197 @@ public class Client extends JComponent implements Runnable, ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
 
-        if (buttonPressed == homeFrame.enterButton) {
-            sendMessage(String.format("sign in\n%s\n%s", homeFrame.username.getText(), homeFrame.password.getText()));
+        //Home
+        if (buttonPressed == homeFrame.signInButton) {
+            sendMessage(String.format("sign in\n%s\n%s", homeFrame.usernameField.getText(),
+                    homeFrame.passwordField.getText()));
             String signInResponse = receiveMessage();
             if (signInResponse.equals("incorrect username or password")) {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else if (signInResponse.equals("success")) {
-                mainFrame.setVisible(true);
+            } else if (signInResponse.equals("Success")) {
+                showProfileFrame();
                 homeFrame.dispose();
             }
         }
-
         if (buttonPressed == homeFrame.signUpButton) {
-            signUpFrame.setVisible(true);
+            showSignUpFrame();
             homeFrame.dispose();
         }
 
+        //Sign up
         if (buttonPressed == signUpFrame.signUpButton) {
             sendMessage(String.format("sign up\n%s\n%s\n%s", signUpFrame.usernameField.getText(),
-                    signUpFrame.passwordField.getText(),
-                    signUpFrame.lastNameField.getText() + ", " + signUpFrame.firstNameField.getText()));
+                    signUpFrame.passwordField,
+                    signUpFrame.nameField.getText(),
+                    signUpFrame.emailField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Username already taken!")) {
                 JOptionPane.showMessageDialog(null, "Username Taken",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (signUpResponse.equals("Success")) {
-                mainFrame.setVisible(true);
+                showProfileFrame();
                 signUpFrame.dispose();
             }
         }
-
         if (buttonPressed == signUpFrame.backButton) {
-            homeFrame.setVisible(true);
+            showHomeFrame();
             signUpFrame.dispose();
         }
 
-        if (buttonPressed == mainFrame.BACK_BUTTON) {
-            homeFrame.setVisible(true);
-            mainFrame.dispose();
+        //Profile
+        if (buttonPressed == profileFrame.editProfileButton) {
+            showEditProfileFrame();
+            profileFrame.dispose();
+        }
+        if (buttonPressed == profileFrame.viewFriendsButton) {
+            showFriendsListFrame();
+            profileFrame.dispose();
+        }
+        if (buttonPressed == profileFrame.addFriendButton) {
+            showSendFriendRequestFrame();
+            profileFrame.dispose();
+        }
+        if (buttonPressed == profileFrame.viewRequestsButton) {
+            showFriendRequestsFrame();
+            profileFrame.dispose();
+        }
+        if (buttonPressed == profileFrame.signOutButton) {
+            showHomeFrame();
+            profileFrame.dispose();
         }
 
-        if (buttonPressed == mainFrame.profileButton) {
-            profileFrame.setVisible(true);
-            mainFrame.dispose();
-        }
-
-        if (buttonPressed == profileFrame.updateProfileButton) {
-            sendMessage(String.format("change profile\n%s\n%s\n%s\n%s", profileFrame.emailField.getText(),
-                    profileFrame.aboutMeField.getText(),
-                    profileFrame.lastNameField.getText(), profileFrame.firstNameField.getText()));
+        //Edit profile
+        if (buttonPressed == editProfileFrame.updateProfileButton) {
+            sendMessage(String.format("change profile\n%s\n%s\n%s\n%s\n%s\n%s\n%s",
+                    editProfileFrame.nameField.getText(),
+                    editProfileFrame.usernameField.getText(),
+                    editProfileFrame.emailField.getText(),
+                    editProfileFrame.passwordField,
+                    editProfileFrame.locationField.getText(),
+                    editProfileFrame.bioField.getText(),
+                    editProfileFrame.interestsField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Error")) {
-                JOptionPane.showMessageDialog(null, "Error",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                //Error Message
             } else if (signUpResponse.equals("Success")) {
-                mainFrame.setVisible(true);
-                signUpFrame.dispose();
+
             }
         }
+        if (buttonPressed == editProfileFrame.deleteAccountButton) {
+            sendMessage("delete account");
+            String deleteAccountResponse = receiveMessage();
+            if (deleteAccountResponse.equals("Error")) {
+                //Error Message
+            } else if (deleteAccountResponse.equals("Success")) {
+                showHomeFrame();
+                editProfileFrame.dispose();
+            }
+        }
+        if (buttonPressed == editProfileFrame.backButton) {
+            showProfileFrame();
+            editProfileFrame.dispose();
+        }
 
-        if (buttonPressed == profileFrame.backButton) {
-            mainFrame.setVisible(true);
-            profileFrame.dispose();
+        //Friends list
+        if (buttonPressed == friendsListFrame.backButton) {
+            showProfileFrame();
+            friendsListFrame.dispose();
+        }
+
+        //Manage friend request
+        if (buttonPressed == manageFriendRequestsFrame.backButton) {
+            showProfileFrame();
+            manageFriendRequestsFrame.dispose();
+        }
+
+        //Send friend request
+        if (buttonPressed == sendFriendRequestFrame.backButton) {
+            showProfileFrame();
+            sendFriendRequestFrame.dispose();
+        }
+        if (buttonPressed == sendFriendRequestFrame.sendRequestButton) {
+
         }
 
     }
 
+    private void showHomeFrame() {
+        homeFrame = new gui.HomeFrame();
+        homeFrame.signInButton.addActionListener(this);
+        homeFrame.signUpButton.addActionListener(this);
+    }
+
+    private void showSignUpFrame() {
+        signUpFrame = new gui.SignUpFrame();
+        signUpFrame.signUpButton.addActionListener(this);
+        signUpFrame.backButton.addActionListener(this);
+    }
+
+    private void showProfileFrame() {
+        profileFrame = new gui.ProfileFrame();
+        profileFrame.editProfileButton.addActionListener(this);
+        profileFrame.viewFriendsButton.addActionListener(this);
+        profileFrame.addFriendButton.addActionListener(this);
+        profileFrame.viewRequestsButton.addActionListener(this);
+        profileFrame.signOutButton.addActionListener(this);
+    }
+
+    private void showEditProfileFrame() {
+        editProfileFrame = new gui.EditProfileFrame();
+        editProfileFrame.updateProfileButton.addActionListener(this);
+        editProfileFrame.deleteAccountButton.addActionListener(this);
+        editProfileFrame.backButton.addActionListener(this);
+    }
+
+    private void showFriendsListFrame() {
+        friendsListFrame = new gui.FriendsListFrame();
+        friendsListFrame.backButton.addActionListener(this);
+    }
+
+    private void showFriendRequestsFrame() {
+        manageFriendRequestsFrame = new gui.ManageFriendRequestsFrame();
+        manageFriendRequestsFrame.backButton.addActionListener(this);
+    }
+
+    private void showSendFriendRequestFrame() {
+        sendFriendRequestFrame = new gui.SendFriendRequestFrame();
+        sendFriendRequestFrame.backButton.addActionListener(this);
+        sendFriendRequestFrame.sendRequestButton.addActionListener(this);
+    }
+
     public void run() {
 
-        homeFrame.setVisible(true);
-
-        homeFrame.enterButton.addActionListener(this);
-        homeFrame.signUpButton.addActionListener(this);
+        signUpFrame.dispose();
+        profileFrame.dispose();
+        editProfileFrame.dispose();
+        friendsListFrame.dispose();
+        manageFriendRequestsFrame.dispose();
+        sendFriendRequestFrame.dispose();
 
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);
 
-        mainFrame.profileButton.addActionListener(this);
-        mainFrame.BACK_BUTTON.addActionListener(this);
+        homeFrame.signInButton.addActionListener(this);
+        homeFrame.signUpButton.addActionListener(this);
 
-        profileFrame.backButton.addActionListener(this);
-        profileFrame.updateProfileButton.addActionListener(this);
+        profileFrame.editProfileButton.addActionListener(this);
+        profileFrame.viewFriendsButton.addActionListener(this);
+        profileFrame.addFriendButton.addActionListener(this);
+        profileFrame.viewRequestsButton.addActionListener(this);
+        profileFrame.signOutButton.addActionListener(this);
+
+        editProfileFrame.updateProfileButton.addActionListener(this);
+        editProfileFrame.deleteAccountButton.addActionListener(this);
+        editProfileFrame.backButton.addActionListener(this);
+
+        friendsListFrame.backButton.addActionListener(this);
+
+        manageFriendRequestsFrame.backButton.addActionListener(this);
+
+        sendFriendRequestFrame.backButton.addActionListener(this);
+        sendFriendRequestFrame.sendRequestButton.addActionListener(this);
+
     }
 
 }

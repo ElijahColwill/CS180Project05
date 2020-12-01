@@ -14,6 +14,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
     PrintWriter writer;
     BufferedReader reader;
 
+    String currentUsername;
+
     gui.HomeFrame homeFrame = new gui.HomeFrame();
     gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
 
@@ -23,6 +25,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     gui.ProfileFrame profileFrame = new gui.ProfileFrame();
     gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame();
+
+    gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted();
 
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
@@ -69,7 +73,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (signInResponse.equals("Success")) {
-                showProfileFrame();
+                currentUsername = homeFrame.usernameField.getText();
+                showProfileFrame(currentUsername, false);
                 homeFrame.dispose();
             }
         }
@@ -85,11 +90,11 @@ public class Client extends JComponent implements Runnable, ActionListener {
                     signUpFrame.nameField.getText(),
                     signUpFrame.emailField.getText()));
             String signUpResponse = receiveMessage();
-            if (signUpResponse.equals("Username already taken!")) {
+            if (signUpResponse.equals("Username already taken")) {
                 JOptionPane.showMessageDialog(null, "Username Taken",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (signUpResponse.equals("Success")) {
-                showProfileFrame();
+                showProfileFrame(currentUsername, false);
                 signUpFrame.dispose();
             }
         }
@@ -148,29 +153,39 @@ public class Client extends JComponent implements Runnable, ActionListener {
             }
         }
         if (buttonPressed == editProfileFrame.backButton) {
-            showProfileFrame();
+            showProfileFrame(currentUsername, false);
             editProfileFrame.dispose();
         }
 
         //Friends list
         if (buttonPressed == friendsListFrame.backButton) {
-            showProfileFrame();
+            showProfileFrame(currentUsername, false);
             friendsListFrame.dispose();
         }
 
         //Manage friend request
         if (buttonPressed == manageFriendRequestsFrame.backButton) {
-            showProfileFrame();
+            showProfileFrame(currentUsername, false);
             manageFriendRequestsFrame.dispose();
         }
 
         //Send friend request
         if (buttonPressed == sendFriendRequestFrame.backButton) {
-            showProfileFrame();
+            showProfileFrame(currentUsername, false);
             sendFriendRequestFrame.dispose();
         }
         if (buttonPressed == sendFriendRequestFrame.sendRequestButton) {
 
+        }
+
+        //Restricted profile page
+        if (buttonPressed == profileFrameRestricted.backButton) {
+            showProfileFrame(currentUsername, false);
+            profileFrameRestricted.dispose();
+        }
+        if (buttonPressed == profileFrameRestricted.viewFriendsButton) {
+            showFriendsListFrame();
+            profileFrameRestricted.dispose();
         }
 
     }
@@ -187,13 +202,24 @@ public class Client extends JComponent implements Runnable, ActionListener {
         signUpFrame.backButton.addActionListener(this);
     }
 
-    private void showProfileFrame() {
-        profileFrame = new gui.ProfileFrame();
-        profileFrame.editProfileButton.addActionListener(this);
-        profileFrame.viewFriendsButton.addActionListener(this);
-        profileFrame.addFriendButton.addActionListener(this);
-        profileFrame.viewRequestsButton.addActionListener(this);
-        profileFrame.signOutButton.addActionListener(this);
+    private void showProfileFrame(String username, boolean isRestricted) {
+        sendMessage(String.format("Information for user\n%s", username));
+        String profilePageInfo = receiveMessage();
+        if (profilePageInfo.equals("User does not exist")) {
+            //Error message
+        }
+        if (!isRestricted) {
+            profileFrame = new gui.ProfileFrame();
+            profileFrame.editProfileButton.addActionListener(this);
+            profileFrame.viewFriendsButton.addActionListener(this);
+            profileFrame.addFriendButton.addActionListener(this);
+            profileFrame.viewRequestsButton.addActionListener(this);
+            profileFrame.signOutButton.addActionListener(this);
+        } else {
+            profileFrameRestricted = new gui.ProfileFrameRestricted();
+            profileFrameRestricted.backButton.addActionListener(this);
+            profileFrameRestricted.viewFriendsButton.addActionListener(this);
+        }
     }
 
     private void showEditProfileFrame() {
@@ -227,6 +253,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         friendsListFrame.dispose();
         manageFriendRequestsFrame.dispose();
         sendFriendRequestFrame.dispose();
+        profileFrameRestricted.dispose();
 
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);
@@ -250,6 +277,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
+
+        profileFrameRestricted.backButton.addActionListener(this);
+        profileFrameRestricted.viewFriendsButton.addActionListener(this);
 
     }
 

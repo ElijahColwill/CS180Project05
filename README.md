@@ -16,8 +16,9 @@ hobbies and interests, as well as a Friends system with the capacity to send, vi
 Documentation in the README includes a description of each class (Abridged documentation found in the class Javadocs) and details on testing preformed.
 
 ## Testing
-Classes that have indicated that they have Standard Model testing follow the following for the entire class. In GUI Classes, different testing methods  
-were utilized to accurately debug and verify the classes and the implementation of that testing will be described step by step.
+Classes that have indicated that they have Standard Model testing follow said model for the entire class. In GUI Classes, different testing  
+methods were utilized to accurately debug and verify the classes, and the implementation of that testing will be described step by step  
+for each class.
 
 ### Standard Model
 - Test that class exists and inherits correct superclass.
@@ -28,7 +29,7 @@ were utilized to accurately debug and verify the classes and the implementation 
 - Methods were checked with JUnit tests to check for the following:
   - Method Exists
   - Correct Method Type
-  - Correct Access Modifies
+  - Correct Access Modifier
   - Implementation Tests: Valid Input for all methods, Invalid Input when necessary
 
 ## Class Descriptions

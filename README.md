@@ -146,7 +146,7 @@ Methods:
 - deleteProfile()
   - Method that deletes the User's profile and information.
     
-Testing:
+Testing:  
 Standard Model
 
 ### Profile Class
@@ -256,7 +256,7 @@ Methods:
   - Return:
     - Formatted String with owner, bio, and email of user.
 
-Testing:
+Testing:  
 Standard Model
 
 ### FriendRequest Class

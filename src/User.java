@@ -17,7 +17,7 @@ public class User {
     private String userName;
     private String password;
 
-    Profile profile;
+    Profile profile = null;
 
     private ArrayList<FriendRequest> sentRequests = new ArrayList<FriendRequest>();
     private ArrayList<FriendRequest> receivedRequests = new ArrayList<FriendRequest>();
@@ -124,10 +124,10 @@ public class User {
 
         try {
 
-            FileOutputStream fileOutputStream = new FileOutputStream("userListFile");
+            FileOutputStream fileOutputStream = new FileOutputStream("userListFile.txt");
             PrintWriter writer = new PrintWriter(fileOutputStream);
 
-            writer.println(this.userName + "," + this.password + "," + this.fullName);
+            writer.println(user.getUserName() + "," + user.getPassword() + "," + user.getFullName());
 
             fileOutputStream.close();
             writer.close();

@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Test;
+
 public class UserTest {
     public static void main(String[] args) {
         User u1 = new User("Name 1", "userName1", "password1");
@@ -33,5 +35,97 @@ public class UserTest {
         } catch (FriendNotFoundException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    @Test
+    void getFullName() {
+    }
+
+    @Test
+    void getUserName() {
+    }
+
+    @Test
+    void getPassword() {
+    }
+
+    @Test
+    void getProfile() {
+    }
+
+    @Test
+    void getFriendList() {
+    }
+
+    @Test
+    void getSentRequests() {
+    }
+
+    @Test
+    void getReceivedRequests() {
+    }
+
+    @Test
+    void setFullName() {
+    }
+
+    @Test
+    void setUserName() {
+    }
+
+    @Test
+    void setPassword() {
+    }
+
+    @Test
+    void writeUserToFile() {
+    }
+
+    @Test
+    void sendFriendRequest() {
+    }
+
+    @Test
+    void removeFriendRequest() {
+    }
+
+    @Test
+    void addReceivedRequest() {
+    }
+
+    @Test
+    void removeReceivedRequest() {
+    }
+
+    @Test
+    void acceptFriend() {
+    }
+
+    @Test
+    void denyFriend() {
+    }
+
+    @Test
+    void removeFriend() {
+    }
+
+    @Test
+    void createProfile() {
+    }
+
+    @Test
+    void testCreateProfile() {
+    }
+
+    @Test
+    void testCreateProfile1() {
+    }
+
+    @Test
+    void testCreateProfile2() {
+    }
+
+    @Test
+    void deleteProfile() {
     }
 }

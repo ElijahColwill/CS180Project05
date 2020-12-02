@@ -143,12 +143,122 @@ Testing:
 
 ### Profile Class
 Description:
+A Profile Class that handled the creation of a User's profile and stores the information
+for retrieval by the user or application.
 
-Authors:
+Authors:  
+Elijah Colwill 
 
 Methods:
+- Profile()
+  - Constructor that creates Profile class with minimum required information.
+  - Parameters:
+    - owner String that holds the userName of the user who owns the profile.
+    - bio String that holds biography of profile.
+    - email String that holds email of user creating profile.
+    - friendList ArrayList that contains the User's list of friends.
+- Profile()
+  - Constructor that creates Profile class with minimum required information  
+  and a location.
+  - Parameters:
+    - owner String that holds the userName of the user who owns the profile.
+    - bio String that holds biography of profile.
+    - email String that holds email of user creating profile.
+    - friendList ArrayList that contains the User's list of friends.
+    - location String that holds location of user creating profile.
+- Profile()
+  - Constructor that creates Profile class with minimum required information  
+  and a location and interests section.
+  - Parameters:
+    - owner String that holds the userName of the user who owns the profile.
+    - bio String that holds biography of profile.
+    - email String that holds email of user creating profile.
+    - friendList ArrayList that contains the User's list of friends.
+    - location String that holds location of user creating profile.
+    - interests String that holds interests/hobbies of user creating profile.
+- Profile()
+  - Constructor that creates Profile class with minimum required information  
+  and a location, an interests section and a phone number.
+  - Parameters:
+    - owner String that holds the userName of the user who owns the profile.
+    - bio String that holds biography of profile.
+    - email String that holds email of user creating profile.
+    - friendList ArrayList that contains the User's list of friends.
+    - location String that holds location of user creating profile.
+    - interests String that holds interests/hobbies of user creating profile.
+    - phoneNum Phone Number with no formatting of user creating profile.
+- getBio()
+  - Accessor method for bio.
+  - Return:
+    - bio String that holds biography of profile.
+- getLocation()
+  - Accessor method for location.
+  - Return:
+    - location String that holds location of user creating profile.
+- getInterests()
+  - Accessor method for interests.
+  - Return:
+    - interests String that holds interests/hobbies of user creating profile.
+- getPhoneNum()
+  - Accessor method for phoneNum.
+  - Return:
+    - phoneNum Phone Number with no formatting of user creating profile.
+- getEmail()
+  - Accessor method for email.
+  - Return:
+    - email String that holds email of user creating profile.
+- getOwner()
+  - Accessor method for owner.
+  - Return:
+    - owner String that holds the userName of the user who owns the profile.
+- getFriendList()
+  - Accessor method for friendList.
+  - Return:
+    - friendList ArrayList that contains the User's list of friends.
+- setBio()
+  - Mutator method for bio.
+  - Parameters:
+    - bio String that holds biography of profile.
+- setLocation()
+  - Mutator method for location.
+  - Parameters:
+    - location String that holds location of user creating profile.
+- setInterests()
+  - Mutator method for interests.
+  - Parameters:
+    - interests String that holds interests/hobbies of user creating profile.
+- setPhoneNum()
+  - Mutator method for phoneNum.
+  - Parameters:
+    - phoneNum Phone Number with no formatting of user creating profile.
+- setEmail()
+  - Mutator method for email.
+  - Parameters:
+    - email String that holds email of user creating profile.
+- setOwner()
+  - Mutator method for owner.
+  - Parameters:
+    - owner String that holds the userName of the user who owns the profile.
+- setFriendList()
+  - Mutator method for friendList.
+  - Parameters:
+    - friendList ArrayList that contains the User's list of friends.
+- profileString()
+  - Method that outputs basic profile information as String for debugging purposes.
+  - Return:
+    - Formatted String with owner, bio, and email of user.
 
 Testing:
+- Test that Profile class exists and inherits Object superclass.
+- Fields were checked with JUnit tests to check for the following:
+  - Field Exits
+  - Correct Field Type
+  - Correct Access Modifier
+- Methods were checked with JUnit tests to check for the following:
+  - Method Exists
+  - Correct Method Type
+  - Correct Access Modifies
+  - Implementation Tests: Valid and Invalid Input
 
 ### FriendRequest Class
 Description:

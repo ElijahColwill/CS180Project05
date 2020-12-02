@@ -142,7 +142,7 @@ Testing:
   - Implementation Tests: Valid and Invalid Input
 
 ### Profile Class
-Description:
+Description:  
 A Profile Class that handled the creation of a User's profile and stores the information
 for retrieval by the user or application.
 
@@ -261,14 +261,40 @@ Testing:
   - Implementation Tests: Valid and Invalid Input
 
 ### FriendRequest Class
-Description:
+Description:  
+FriendRequest class that stores the sender and recipient user of request to make managing  
+request lists in User classes easier.
 
-Authors:
+Authors:  
+Elijah Colwill
 
-Methods:
+Methods:  
+- FriendRequest()
+  - Constructor that creates instance of FriendRequest class.
+  - Parameters:
+    - sender User that sent the request.
+    - recipient User receiving the request.
+- getSender()
+  - Accessor method for sender.
+  - Return:
+    - sender User that sent the request.
+- getRecipient()
+  - Accessor method for recipient.
+  - Return:
+    - recipient User receiving the request.
 
-Testing:
-
+Testing:  
+- Test that FriendRequest class exists and inherits Object superclass.
+- Fields were checked with JUnit tests to check for the following:
+  - Field Exits
+  - Correct Field Type
+  - Correct Access Modifier
+- Methods were checked with JUnit tests to check for the following:
+  - Method Exists
+  - Correct Method Type
+  - Correct Access Modifies
+  - Implementation Tests: Valid and Invalid Input
+  
 ### Client Class
 Description:
 

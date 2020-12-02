@@ -22,19 +22,124 @@ Description:
 A User class that creates a user based on sign up parameters and allows the creation and deletion  
 of a Profile along with management of a Friends list and sent and received friends Requests.
 
-Authors:
+Authors:  
 Elijah Colwill
 
 Methods:
 - User()
   - Constructor that creates user class with Sign Up Information.
-  - Fields:
+  - Parameters:
     - fullName String that holds name of person creating User.
     - userName String that holds username of user being created.
     - password String that holds password of user being created.
-- 
-
+- getFullName()
+  - Accessor method for fullName.
+  - Return:
+    - fullName String that holds name of person creating User.
+- getUserName()
+  - Accessor method for userName.
+  - Return:
+    - userName String that holds username of user being created.
+- getPassword()
+  - Accessor method for password.
+  - Return:
+    - password String that holds password of user being created.
+- getProfile()
+  - Accessor method for profile.
+  - Return:
+    - profile Profile object that holds information for a User's profile.
+- getFriendList()
+  - Accessor method for friendList.
+  - Return:
+    - friendList ArrayList that holds friends of the User.
+- getSentRequests()
+  - Accessor method for sentRequests.
+  - Return:
+    - receivedRequests ArrayList that holds friend requests that the User has received.
+- setFUllName()
+  - Mutator method for fullName.
+  - Parameters:
+    - fullName String that holds name of person creating User.
+- setUserName()
+  - Mutator method for userName.
+  - Parameters:
+    - userName String that holds username of user being created.
+- setPassword()
+  - Mutator method for password.
+  - Parameters:
+    - password String that holds password of user being created.
+- writeUserToFile()
+  - This method writes the user details to a file for storing this data.
+  - Parameters:
+    - user User object whose data is being stored.
+- sendFriendRequest()
+  - Method that sends a friend request object to the user specified.
+  - Parameters:
+    - user User object that is being sent a friend request.
+- removeFriendRequest()
+  - Method that revokes a sent request to the User specified.
+  - Parameters:
+    - user User object that is no longer being sent a friend request.
+- addReceivedRequest()
+  - Method that receives a friend request and adds it to pending requests.
+  - Parameters:
+    - request FriendRequest that holds the sender and recipient users.
+- removeReceivedRequest()
+  - Method that removes a friend request that is pending action from user.
+  - Parameters:
+    - request FriendRequest that holds the sender and recipient users.
+- acceptFriend()
+  - Method that accepts a pending friend request and changes appropriate arrays. Adds friend to friendList.
+  - Parameters:
+    - user User that is being accepted from pending received requests.
+- denyFriend()
+  - Method that denies a pending friend request and changes appropriate arrays.
+  - Parameters:
+    - user User that is being denied from pending received requests.
+- removeFriend()
+  - Method that removes a friend from friendList.
+  - Parameters:
+    - user User that is being removes from User's friends.
+- createProfile()
+  - Method that creates the User's profile based on given parameters, the Username and Friends List.
+  - Parameters:
+    - bio String that holds biography of User.
+    - email String that holds email address of User.
+- createProfile()
+  - Method that creates the User's profile based on given parameters, the Username and Friends List.
+  - Parameters:
+    - bio String that holds biography of User.
+    - email String that holds email address of User.
+    - location String that holds location of User.
+- createProfile()
+  - Method that creates the User's profile based on given parameters, the Username and Friends List.
+  - Parameters:
+    - bio String that holds biography of User.
+    - email String that holds email address of User.
+    - location String that holds location of User.
+    - interests String that holds interests/hobbies of User.
+- createProfile()
+  - Method that creates the User's profile based on given parameters, the Username and Friends List.
+  - Parameters:
+    - bio String that holds biography of User.
+    - email String that holds email address of User.
+    - location String that holds location of User.
+    - interests String that holds interests/hobbies of User.
+    - phoneNum int that holds Phone Number of User.
+- deleteProfile()
+  - Method that deletes the User's profile and information.
+    
 Testing:
+- Test that User class exists and inherits Object superclass.
+- Fields were checked with JUnit tests to check for the following:
+  - Field Exits
+  - Correct Field Type
+  - Correct Access Modifier
+- Methods were checked with JUnit tests to check for the following:
+  - Method Exists
+  - Correct Method Type
+  - Correct Access Modifies
+  - Implementation Tests: Valid and Invalid Input
 
 ### Profile Class
 Description:

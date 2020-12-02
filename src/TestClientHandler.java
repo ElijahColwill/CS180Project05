@@ -21,13 +21,56 @@ public class TestClientHandler extends Thread {
         while (true) {
             try {
                 String message = reader.readLine();
-                if (message != null) {
-                    System.out.println(message);
+                System.out.println(message);
+
+                if (message.equals("sign in")) {
+                    String signInUsername = reader.readLine();
+                    String signInPassword = reader.readLine();
                     writer.write("Success");
                     writer.println();
                     writer.flush();
                     System.out.println("sent response");
                 }
+
+                if (message.equals("sign up")) {
+                    String signUpUsername = reader.readLine();
+                    String signUpPassword = reader.readLine();
+                    String signUpName = reader.readLine();
+                    String signUpEmail = reader.readLine();
+                    writer.write("Success");
+                    writer.println();
+                    writer.flush();
+                    System.out.println("sent response");
+                }
+
+                if (message.equals("change profile")) {
+                    String changeProfileName = reader.readLine();
+                    String changeProfileUsername = reader.readLine();
+                    String changeProfileEmail = reader.readLine();
+                    String changeProfilePassword = reader.readLine();
+                    String changeProfileLocation = reader.readLine();
+                    String changeProfileBio = reader.readLine();
+                    String changeProfileInterests = reader.readLine();
+                    writer.write("Success");
+                    writer.println();
+                    writer.flush();
+                    System.out.println("sent response");
+                }
+
+                if (message.equals("delete account")) {
+                    writer.write("Success");
+                    writer.println();
+                    writer.flush();
+                    System.out.println("sent response");
+                }
+
+                if (message.equals("Information for user")) {
+                    writer.write("Info");
+                    writer.println();
+                    writer.flush();
+                    System.out.println("sent response");
+                }
+
             } catch (IOException e) {
 
             }

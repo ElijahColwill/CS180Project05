@@ -85,7 +85,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         //Sign up
         if (buttonPressed == signUpFrame.signUpButton) {
-            sendMessage(String.format("sign up\n%s\n%s\n%s", signUpFrame.usernameField.getText(),
+            sendMessage(String.format("sign up\n%s\n%s\n%s\n%s", signUpFrame.usernameField.getText(),
                     signUpFrame.passwordField,
                     signUpFrame.nameField.getText(),
                     signUpFrame.emailField.getText()));

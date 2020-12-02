@@ -15,6 +15,22 @@ hobbies and interests, as well as a Friends system with the capacity to send, vi
 ## Documentation
 Documentation in the README includes a description of each class (Abridged documentation found in the class Javadocs) and details on testing preformed.
 
+## Testing
+Classes that have indicated that they have Standard Model testing follow the following for the entire class. In GUI Classes, different testing methods  
+were utilized to accurately debug and verify the classes and the implementation of that testing will be described step by step.
+
+### Standard Model
+- Test that class exists and inherits correct superclass.
+- Fields were checked with JUnit tests to check for the following:
+  - Field Exits
+  - Correct Field Type
+  - Correct Access Modifier
+- Methods were checked with JUnit tests to check for the following:
+  - Method Exists
+  - Correct Method Type
+  - Correct Access Modifies
+  - Implementation Tests: Valid Input for all methods, Invalid Input when necessary
+
 ## Class Descriptions
 
 ### User Class
@@ -130,16 +146,7 @@ Methods:
   - Method that deletes the User's profile and information.
     
 Testing:
-- Test that User class exists and inherits Object superclass.
-- Fields were checked with JUnit tests to check for the following:
-  - Field Exits
-  - Correct Field Type
-  - Correct Access Modifier
-- Methods were checked with JUnit tests to check for the following:
-  - Method Exists
-  - Correct Method Type
-  - Correct Access Modifies
-  - Implementation Tests: Valid and Invalid Input
+Standard Model
 
 ### Profile Class
 Description:  
@@ -249,16 +256,7 @@ Methods:
     - Formatted String with owner, bio, and email of user.
 
 Testing:
-- Test that Profile class exists and inherits Object superclass.
-- Fields were checked with JUnit tests to check for the following:
-  - Field Exits
-  - Correct Field Type
-  - Correct Access Modifier
-- Methods were checked with JUnit tests to check for the following:
-  - Method Exists
-  - Correct Method Type
-  - Correct Access Modifies
-  - Implementation Tests: Valid and Invalid Input
+Standard Model
 
 ### FriendRequest Class
 Description:  
@@ -284,16 +282,25 @@ Methods:
     - recipient User receiving the request.
 
 Testing:  
-- Test that FriendRequest class exists and inherits Object superclass.
-- Fields were checked with JUnit tests to check for the following:
-  - Field Exits
-  - Correct Field Type
-  - Correct Access Modifier
-- Methods were checked with JUnit tests to check for the following:
-  - Method Exists
-  - Correct Method Type
-  - Correct Access Modifies
-  - Implementation Tests: Valid and Invalid Input
+Standard Model
+  
+### FriendNotFoundException Exception (extends Exception)
+Description:  
+FriendNotFoundException exception to handle errors in friend request system.
+
+Authors:  
+Elijah Colwill
+
+Methods:
+- FriendNotFoundException()
+  - No parameter Constructor that references super constructor of exception class.
+- FriendNotFoundException()
+  - Constructor with message that references super constructor of exception class.
+  - Parameters:
+    - message String of custom error message.
+
+Testing:  
+Standard Model
   
 ### Client Class
 Description:

@@ -30,7 +30,7 @@ public final class FriendsListFrame extends JFrame {
 
     public final JButton backButton;
 
-    public FriendsListFrame(User[] friends) {
+    public FriendsListFrame(String[] names, String[] usernames) {
         super("Social | Friends List");
 
         frameContainer = this.getContentPane();
@@ -85,17 +85,17 @@ public final class FriendsListFrame extends JFrame {
         contentPanel.add(friendsListDescriptionLabel);
 
 
-        for (int i = 0; i < friends.length; i++) {
+        for (int i = 0; i < names.length; i++) {
             JPanel friendPanel = new JPanel(new GridBagLayout());
             JPanel imagePanel = new JPanel(new BorderLayout());
             JPanel namePanel = new JPanel(new GridBagLayout());
             JPanel buttonPanel = new JPanel(new BorderLayout());
 
             JLabel imageLabel = new JLabel();
-            JLabel nameLabel = new JLabel(friends[i].getFullName());
-            JLabel usernameLabel = new JLabel("@" + friends[i].getUserName());
+            JLabel nameLabel = new JLabel(names[i]);
+            JLabel usernameLabel = new JLabel("@" + usernames[i]);
 
-            JButton viewProfileButton = new JButton("View Profile for @" + friends[i].getUserName());
+            JButton viewProfileButton = new JButton("View Profile for @" + usernames[i]);
 
             nameLabel.setFont(Constants.SUB_HEADER_FONT);
             usernameLabel.setFont(Constants.MAIN_FONT);

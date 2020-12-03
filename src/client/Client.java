@@ -20,6 +20,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
     gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
 
     gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame(new String[1], new String[1]);
+    gui.ViewRequestsFrame viewRequestsFrame = new gui.ViewRequestsFrame();
     gui.IncomingFriendRequestsFrame incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame("", "");
     gui.OutgoingFriendRequestsFrame outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame("", "");
     gui.SendFriendRequestFrame sendFriendRequestFrame = new gui.SendFriendRequestFrame(new String[1]);
@@ -118,7 +119,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.viewRequestsButton) {
-            showIncomingFriendRequestFrame(currentUsername);
+            showViewRequestsFrame();
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.signOutButton) {
@@ -163,10 +164,14 @@ public class Client extends JComponent implements Runnable, ActionListener {
             showProfileFrame(currentUsername, false);
             friendsListFrame.dispose();
         }
+        if (buttonPressed == friendsListFrame.viewProfileButton) {
+            showProfileFrame(currentUsername, true);
+            friendsListFrame.dispose();
+        }
 
         //Incoming requests
         if (buttonPressed == incomingFriendRequestsFrame.backButton) {
-            showProfileFrame(currentUsername, false);
+            showViewRequestsFrame();
             incomingFriendRequestsFrame.dispose();
         }
         if (buttonPressed == incomingFriendRequestsFrame.acceptRequestButton) {
@@ -192,7 +197,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         //Outgoing requests
         if (buttonPressed == outgoingFriendRequestsFrame.backButton) {
-            showProfileFrame(currentUsername, false);
+            showViewRequestsFrame();
             outgoingFriendRequestsFrame.dispose();
         }
         if (buttonPressed == outgoingFriendRequestsFrame.nextButton) {
@@ -211,7 +216,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
             sendFriendRequestFrame.dispose();
         }
         if (buttonPressed == sendFriendRequestFrame.sendRequestButton) {
-
+            sendMessage(String.format("Send request\n%s\n%s", currentUsername,
+                    String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex())));
+            System.out.println(String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex()));
         }
 
         //Restricted profile page
@@ -221,6 +228,20 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
         if (buttonPressed == profileFrameRestricted.viewFriendsButton) {
             showFriendsListFrame(currentUsername);
+            profileFrameRestricted.dispose();
+        }
+
+        //View Requests
+        if (buttonPressed == viewRequestsFrame.incomingRequestsButton) {
+            showIncomingFriendRequestFrame(currentUsername);
+            profileFrameRestricted.dispose();
+        }
+        if (buttonPressed == viewRequestsFrame.outgoingRequestsButton) {
+            showOutgoingFriendRequestFrame(currentUsername);
+            profileFrameRestricted.dispose();
+        }
+        if (buttonPressed == viewRequestsFrame.backButton) {
+            showProfileFrame(currentUsername, false);
             profileFrameRestricted.dispose();
         }
 
@@ -288,6 +309,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         String[] friendsListUsername = receiveMessage().split(",");
         friendsListFrame = new gui.FriendsListFrame(friendsListFullName, friendsListUsername);
         friendsListFrame.backButton.addActionListener(this);
+        friendsListFrame.viewProfileButton.addActionListener(this);
     }
 
     private void showIncomingFriendRequestFrame(String username) {
@@ -301,6 +323,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
         temp = incomingUsername;
         incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
         incomingFriendRequestsFrame.backButton.addActionListener(this);
+        incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
+        incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
     }
 
     private void showOutgoingFriendRequestFrame(String username) {
@@ -314,6 +338,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
         temp = outgoingUsername;
         outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
         outgoingFriendRequestsFrame.backButton.addActionListener(this);
+        outgoingFriendRequestsFrame.nextButton.addActionListener(this);
+        outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
     }
 
     private void showSendFriendRequestFrame(String username) {
@@ -322,6 +348,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         sendFriendRequestFrame = new gui.SendFriendRequestFrame(allUsers);
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
+    }
+
+    private void showViewRequestsFrame() {
+        viewRequestsFrame = new gui.ViewRequestsFrame();
+        viewRequestsFrame.backButton.addActionListener(this);
+        viewRequestsFrame.incomingRequestsButton.addActionListener(this);
+        viewRequestsFrame.outgoingRequestsButton.addActionListener(this);
     }
 
     public void run() {
@@ -334,6 +367,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         outgoingFriendRequestsFrame.dispose();
         sendFriendRequestFrame.dispose();
         profileFrameRestricted.dispose();
+        viewRequestsFrame.dispose();
 
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);
@@ -352,6 +386,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         editProfileFrame.backButton.addActionListener(this);
 
         friendsListFrame.backButton.addActionListener(this);
+        friendsListFrame.viewProfileButton.addActionListener(this);
 
         incomingFriendRequestsFrame.backButton.addActionListener(this);
         incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
@@ -366,6 +401,10 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         profileFrameRestricted.backButton.addActionListener(this);
         profileFrameRestricted.viewFriendsButton.addActionListener(this);
+
+        viewRequestsFrame.backButton.addActionListener(this);
+        viewRequestsFrame.backButton.addActionListener(this);
+        viewRequestsFrame.backButton.addActionListener(this);
 
     }
 

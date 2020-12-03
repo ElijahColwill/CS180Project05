@@ -145,6 +145,15 @@ public class TestClientHandler extends Thread {
                     System.out.println("sent response");
                 }
 
+                if (message.equals("Send request")) {
+                    String user1 = reader.readLine();
+                    String user2 = reader.readLine();
+                    writer.write("Success");
+                    writer.println();
+                    writer.flush();
+                    System.out.println("sent response");
+                }
+
             } catch (IOException e) {
 
             }

@@ -14,18 +14,20 @@ public class Client extends JComponent implements Runnable, ActionListener {
     BufferedReader reader;
 
     String currentUsername;
+    String temp;
 
     gui.HomeFrame homeFrame = new gui.HomeFrame();
     gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
 
-    gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame();
-    gui.ManageFriendRequestsFrame manageFriendRequestsFrame = new gui.ManageFriendRequestsFrame();
-    gui.SendFriendRequestFrame sendFriendRequestFrame = new gui.SendFriendRequestFrame();
+    gui.FriendsListFrame friendsListFrame = new gui.FriendsListFrame(new String[1], new String[1]);
+    gui.IncomingFriendRequestsFrame incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame("", "");
+    gui.OutgoingFriendRequestsFrame outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame("", "");
+    gui.SendFriendRequestFrame sendFriendRequestFrame = new gui.SendFriendRequestFrame(new String[1]);
 
-    gui.ProfileFrame profileFrame = new gui.ProfileFrame();
-    gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame();
+    gui.ProfileFrame profileFrame = new gui.ProfileFrame("", "", "", "", "");
+    gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame("", "", "", "", "", "");
 
-    gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted();
+    gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted("", "", "", "","");
 
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
@@ -104,19 +106,19 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         //Profile
         if (buttonPressed == profileFrame.editProfileButton) {
-            showEditProfileFrame();
+            showEditProfileFrame(currentUsername);
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.viewFriendsButton) {
-            showFriendsListFrame();
+            showFriendsListFrame(currentUsername);
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.addFriendButton) {
-            showSendFriendRequestFrame();
+            showSendFriendRequestFrame(currentUsername);
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.viewRequestsButton) {
-            showFriendRequestsFrame();
+            showIncomingFriendRequestFrame(currentUsername);
             profileFrame.dispose();
         }
         if (buttonPressed == profileFrame.signOutButton) {
@@ -162,10 +164,45 @@ public class Client extends JComponent implements Runnable, ActionListener {
             friendsListFrame.dispose();
         }
 
-        //Manage friend request
-        if (buttonPressed == manageFriendRequestsFrame.backButton) {
+        //Incoming requests
+        if (buttonPressed == incomingFriendRequestsFrame.backButton) {
             showProfileFrame(currentUsername, false);
-            manageFriendRequestsFrame.dispose();
+            incomingFriendRequestsFrame.dispose();
+        }
+        if (buttonPressed == incomingFriendRequestsFrame.acceptRequestButton) {
+            sendMessage(String.format("Accept request\n%s\n%s", currentUsername, temp));
+            String response = receiveMessage();
+            if (response.equals("Success")) {
+                incomingFriendRequestsFrame.dispose();
+                showIncomingFriendRequestFrame(currentUsername);
+            } else {
+                //Error message
+            }
+        }
+        if (buttonPressed == incomingFriendRequestsFrame.denyRequestButton) {
+            sendMessage(String.format("Deny request\n%s\n%s", currentUsername, temp));
+            String response = receiveMessage();
+            if (response.equals("Success")) {
+                incomingFriendRequestsFrame.dispose();
+                showIncomingFriendRequestFrame(currentUsername);
+            } else {
+                //Error message
+            }
+        }
+
+        //Outgoing requests
+        if (buttonPressed == outgoingFriendRequestsFrame.backButton) {
+            showProfileFrame(currentUsername, false);
+            outgoingFriendRequestsFrame.dispose();
+        }
+        if (buttonPressed == outgoingFriendRequestsFrame.nextButton) {
+            outgoingFriendRequestsFrame.dispose();
+            showOutgoingFriendRequestFrame(currentUsername);
+        }
+        if (buttonPressed == outgoingFriendRequestsFrame.cancelRequestButton) {
+            sendMessage(String.format("Cancel request\n%s\n%s", currentUsername, temp));
+            outgoingFriendRequestsFrame.dispose();
+            showOutgoingFriendRequestFrame(currentUsername);
         }
 
         //Send friend request
@@ -183,7 +220,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             profileFrameRestricted.dispose();
         }
         if (buttonPressed == profileFrameRestricted.viewFriendsButton) {
-            showFriendsListFrame();
+            showFriendsListFrame(currentUsername);
             profileFrameRestricted.dispose();
         }
 
@@ -203,43 +240,86 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     private void showProfileFrame(String username, boolean isRestricted) {
         sendMessage(String.format("Information for user\n%s", username));
-        String profilePageInfo = receiveMessage();
-        if (profilePageInfo.equals("User does not exist")) {
+        String userExists = receiveMessage();
+        if (userExists.equals("User does not exist")) {
             //Error message
         }
+        String userName= receiveMessage();
+        String userUsername = receiveMessage();
+        String userEmail = receiveMessage();
+        String userLocation = receiveMessage();
+        String userBio = receiveMessage();
+        String userInterests = receiveMessage();
         if (!isRestricted) {
-            profileFrame = new gui.ProfileFrame();
+            profileFrame = new gui.ProfileFrame(userName, userUsername, userLocation, userBio, userInterests);
             profileFrame.editProfileButton.addActionListener(this);
             profileFrame.viewFriendsButton.addActionListener(this);
             profileFrame.addFriendButton.addActionListener(this);
             profileFrame.viewRequestsButton.addActionListener(this);
             profileFrame.signOutButton.addActionListener(this);
         } else {
-            profileFrameRestricted = new gui.ProfileFrameRestricted();
+            profileFrameRestricted = new gui.ProfileFrameRestricted(userName, userUsername, userLocation, userBio, userInterests);
             profileFrameRestricted.backButton.addActionListener(this);
             profileFrameRestricted.viewFriendsButton.addActionListener(this);
         }
     }
 
-    private void showEditProfileFrame() {
-        editProfileFrame = new gui.EditProfileFrame();
+    private void showEditProfileFrame(String username) {
+        sendMessage(String.format("Information for user\n%s", username));
+        String userExists = receiveMessage();
+        if (userExists.equals("User does not exist")) {
+            //Error message
+        }
+        String userName= receiveMessage();
+        String userUsername = receiveMessage();
+        String userEmail = receiveMessage();
+        String userLocation = receiveMessage();
+        String userBio = receiveMessage();
+        String userInterests = receiveMessage();
+        editProfileFrame = new gui.EditProfileFrame(userName, userUsername, userEmail, userLocation, userBio, userInterests);
         editProfileFrame.updateProfileButton.addActionListener(this);
         editProfileFrame.deleteAccountButton.addActionListener(this);
         editProfileFrame.backButton.addActionListener(this);
     }
 
-    private void showFriendsListFrame() {
-        friendsListFrame = new gui.FriendsListFrame();
+    private void showFriendsListFrame(String username) {
+        sendMessage(String.format("Friends for user\n%s", username));
+        String[] friendsListFullName = receiveMessage().split(",");
+        String[] friendsListUsername = receiveMessage().split(",");
+        friendsListFrame = new gui.FriendsListFrame(friendsListFullName, friendsListUsername);
         friendsListFrame.backButton.addActionListener(this);
     }
 
-    private void showFriendRequestsFrame() {
-        manageFriendRequestsFrame = new gui.ManageFriendRequestsFrame();
-        manageFriendRequestsFrame.backButton.addActionListener(this);
+    private void showIncomingFriendRequestFrame(String username) {
+        sendMessage(String.format("Incoming friend request for user\n%s", username));
+        String incomingUserExists = receiveMessage();
+        String incomingFullName = receiveMessage();
+        String incomingUsername = receiveMessage();
+        if (incomingUserExists.equals("User does not exist")) {
+            //Error message
+        }
+        temp = incomingUsername;
+        incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
+        incomingFriendRequestsFrame.backButton.addActionListener(this);
     }
 
-    private void showSendFriendRequestFrame() {
-        sendFriendRequestFrame = new gui.SendFriendRequestFrame();
+    private void showOutgoingFriendRequestFrame(String username) {
+        sendMessage(String.format("Outgoing friend request for user\n%s", username));
+        String outgoingUserExists = receiveMessage();
+        String outgoingFullName = receiveMessage();
+        String outgoingUsername = receiveMessage();
+        if (outgoingUserExists.equals("User does not exist")) {
+            //Error message
+        }
+        temp = outgoingUsername;
+        outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
+        outgoingFriendRequestsFrame.backButton.addActionListener(this);
+    }
+
+    private void showSendFriendRequestFrame(String username) {
+        sendMessage(String.format("Get all users\n%s", username));
+        String[] allUsers = receiveMessage().split(",");
+        sendFriendRequestFrame = new gui.SendFriendRequestFrame(allUsers);
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
     }
@@ -250,7 +330,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
         profileFrame.dispose();
         editProfileFrame.dispose();
         friendsListFrame.dispose();
-        manageFriendRequestsFrame.dispose();
+        incomingFriendRequestsFrame.dispose();
+        outgoingFriendRequestsFrame.dispose();
         sendFriendRequestFrame.dispose();
         profileFrameRestricted.dispose();
 
@@ -272,7 +353,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         friendsListFrame.backButton.addActionListener(this);
 
-        manageFriendRequestsFrame.backButton.addActionListener(this);
+        incomingFriendRequestsFrame.backButton.addActionListener(this);
+        incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
+        incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
+
+        outgoingFriendRequestsFrame.backButton.addActionListener(this);
+        outgoingFriendRequestsFrame.nextButton.addActionListener(this);
+        outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
 
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);

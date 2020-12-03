@@ -359,6 +359,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     public void run() {
 
+
         signUpFrame.dispose();
         profileFrame.dispose();
         editProfileFrame.dispose();

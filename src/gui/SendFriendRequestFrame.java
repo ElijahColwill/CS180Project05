@@ -32,7 +32,7 @@ public final class SendFriendRequestFrame extends JFrame {
 
     public final JComboBox<String> userComboBox;
 
-    public SendFriendRequestFrame() {
+    public SendFriendRequestFrame(String[] users) {
         super("Social | Send Friend Request");
 
         frameContainer = this.getContentPane();
@@ -49,7 +49,7 @@ public final class SendFriendRequestFrame extends JFrame {
         sendRequestButton = new JButton("Send Request");
         backButton = new JButton("Back");
 
-        userComboBox = getUsers();
+        userComboBox = new JComboBox<>(users);
 
         this.setSize(450, 300);
         this.setLocationRelativeTo(null);
@@ -99,20 +99,5 @@ public final class SendFriendRequestFrame extends JFrame {
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
-    }
-
-    public JComboBox<String> getUsers() {
-        return new JComboBox<>();
-    }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new SendFriendRequestFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 }

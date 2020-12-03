@@ -145,16 +145,4 @@ public final class SignUpFrame extends JFrame {
 
         this.setVisible(true);
     }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new SignUpFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
 }

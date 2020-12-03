@@ -43,7 +43,7 @@ public final class ProfileFrameRestricted extends JFrame {
     public final JButton viewFriendsButton;
     public final JButton backButton;
 
-    public ProfileFrameRestricted() {
+    public ProfileFrameRestricted(String fullName, String username, String location, String bio, String interests) {
         super("Social | Profile");
 
         frameContainer = this.getContentPane();
@@ -61,14 +61,14 @@ public final class ProfileFrameRestricted extends JFrame {
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
         imageLabel = new JLabel();
-        nameLabel = new JLabel("Henrik Berg");
-        usernameLabel = new JLabel("@henrikbg");
+        nameLabel = new JLabel(fullName);
+        usernameLabel = new JLabel("@" + username);
         locationHeaderLabel = new JLabel("Location");
-        locationLabel = new JLabel("West Lafayette, IN");
+        locationLabel = new JLabel(location);
         bioHeaderLabel = new JLabel("Bio");
-        bioLabel = new JLabel("Hi everyone, I'm a CS student at Purdue University.");
+        bioLabel = new JLabel(bio);
         interestsHeaderLabel = new JLabel("Interests");
-        interestsLabel = new JLabel("Basketball, Video Games, and Programming");
+        interestsLabel = new JLabel(interests);
 
         viewFriendsButton = new JButton("View Friends");
         backButton = new JButton("Back");
@@ -145,16 +145,5 @@ public final class ProfileFrameRestricted extends JFrame {
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
-    }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new ProfileFrameRestricted();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 }

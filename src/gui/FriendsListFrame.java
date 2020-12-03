@@ -2,6 +2,7 @@ package gui;
 
 import assets.Constants;
 import assets.utils.SwingUtils;
+import main.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +30,7 @@ public final class FriendsListFrame extends JFrame {
 
     public final JButton backButton;
 
-    public FriendsListFrame() {
+    public FriendsListFrame(User[] friends) {
         super("Social | Friends List");
 
         frameContainer = this.getContentPane();
@@ -84,49 +85,17 @@ public final class FriendsListFrame extends JFrame {
         contentPanel.add(friendsListDescriptionLabel);
 
 
-//        for (int i = 0; i < user.getNumberOfFriends(); i++) {
-//            JPanel friendPanel = new JPanel(new GridBagLayout());
-//            JPanel imagePanel = new JPanel(new BorderLayout());
-//            JPanel namePanel = new JPanel(new GridBagLayout());
-//            JPanel buttonPanel = new JPanel(new BorderLayout());
-//
-//            JLabel imageLabel = new JLabel();
-//            JLabel nameLabel = new JLabel(user.getFullName());
-//            JLabel usernameLabel = new JLabel("@" + user.getUsername());
-//
-//            JButton viewProfileButton = new JButton("View Profile");
-//
-//            nameLabel.setFont(Constants.SUB_HEADER_FONT);
-//            usernameLabel.setFont(Constants.MAIN_FONT);
-//            viewProfileButton.setFont(Constants.MAIN_FONT);
-//
-//            imageLabel.setIcon(Constants.USER_100);
-//
-//            imagePanel.add(imageLabel);
-//
-//            SwingUtils.addComponent(namePanel, nameLabel,0, 0, 1, 1, GridBagConstraints.LINE_START);
-//            SwingUtils.addComponent(namePanel, usernameLabel, 0, 1, 1, 1, GridBagConstraints.LINE_START);
-//
-//            buttonPanel.add(viewProfileButton);
-//
-//            SwingUtils.addComponent(friendPanel, imagePanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
-//            SwingUtils.addComponent(friendPanel, namePanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
-//            SwingUtils.addComponent(friendPanel, buttonPanel, 2, 0, 1, 1, GridBagConstraints.LINE_END);
-//
-//            contentPanel.add(friendPanel);
-//        }
-
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < friends.length; i++) {
             JPanel friendPanel = new JPanel(new GridBagLayout());
             JPanel imagePanel = new JPanel(new BorderLayout());
             JPanel namePanel = new JPanel(new GridBagLayout());
             JPanel buttonPanel = new JPanel(new BorderLayout());
 
             JLabel imageLabel = new JLabel();
-            JLabel nameLabel = new JLabel("Henrik Berg");
-            JLabel usernameLabel = new JLabel("@henrikbg");
+            JLabel nameLabel = new JLabel(friends[i].getFullName());
+            JLabel usernameLabel = new JLabel("@" + friends[i].getUserName());
 
-            JButton viewProfileButton = new JButton("View Profile");
+            JButton viewProfileButton = new JButton("View Profile for @" + friends[i].getUserName());
 
             nameLabel.setFont(Constants.SUB_HEADER_FONT);
             usernameLabel.setFont(Constants.MAIN_FONT);
@@ -143,7 +112,7 @@ public final class FriendsListFrame extends JFrame {
 
             SwingUtils.addComponent(friendPanel, imagePanel, 0, 0, 1, 1, GridBagConstraints.CENTER);
             SwingUtils.addComponent(friendPanel, namePanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
-            SwingUtils.addComponent(friendPanel, buttonPanel, 2, 0, 1, 1, GridBagConstraints.LAST_LINE_END);
+            SwingUtils.addComponent(friendPanel, buttonPanel, 2, 0, 1, 1, GridBagConstraints.LINE_END);
 
             contentPanel.add(friendPanel);
         }
@@ -155,16 +124,5 @@ public final class FriendsListFrame extends JFrame {
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
-    }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new FriendsListFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 }

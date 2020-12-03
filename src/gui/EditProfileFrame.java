@@ -54,7 +54,7 @@ public final class EditProfileFrame extends JFrame {
     public final JTextField bioField;
     public final JTextField interestsField;
 
-    public EditProfileFrame() {
+    public EditProfileFrame(String fullName, String username, String email, String location, String bio, String interests) {
         super("Social | Edit Profile");
 
         frameContainer = this.getContentPane();
@@ -100,8 +100,7 @@ public final class EditProfileFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        // Pre-populating user information in text fields
-        //presetFields();
+        presetFields(fullName, username, email, location, bio, interests);
 
         headerLabel.setFont(Constants.HEADER_FONT);
         editProfileLabel.setFont(Constants.SUB_HEADER_FONT);
@@ -186,24 +185,12 @@ public final class EditProfileFrame extends JFrame {
         this.setVisible(true);
     }
 
-//    public void presetFields(User user) {
-//        nameField.setText(user.getName());
-//        usernameField.setText(user.getUsername());
-//        emailField.setText(user.getEmail());
-//        locationField.setText(user.getProfile().getLocation());
-//        bioField.setText(user.getProfile().getBio());
-//        interestsField.setText(user.getProfile().getInterests());
-//    }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new EditProfileFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+    public void presetFields(String name, String username, String email, String location, String bio, String interests) {
+        nameField.setText(name);
+        usernameField.setText(username);
+        emailField.setText(email);
+        locationField.setText(location);
+        bioField.setText(bio);
+        interestsField.setText(interests);
     }
-
 }

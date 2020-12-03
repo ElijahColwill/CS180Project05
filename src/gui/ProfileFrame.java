@@ -46,7 +46,7 @@ public final class ProfileFrame extends JFrame {
     public final JButton viewRequestsButton;
     public final JButton signOutButton;
 
-    public ProfileFrame() {
+    public ProfileFrame(String fullName, String username, String location, String bio, String interests) {
         super("Social | Profile");
 
         frameContainer = this.getContentPane();
@@ -64,14 +64,14 @@ public final class ProfileFrame extends JFrame {
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
         imageLabel = new JLabel();
-        nameLabel = new JLabel("Henrik Berg");
-        usernameLabel = new JLabel("@henrikbg");
+        nameLabel = new JLabel(fullName);
+        usernameLabel = new JLabel("@" + username);
         locationHeaderLabel = new JLabel("Location");
-        locationLabel = new JLabel("West Lafayette, IN");
+        locationLabel = new JLabel(location);
         bioHeaderLabel = new JLabel("Bio");
-        bioLabel = new JLabel("Hi everyone, I'm a CS student at Purdue University.");
+        bioLabel = new JLabel(bio);
         interestsHeaderLabel = new JLabel("Interests");
-        interestsLabel = new JLabel("Basketball, Video Games, and Programming");
+        interestsLabel = new JLabel(interests);
 
         editProfileButton = new JButton("Edit Profile");
         viewFriendsButton = new JButton("View Friends");
@@ -157,16 +157,5 @@ public final class ProfileFrame extends JFrame {
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
 
         this.setVisible(true);
-    }
-
-    // FOR TESTING THE FRAME
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-                new ProfileFrame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
     }
 }

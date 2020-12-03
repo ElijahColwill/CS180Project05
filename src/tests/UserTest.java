@@ -1,3 +1,7 @@
+package tests;
+
+import main.FriendNotFoundException;
+import main.User;
 import org.junit.jupiter.api.Test;
 
 public class UserTest {
@@ -10,7 +14,7 @@ public class UserTest {
         u2.createProfile("Bio 2", "email2@purdue.edu", "Location 2");
         u3.createProfile("Bio 3", "email3@purdue.edu", "Location 3");
         u4.createProfile("Bio 4", "email4@purdue.edu", "Location 4");
-        System.out.println("-- User Field Tests: ---");
+        System.out.println("-- main.User Field Tests: ---");
         try {
             System.out.println(u1.getSentRequests().size());
             System.out.println(u2.getReceivedRequests().size());
@@ -27,7 +31,7 @@ public class UserTest {
             System.out.println(u3.getReceivedRequests().size());
             System.out.println(u2.getReceivedRequests().size());
             System.out.println(u3.getSentRequests().size());
-            System.out.println("-- User Friend Tests: ---");
+            System.out.println("-- main.User Friend Tests: ---");
             System.out.println(u2.getFriendList().size());
             System.out.println(u3.getFriendList().size());
             System.out.println(u2.getFriendList().size());

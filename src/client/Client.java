@@ -1,11 +1,10 @@
+package client;
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
-
-import gui.*;
 
 public class Client extends JComponent implements Runnable, ActionListener {
 

@@ -1,4 +1,7 @@
-// import org.junit.framework.TestCase;
+package tests;// import org.junit.framework.TestCase;
+import main.FriendRequest;
+import main.Profile;
+import main.User;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -78,7 +81,7 @@ public class MainTests {
             Class<?>[] superinterfaces;
 
             clazz = User.class;
-            className = "User";
+            className = "main.User";
 
             modifiers = clazz.getModifiers();
             superclass = clazz.getSuperclass();
@@ -94,22 +97,22 @@ public class MainTests {
         public void userClassSetupTest() {
             Field[] fields = User.class.getDeclaredFields();
             if (fields.length < 7) {
-                fail("User class requires seven fields.");
+                fail("main.User class requires seven fields.");
                 return;
             }
 
             try {
                 Field fullName = User.class.getDeclaredField("fullName");
                 if (fullName.getType() != String.class) {
-                    fail("Ensure that fullName in class User is of type String.");
+                    fail("Ensure that fullName in class main.User is of type String.");
                     return;
                 }
                 if (fullName.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that fullName in class User has modifier private.");
+                    fail("Ensure that fullName in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field fullName in class User " +
+                fail("Ensure that you have a field fullName in class main.User " +
                         "that is of type String and is private.");
                 e.printStackTrace();
                 return;
@@ -118,15 +121,15 @@ public class MainTests {
             try {
                 Field userName = User.class.getDeclaredField("userName");
                 if (userName.getType() != String.class) {
-                    fail("Ensure that userName in class User is of type String.");
+                    fail("Ensure that userName in class main.User is of type String.");
                     return;
                 }
                 if (userName.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that userName in class User has modifier private.");
+                    fail("Ensure that userName in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field userName in class User " +
+                fail("Ensure that you have a field userName in class main.User " +
                         "that is of type String and is private.");
                 e.printStackTrace();
                 return;
@@ -135,15 +138,15 @@ public class MainTests {
             try {
                 Field password = User.class.getDeclaredField("password");
                 if (password.getType() != String.class) {
-                    fail("Ensure that password in class User is of type String.");
+                    fail("Ensure that password in class main.User is of type String.");
                     return;
                 }
                 if (password.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that password in class User has modifier private.");
+                    fail("Ensure that password in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field password in class User " +
+                fail("Ensure that you have a field password in class main.User " +
                         "that is of type String and is private.");
                 e.printStackTrace();
                 return;
@@ -152,11 +155,11 @@ public class MainTests {
             try {
                 Field profile = User.class.getDeclaredField("profile");
                 if (profile.getType() != Profile.class) {
-                    fail("Ensure that profile in class User is of type Profile.");
+                    fail("Ensure that profile in class main.User is of type main.Profile.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field profile in class User.");
+                fail("Ensure that you have a field profile in class main.User.");
                 e.printStackTrace();
                 return;
             }
@@ -164,15 +167,15 @@ public class MainTests {
             try {
                 Field sentRequests = User.class.getDeclaredField("sentRequests");
                 if (sentRequests.getType() != ArrayList.class) {
-                    fail("Ensure that sentRequests in class User is of type ArrayList.");
+                    fail("Ensure that sentRequests in class main.User is of type ArrayList.");
                     return;
                 }
                 if (sentRequests.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that sentRequests in class User has modifier private.");
+                    fail("Ensure that sentRequests in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field sentRequests in class User " +
+                fail("Ensure that you have a field sentRequests in class main.User " +
                         "that is of type ArrayList and is private.");
                 e.printStackTrace();
                 return;
@@ -181,15 +184,15 @@ public class MainTests {
             try {
                 Field receivedRequests = User.class.getDeclaredField("receivedRequests");
                 if (receivedRequests.getType() != ArrayList.class) {
-                    fail("Ensure that receivedRequests in class User is of type ArrayList.");
+                    fail("Ensure that receivedRequests in class main.User is of type ArrayList.");
                     return;
                 }
                 if (receivedRequests.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that receivedRequests in class User has modifier private.");
+                    fail("Ensure that receivedRequests in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field receivedRequests in class User " +
+                fail("Ensure that you have a field receivedRequests in class main.User " +
                         "that is of type ArrayList and is private.");
                 e.printStackTrace();
                 return;
@@ -198,15 +201,15 @@ public class MainTests {
             try {
                 Field friendList = User.class.getDeclaredField("friendList");
                 if (friendList.getType() != ArrayList.class) {
-                    fail("Ensure that friendList in class User is of type ArrayList.");
+                    fail("Ensure that friendList in class main.User is of type ArrayList.");
                     return;
                 }
                 if (friendList.getModifiers() != Modifier.PRIVATE) {
-                    fail("Ensure that friendList in class User has modifier private.");
+                    fail("Ensure that friendList in class main.User has modifier private.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field friendList in class User " +
+                fail("Ensure that you have a field friendList in class main.User " +
                         "that is of type ArrayList and is private.");
                 e.printStackTrace();
                 return;
@@ -216,11 +219,11 @@ public class MainTests {
                 Constructor<User> constructor = User.class.getDeclaredConstructor(String.class, String.class,
                         String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your constructor in class User is public.");
+                    fail("Ensure that your constructor in class main.User is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 3 parameters and is public in class User.");
+                fail("Ensure that you have a constructor that takes 3 parameters and is public in class main.User.");
                 e.printStackTrace();
                 return;
             }
@@ -228,11 +231,11 @@ public class MainTests {
             try {
                 Method getFullName = User.class.getDeclaredMethod("getFullName");
                 if (getFullName.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getFullName in class User is public.");
+                    fail("Ensure that your method getFullName in class main.User is public.");
                     return;
                 }
                 if (!getFullName.getReturnType().equals(String.class)) {
-                    fail("Ensure that your getFullName method in class User returns a String.");
+                    fail("Ensure that your getFullName method in class main.User returns a String.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -244,11 +247,11 @@ public class MainTests {
             try {
                 Method getUserName = User.class.getDeclaredMethod("getUserName");
                 if (getUserName.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getUserName in class User is public.");
+                    fail("Ensure that your method getUserName in class main.User is public.");
                     return;
                 }
                 if (!getUserName.getReturnType().equals(String.class)) {
-                    fail("Ensure that your getUserName method in class User returns a String.");
+                    fail("Ensure that your getUserName method in class main.User returns a String.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -260,11 +263,11 @@ public class MainTests {
             try {
                 Method getPassword = User.class.getDeclaredMethod("getPassword");
                 if (getPassword.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getPassword in class User is public.");
+                    fail("Ensure that your method getPassword in class main.User is public.");
                     return;
                 }
                 if (!getPassword.getReturnType().equals(String.class)) {
-                    fail("Ensure that your getPassword method in class User returns a String.");
+                    fail("Ensure that your getPassword method in class main.User returns a String.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -276,15 +279,15 @@ public class MainTests {
             try {
                 Method getProfile = User.class.getDeclaredMethod("getProfile");
                 if (getProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getProfile in class User is public.");
+                    fail("Ensure that your method getProfile in class main.User is public.");
                     return;
                 }
                 if (!getProfile.getReturnType().equals(Profile.class)) {
-                    fail("Ensure that your getProfile method in class User returns a Profile.");
+                    fail("Ensure that your getProfile method in class main.User returns a main.Profile.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the getProfile method that is public and returns a Profile.");
+                fail("Ensure that you have the getProfile method that is public and returns a main.Profile.");
                 e.printStackTrace();
                 return;
             }
@@ -292,11 +295,11 @@ public class MainTests {
             try {
                 Method getFriendList = User.class.getDeclaredMethod("getFriendList");
                 if (getFriendList.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getFriendList in class User is public.");
+                    fail("Ensure that your method getFriendList in class main.User is public.");
                     return;
                 }
                 if (!getFriendList.getReturnType().equals(ArrayList.class)) {
-                    fail("Ensure that your getFriendList method in class User returns an ArrayList.");
+                    fail("Ensure that your getFriendList method in class main.User returns an ArrayList.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -308,11 +311,11 @@ public class MainTests {
             try {
                 Method getSentRequests = User.class.getDeclaredMethod("getSentRequests");
                 if (getSentRequests.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getSentRequests in class User is public.");
+                    fail("Ensure that your method getSentRequests in class main.User is public.");
                     return;
                 }
                 if (!getSentRequests.getReturnType().equals(ArrayList.class)) {
-                    fail("Ensure that your getSentRequests method in class User returns a ArrayList.");
+                    fail("Ensure that your getSentRequests method in class main.User returns a ArrayList.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -324,11 +327,11 @@ public class MainTests {
             try {
                 Method getReceivedRequests = User.class.getDeclaredMethod("getReceivedRequests");
                 if (getReceivedRequests.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method getReceivedRequests in class User is public.");
+                    fail("Ensure that your method getReceivedRequests in class main.User is public.");
                     return;
                 }
                 if (!getReceivedRequests.getReturnType().equals(ArrayList.class)) {
-                    fail("Ensure that your getReceivedRequests method in class User returns a ArrayList.");
+                    fail("Ensure that your getReceivedRequests method in class main.User returns a ArrayList.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -340,11 +343,11 @@ public class MainTests {
             try {
                 Method setFullName = User.class.getDeclaredMethod("setFullName", String.class);
                 if (setFullName.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method setFullName in class User is public.");
+                    fail("Ensure that your method setFullName in class main.User is public.");
                     return;
                 }
                 if (!setFullName.getReturnType().equals(void.class)) {
-                    fail("Ensure that your setFullName method in class User returns void.");
+                    fail("Ensure that your setFullName method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -356,11 +359,11 @@ public class MainTests {
             try {
                 Method setUserName = User.class.getDeclaredMethod("setUserName", String.class);
                 if (setUserName.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method setUserName in class User is public.");
+                    fail("Ensure that your method setUserName in class main.User is public.");
                     return;
                 }
                 if (!setUserName.getReturnType().equals(void.class)) {
-                    fail("Ensure that your setUserName method in class User returns void.");
+                    fail("Ensure that your setUserName method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -372,11 +375,11 @@ public class MainTests {
             try {
                 Method setPassword = User.class.getDeclaredMethod("setPassword", String.class);
                 if (setPassword.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method setPassword in class User is public.");
+                    fail("Ensure that your method setPassword in class main.User is public.");
                     return;
                 }
                 if (!setPassword.getReturnType().equals(void.class)) {
-                    fail("Ensure that your setPassword method in class User returns void.");
+                    fail("Ensure that your setPassword method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -388,15 +391,15 @@ public class MainTests {
             try {
                 Method writeUserToFile = User.class.getDeclaredMethod("writeUserToFile", User.class);
                 if (writeUserToFile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method writeUserToFile in class User is public.");
+                    fail("Ensure that your method writeUserToFile in class main.User is public.");
                     return;
                 }
                 if (!writeUserToFile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your writeUserToFile method in class User returns void.");
+                    fail("Ensure that your writeUserToFile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the writeUserToFile method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the writeUserToFile method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -404,15 +407,15 @@ public class MainTests {
             try {
                 Method sendFriendRequest = User.class.getDeclaredMethod("sendFriendRequest", User.class);
                 if (sendFriendRequest.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method sendFriendRequest in class User is public.");
+                    fail("Ensure that your method sendFriendRequest in class main.User is public.");
                     return;
                 }
                 if (!sendFriendRequest.getReturnType().equals(void.class)) {
-                    fail("Ensure that your sendFriendRequest method in class User returns void.");
+                    fail("Ensure that your sendFriendRequest method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the sendFriendRequest method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the sendFriendRequest method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -420,15 +423,15 @@ public class MainTests {
             try {
                 Method removeFriendRequest = User.class.getDeclaredMethod("removeFriendRequest", User.class);
                 if (removeFriendRequest.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method removeFriendRequest in class User is public.");
+                    fail("Ensure that your method removeFriendRequest in class main.User is public.");
                     return;
                 }
                 if (!removeFriendRequest.getReturnType().equals(void.class)) {
-                    fail("Ensure that your removeFriendRequest method in class User returns void.");
+                    fail("Ensure that your removeFriendRequest method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeFriendRequest method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the removeFriendRequest method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -436,15 +439,15 @@ public class MainTests {
             try {
                 Method addReceivedRequest = User.class.getDeclaredMethod("addReceivedRequest", FriendRequest.class);
                 if (addReceivedRequest.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method addReceivedRequest in class User is public.");
+                    fail("Ensure that your method addReceivedRequest in class main.User is public.");
                     return;
                 }
                 if (!addReceivedRequest.getReturnType().equals(void.class)) {
-                    fail("Ensure that your addReceivedRequest method in class User returns void.");
+                    fail("Ensure that your addReceivedRequest method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the addReceivedRequest method that is public, takes 1 parameter of type FriendRequest and returns void.");
+                fail("Ensure that you have the addReceivedRequest method that is public, takes 1 parameter of type main.FriendRequest and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -452,15 +455,15 @@ public class MainTests {
             try {
                 Method removeReceivedRequest = User.class.getDeclaredMethod("removeReceivedRequest", FriendRequest.class);
                 if (removeReceivedRequest.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method removeReceivedRequest in class User is public.");
+                    fail("Ensure that your method removeReceivedRequest in class main.User is public.");
                     return;
                 }
                 if (!removeReceivedRequest.getReturnType().equals(void.class)) {
-                    fail("Ensure that your removeReceivedRequest method in class User returns void.");
+                    fail("Ensure that your removeReceivedRequest method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeReceivedRequest method that is public, takes 1 parameter of type FriendRequest and returns void.");
+                fail("Ensure that you have the removeReceivedRequest method that is public, takes 1 parameter of type main.FriendRequest and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -468,15 +471,15 @@ public class MainTests {
             try {
                 Method acceptFriend = User.class.getDeclaredMethod("acceptFriend", User.class);
                 if (acceptFriend.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method acceptFriend in class User is public.");
+                    fail("Ensure that your method acceptFriend in class main.User is public.");
                     return;
                 }
                 if (!acceptFriend.getReturnType().equals(void.class)) {
-                    fail("Ensure that your acceptFriend method in class User returns void.");
+                    fail("Ensure that your acceptFriend method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the acceptFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the acceptFriend method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -484,15 +487,15 @@ public class MainTests {
             try {
                 Method denyFriend = User.class.getDeclaredMethod("denyFriend", User.class);
                 if (denyFriend.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method denyFriend in class User is public.");
+                    fail("Ensure that your method denyFriend in class main.User is public.");
                     return;
                 }
                 if (!denyFriend.getReturnType().equals(void.class)) {
-                    fail("Ensure that your denyFriend method in class User returns void.");
+                    fail("Ensure that your denyFriend method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the denyFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the denyFriend method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -500,15 +503,15 @@ public class MainTests {
             try {
                 Method removeFriend = User.class.getDeclaredMethod("removeFriend", User.class);
                 if (removeFriend.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method removeFriend in class User is public.");
+                    fail("Ensure that your method removeFriend in class main.User is public.");
                     return;
                 }
                 if (!removeFriend.getReturnType().equals(void.class)) {
-                    fail("Ensure that your removeFriend method in class User returns void.");
+                    fail("Ensure that your removeFriend method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the removeFriend method that is public, takes 1 parameter of type main.User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -516,11 +519,11 @@ public class MainTests {
             try {
                 Method createProfile = User.class.getDeclaredMethod("createProfile", String.class, String.class);
                 if (createProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method createProfile in class User is public.");
+                    fail("Ensure that your method createProfile in class main.User is public.");
                     return;
                 }
                 if (!createProfile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your createProfile method in class User returns void.");
+                    fail("Ensure that your createProfile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -533,11 +536,11 @@ public class MainTests {
                 Method createProfile = User.class.getDeclaredMethod("createProfile", String.class, String.class,
                         String.class);
                 if (createProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method createProfile in class User is public.");
+                    fail("Ensure that your method createProfile in class main.User is public.");
                     return;
                 }
                 if (!createProfile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your createProfile method in class User returns void.");
+                    fail("Ensure that your createProfile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -550,11 +553,11 @@ public class MainTests {
                 Method createProfile = User.class.getDeclaredMethod("createProfile", String.class, String.class,
                         String.class, String.class);
                 if (createProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method createProfile in class User is public.");
+                    fail("Ensure that your method createProfile in class main.User is public.");
                     return;
                 }
                 if (!createProfile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your createProfile method in class User returns void.");
+                    fail("Ensure that your createProfile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -566,11 +569,11 @@ public class MainTests {
                 Method createProfile = User.class.getDeclaredMethod("createProfile", String.class, String.class,
                         String.class, String.class, int.class);
                 if (createProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method createProfile in class User is public.");
+                    fail("Ensure that your method createProfile in class main.User is public.");
                     return;
                 }
                 if (!createProfile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your createProfile method in class User returns void.");
+                    fail("Ensure that your createProfile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -583,11 +586,11 @@ public class MainTests {
             try {
                 Method deleteProfile = User.class.getDeclaredMethod("deleteProfile");
                 if (deleteProfile.getModifiers() != Modifier.PUBLIC) {
-                    fail("Ensure that your method deleteProfile in class User is public.");
+                    fail("Ensure that your method deleteProfile in class main.User is public.");
                     return;
                 }
                 if (!deleteProfile.getReturnType().equals(void.class)) {
-                    fail("Ensure that your deleteProfile method in class User returns void.");
+                    fail("Ensure that your deleteProfile method in class main.User returns void.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -603,21 +606,21 @@ public class MainTests {
             try {
                 User testUser = new User("fullName", "userName", "password");
                 ArrayList<FriendRequest> testEmpty = new ArrayList<FriendRequest>();
-                assertEquals("Make sure getFullName() returns the correct field.","fullName",testUser.getFullName());
-                assertEquals("Make sure getUserName() returns the correct field.","userName",testUser.getUserName());
-                assertEquals("Make sure getPassword() returns the correct field.","password",testUser.getPassword());
-                assertEquals("Make sure getProfile() returns the correct field.",null,testUser.getProfile());
-                assertEquals("Make sure getFriendList() returns the correct field.",testEmpty,testUser.getFriendList());
-                assertEquals("Make sure getSentRequests() returns the correct field.",testEmpty,testUser.getSentRequests());
-                assertEquals("Make sure getReceivedRequests() returns the correct field.",testEmpty,testUser.getReceivedRequests());
+                Assert.assertEquals("Make sure getFullName() returns the correct field.","fullName",testUser.getFullName());
+                Assert.assertEquals("Make sure getUserName() returns the correct field.","userName",testUser.getUserName());
+                Assert.assertEquals("Make sure getPassword() returns the correct field.","password",testUser.getPassword());
+                Assert.assertEquals("Make sure getProfile() returns the correct field.",null,testUser.getProfile());
+                Assert.assertEquals("Make sure getFriendList() returns the correct field.",testEmpty,testUser.getFriendList());
+                Assert.assertEquals("Make sure getSentRequests() returns the correct field.",testEmpty,testUser.getSentRequests());
+                Assert.assertEquals("Make sure getReceivedRequests() returns the correct field.",testEmpty,testUser.getReceivedRequests());
 
                 testUser.setFullName("fullNameReset");
                 testUser.setUserName("userNameReset");
                 testUser.setPassword("passwordReset");
 
-                assertEquals("Make sure setFullName() sets the fullName variable.","fullNameReset",testUser.getFullName());
-                assertEquals("Make sure setUserName() sets the userName variable.","userNameReset",testUser.getUserName());
-                assertEquals("Make sure setPassword() sets the password variable.","passwordReset",testUser.getPassword());
+                Assert.assertEquals("Make sure setFullName() sets the fullName variable.","fullNameReset",testUser.getFullName());
+                Assert.assertEquals("Make sure setUserName() sets the userName variable.","userNameReset",testUser.getUserName());
+                Assert.assertEquals("Make sure setPassword() sets the password variable.","passwordReset",testUser.getPassword());
 
                 testUser.writeUserToFile(testUser);
 
@@ -628,7 +631,7 @@ public class MainTests {
                 writer.close();
                 assertEquals("Ensure file outputs correct information in writeUserToFile()", new File("testFile.txt"), new File("userListFIle.txt"));
             } catch (Exception e) {
-                fail("Error in creating User Class: Some fields or methods not functional or present.");
+                fail("Error in creating main.User Class: Some fields or methods not functional or present.");
                 return;
             }
         }

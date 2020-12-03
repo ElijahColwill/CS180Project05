@@ -1,3 +1,7 @@
+package server;
+
+import main.User;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -37,7 +41,7 @@ public class Server {
                     String usernameData = userData[1];
                     String passwordData = userData[2];
 
-                    User user = new User(fullNameData, usernameData, passwordData);
+                    main.User user = new main.User(fullNameData, usernameData, passwordData);
                     userList.add(user);             //adding the user to the userList array
 
                     line = userReader.readLine();   //reads next line
@@ -49,11 +53,11 @@ public class Server {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter writer = new PrintWriter(socket.getOutputStream());
 
-                Thread t = new Client(portNum);
+                Thread t = new client.Client(portNum);
 
                 t.start();
 
-                User newUser = null;
+                main.User newUser = null;
 
                 //find out if its login or sign-up
                 //receives a 1 if its login and 2 if its a sign-up.
@@ -86,9 +90,9 @@ public class Server {
 
                             String name = reader.readLine();            //gets user's name from client
 
-                            newUser = new User(name, username, password);      //creates a user object
+                            newUser = new main.User(name, username, password);      //creates a user object
 
-                            Profile newProfile;                             //creates a profile object for the user
+                            main.Profile newProfile;                             //creates a profile object for the user
 
                             newUser.writeUserToFile(newUser);           //writes user data to file for storage
 
@@ -134,14 +138,14 @@ public class Server {
 
                                     locationInfo = moreProfileArray[0];
 
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo);
+                                    newProfile = new main.Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo);
 
                                 } else if (moreProfileArray.length == 2) {
 
                                     locationInfo = moreProfileArray[0];
                                     interestsInfo = moreProfileArray[1];
 
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo, interestsInfo);
+                                    newProfile = new main.Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo, interestsInfo);
 
                                 } else if (moreProfileArray.length == 3) {
 
@@ -149,17 +153,17 @@ public class Server {
                                     interestsInfo = moreProfileArray[1];
                                     phoneNumber = Integer.parseInt(moreProfileArray[2]);
 
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo,
+                                    newProfile = new main.Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo,
                                             interestsInfo, phoneNumber);
 
                                 }
 
                             } else {
 
-                                newProfile = new Profile(ownerName, bio, email, newUser.getFriendList());
+                                newProfile = new main.Profile(ownerName, bio, email, newUser.getFriendList());
                             }
 
-                            File newProfileInfo = new File(username + "Profile.txt");   //creates a new file for each user
+                            File newProfileInfo = new File(username + "main.Profile.txt");   //creates a new file for each user
 
                             FileOutputStream fos = new FileOutputStream(newProfileInfo);        //file output stream
 
@@ -229,7 +233,7 @@ public class Server {
                     userList.remove(newUser);       //removes user from the userList array
                     writer.write("Success");
 
-                    //overwriting the User List file
+                    //overwriting the main.User List file
                     for (int i = 0; i < userList.size(); i++) {
 
                         userList.get(i).writeUserToFile(userList.get(i));

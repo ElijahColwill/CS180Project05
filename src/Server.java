@@ -47,6 +47,8 @@ public class Server {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream());
 
+            User newUser = null;
+
             //find out if its login or sign-up
             //receives a 1 if its login and 2 if its a sign-up.
 
@@ -78,7 +80,7 @@ public class Server {
 
                         String name = reader.readLine();            //gets user's name from client
 
-                        User newUser = new User(name, username, password);      //creates a user object
+                        newUser = new User(name, username, password);      //creates a user object
 
                         Profile newProfile;                             //creates a profile object for the user
 
@@ -204,11 +206,27 @@ public class Server {
 
                 if (invalidUsername == false) {         //if the user entered the correct login details
 
-                    writer.write("success");
+                    writer.write("Success");
 
                 } else {                                //if the user didn't enter the correct login details
 
                     writer.write("incorrect username or password");
+                }
+            }
+
+            //edit profile
+            String deleteMessage = reader.readLine();
+
+            //if the user wishes to delete their account
+            if (deleteMessage.equalsIgnoreCase("delete account")) {
+
+                userList.remove(newUser);       //removes user from the userList array
+                writer.write("Success");
+
+                //overwriting the User List file
+                for (int i = 0; i < userList.size(); i++) {
+
+                    userList.get(i).writeUserToFile(userList.get(i));
                 }
             }
 

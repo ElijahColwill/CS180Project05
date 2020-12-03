@@ -1,10 +1,8 @@
 package main;
 
-import main.User;
-
 import java.util.ArrayList;
 /**
- * A main.Profile Class that handled the creation of a main.User's profile and stores the information
+ * A Profile Class that handled the creation of a User's profile and stores the information
  * for retrieval by the user or application.
  *
  * <p>Purdue University -- CS18000 -- Fall 2020 -- Project 05</p>
@@ -24,11 +22,11 @@ public class Profile {
     private ArrayList<User> friendList;
 
     /**
-     * Constructor that creates main.Profile class with minimum required information.
+     * Constructor that creates Profile class with minimum required information.
      * @param owner String that holds the userName of the user who owns the profile.
      * @param bio String that holds biography of profile.
      * @param email String that holds email of user creating profile.
-     * @param friendList ArrayList that contains the main.User's list of friends.
+     * @param friendList ArrayList that contains the User's list of friends.
      */
     public Profile(String owner, String bio, String email, ArrayList<User> friendList) {
         this.owner = owner;
@@ -38,12 +36,12 @@ public class Profile {
     }
 
     /**
-     * Constructor that creates main.Profile class with minimum required information and
+     * Constructor that creates Profile class with minimum required information and
      * a location.
      * @param owner String that holds the userName of the user who owns the profile.
      * @param bio String that holds biography of profile.
      * @param email String that holds email of user creating profile.
-     * @param friendList ArrayList that contains the main.User's list of friends.
+     * @param friendList ArrayList that contains the User's list of friends.
      * @param location String that holds location of user creating profile.
      */
     public Profile(String owner, String bio, String email, ArrayList<User> friendList,
@@ -53,12 +51,12 @@ public class Profile {
     }
 
     /**
-     * Constructor that creates main.Profile class with minimum required information and
+     * Constructor that creates Profile class with minimum required information and
      * a location and interest section.
      * @param owner String that holds the userName of the user who owns the profile.
      * @param bio String that holds biography of profile.
      * @param email String that holds email of user creating profile.
-     * @param friendList ArrayList that contains the main.User's list of friends.
+     * @param friendList ArrayList that contains the User's list of friends.
      * @param location String that holds location of user creating profile.
      * @param interests String that holds interests/hobbies of user creating profile.
      */
@@ -69,12 +67,12 @@ public class Profile {
     }
 
     /**
-     * Constructor that creates main.Profile class with minimum required information and
+     * Constructor that creates Profile class with minimum required information and
      * a location, an interest section and a phone number.
      * @param owner String that holds the userName of the user who owns the profile.
      * @param bio String that holds biography of profile.
      * @param email String that holds email of user creating profile.
-     * @param friendList ArrayList that contains the main.User's list of friends.
+     * @param friendList ArrayList that contains the User's list of friends.
      * @param location String that holds location of user creating profile.
      * @param interests String that holds interests/hobbies of user creating profile.
      * @param phoneNum Phone Number with no formatting of user creating profile.
@@ -135,7 +133,7 @@ public class Profile {
 
     /**
      * Accessor method for friendList.
-     * @return friendList ArrayList that contains the main.User's list of friends.
+     * @return friendList ArrayList that contains the User's list of friends.
      */
     public ArrayList<User> getFriendList() {
         return friendList;
@@ -183,7 +181,7 @@ public class Profile {
 
     /**
      * Mutator method for friendList.
-     * @param friendList ArrayList that contains the main.User's list of friends.
+     * @param friendList ArrayList that contains the User's list of friends.
      */
     public void setFriendList(ArrayList<User> friendList) {
         this.friendList = friendList;

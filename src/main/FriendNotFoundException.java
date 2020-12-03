@@ -1,7 +1,7 @@
 package main;
 
 /**
- * main.FriendNotFoundException exception to handle errors in friend request system.
+ * FriendNotFoundException exception to handle errors in friend request system.
  *
  * <p>Purdue University -- CS18000 -- Fall 2020 -- Project 05</p>
  *

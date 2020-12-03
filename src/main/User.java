@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 /**
- * A main.User class that creates a user based on sign up parameters and allows the creation and deletion
- * of a main.Profile along with management of a Friends list and sent and received friends Requests.
+ * A User class that creates a user based on sign up parameters and allows the creation and deletion
+ * of a Profile along with management of a Friends list and sent and received friends Requests.
  *
  * <p>Purdue University -- CS18000 -- Fall 2020 -- Project 05</p>
  *
@@ -28,7 +28,7 @@ public class User {
 
     /**
      * Constructor that creates user class with Sign Up Information.
-     * @param fullName String that holds name of person creating main.User.
+     * @param fullName String that holds name of person creating User.
      * @param userName String that holds username of user being created.
      * @param password String that holds password of user being created.
      */
@@ -40,7 +40,7 @@ public class User {
 
     /**
      * Accessor method for fullName.
-     * @return fullName String that holds name of person creating main.User.
+     * @return fullName String that holds name of person creating User.
      */
     public String getFullName() {
         return fullName;
@@ -64,7 +64,7 @@ public class User {
 
     /**
      * Accessor method for profile.
-     * @return profile main.Profile object that holds information for a main.User's profile.
+     * @return profile Profile object that holds information for a User's profile.
      */
     public Profile getProfile() {
         return profile;
@@ -72,7 +72,7 @@ public class User {
 
     /**
      * Accessor method for friendList.
-     * @return friendList ArrayList that holds friends of the main.User.
+     * @return friendList ArrayList that holds friends of the User.
      */
     public ArrayList<User> getFriendList() {
         return friendList;
@@ -80,7 +80,7 @@ public class User {
 
     /**
      * Accessor method for sentRequests.
-     * @return sentRequests ArrayList that holds friend requests that are pending from the main.User.
+     * @return sentRequests ArrayList that holds friend requests that are pending from the User.
      */
     public ArrayList<FriendRequest> getSentRequests() {
         return sentRequests;
@@ -88,7 +88,7 @@ public class User {
 
     /**
      * Accessor method for receivedRequests.
-     * @return receivedRequests ArrayList that holds friend requests that the main.User has received.
+     * @return receivedRequests ArrayList that holds friend requests that the User has received.
      */
     public ArrayList<FriendRequest> getReceivedRequests() {
         return receivedRequests;
@@ -96,7 +96,7 @@ public class User {
 
     /**
      * Mutator method for fullName.
-     * @param fullName String that holds name of person creating main.User.
+     * @param fullName String that holds name of person creating User.
      */
     public void setFullName(String fullName) {
         this.fullName = fullName;
@@ -120,7 +120,7 @@ public class User {
     
     /**
      * This method writes the user details to a file for storing this data.
-     * @param user main.User object whose data is being stored.
+     * @param user User object whose data is being stored.
      */
     public void writeUserToFile(User user) {
 
@@ -148,7 +148,7 @@ public class User {
 
     /**
      * Method that sends a friend request object to the user specified.
-     * @param user main.User object that is being sent a friend request.
+     * @param user User object that is being sent a friend request.
      */
     public void sendFriendRequest(User user) throws FriendNotFoundException {
         for (int i = 0; i < sentRequests.size(); i++) {
@@ -160,8 +160,8 @@ public class User {
     }
 
     /**
-     * Method that revokes a sent request to the main.User specified.
-     * @param user main.User object that is no longer being sent a friend request.
+     * Method that revokes a sent request to the User specified.
+     * @param user User object that is no longer being sent a friend request.
      */
     public void removeFriendRequest(User user) throws FriendNotFoundException {
         for (int i = 0; i < sentRequests.size(); i++) {
@@ -176,7 +176,7 @@ public class User {
 
     /**
      * Method that receives a friend request and adds it to pending requests.
-     * @param request main.FriendRequest that holds the sender and recipient users.
+     * @param request FriendRequest that holds the sender and recipient users.
      */
     public void addReceivedRequest(FriendRequest request) throws FriendNotFoundException {
         for (int i = 0; i < receivedRequests.size(); i++) {
@@ -189,7 +189,7 @@ public class User {
 
     /**
      * Method that removes a friend request that is pending action from user.
-     * @param request main.FriendRequest that holds the sender and recipient users.
+     * @param request FriendRequest that holds the sender and recipient users.
      */
     public void removeReceivedRequest(FriendRequest request) throws FriendNotFoundException {
         for (int i = 0; i < receivedRequests.size(); i++) {
@@ -204,7 +204,7 @@ public class User {
     /**
      * Method that accepts a pending friend request and changes appropriate arrays.
      * Adds friend to friendList.
-     * @param user main.User that is being accepted from pending received requests.
+     * @param user User that is being accepted from pending received requests.
      */
     public void acceptFriend(User user) throws FriendNotFoundException {
         for (int i = 0; i < receivedRequests.size(); i++) {
@@ -224,7 +224,7 @@ public class User {
 
     /**
      * Method that denies a pending friend request and changes appropriate arrays.
-     * @param user main.User that is being denied from pending received requests.
+     * @param user User that is being denied from pending received requests.
      */
     public void denyFriend(User user) throws FriendNotFoundException {
         for (int i = 0; i < receivedRequests.size(); i++) {
@@ -238,7 +238,7 @@ public class User {
 
     /**
      * Method that removes a friend from friendList.
-     * @param user main.User that is being removes from main.User's friends.
+     * @param user User that is being removes from User's friends.
      */
     public void removeFriend(User user) throws FriendNotFoundException {
         for (int i = 0; i < friendList.size(); i++) {
@@ -251,19 +251,19 @@ public class User {
     }
 
     /**
-     * Method that creates the main.User's profile based on given parameters, the Username and Friends List.
-     * @param bio String that holds biography of main.User.
-     * @param email String that holds email address of main.User.
+     * Method that creates the User's profile based on given parameters, the Username and Friends List.
+     * @param bio String that holds biography of User.
+     * @param email String that holds email address of User.
      */
     public void createProfile(String bio, String email) {
         profile = new Profile(userName, bio, email, friendList);
     }
 
     /**
-     * Method that creates the main.User's profile based on given parameters, the Username and Friends List.
-     * @param bio String that holds biography of main.User.
-     * @param email String that holds email address of main.User.
-     * @param location String that holds location of main.User.
+     * Method that creates the User's profile based on given parameters, the Username and Friends List.
+     * @param bio String that holds biography of User.
+     * @param email String that holds email address of User.
+     * @param location String that holds location of User.
      */
     public void createProfile(String bio, String email,
                    String location) {
@@ -271,11 +271,11 @@ public class User {
     }
 
     /**
-     * Method that creates the main.User's profile based on given parameters, the Username and Friends List.
-     * @param bio String that holds biography of main.User.
-     * @param email String that holds email address of main.User.
-     * @param location String that holds location of main.User.
-     * @param interests String that holds interests/hobbies of main.User.
+     * Method that creates the User's profile based on given parameters, the Username and Friends List.
+     * @param bio String that holds biography of User.
+     * @param email String that holds email address of User.
+     * @param location String that holds location of User.
+     * @param interests String that holds interests/hobbies of User.
      */
     public void createProfile(String bio, String email,
                    String location, String interests) {
@@ -283,12 +283,12 @@ public class User {
     }
 
     /**
-     * Method that creates the main.User's profile based on given parameters, the Username and Friends List.
-     * @param bio String that holds biography of main.User.
-     * @param email String that holds email address of main.User.
-     * @param location String that holds location of main.User.
-     * @param interests String that holds interests/hobbies of main.User.
-     * @param phoneNum int that holds Phone Number of main.User.
+     * Method that creates the User's profile based on given parameters, the Username and Friends List.
+     * @param bio String that holds biography of User.
+     * @param email String that holds email address of User.
+     * @param location String that holds location of User.
+     * @param interests String that holds interests/hobbies of User.
+     * @param phoneNum int that holds Phone Number of User.
      */
     public void createProfile(String bio, String email,
                    String location, String interests, int phoneNum) {
@@ -296,7 +296,7 @@ public class User {
     }
 
     /**
-     * Method that deletes the main.User's profile and information.
+     * Method that deletes the User's profile and information.
      */
     public void deleteProfile() {
         profile = null;

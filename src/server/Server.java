@@ -233,7 +233,7 @@ public class Server {
                     userList.remove(newUser);       //removes user from the userList array
                     writer.write("Success");
 
-                    //overwriting the main.User List file
+                    //overwriting the User List file
                     for (int i = 0; i < userList.size(); i++) {
 
                         userList.get(i).writeUserToFile(userList.get(i));

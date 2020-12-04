@@ -3,6 +3,17 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/**
+ * Client Handler
+ *
+ * This class contains the code implementation for all the client-server interactions inside a run method.
+ *
+ *
+ * @author Sindhuja Kancharla
+ * @version December 3, 2020
+ *
+ */
+
 public class ClientHandler extends Thread {
 
     final Socket s;

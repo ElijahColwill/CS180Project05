@@ -1,6 +1,17 @@
 import java.io.*;
 import java.net.*;
 
+/**
+ * Server
+ *
+ * A multithreaded server that connects clients via Client Handlers.
+ *
+ *
+ * @author Sindhuja Kancharla
+ * @version December 3, 2020
+ *
+ */
+
 public class Server {
 
     public static void main(String[] args) throws IOException {

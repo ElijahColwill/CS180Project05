@@ -1,4 +1,3 @@
-package main;
 
 /**
  * FriendRequest class that stores the sender and recipient user of request

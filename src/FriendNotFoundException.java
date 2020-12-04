@@ -1,4 +1,4 @@
-package main;
+
 
 /**
  * FriendNotFoundException exception to handle errors in friend request system.

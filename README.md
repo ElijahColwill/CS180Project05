@@ -305,12 +305,25 @@ Standard Model
   
 ### Client Class
 Description:
+A class run by the user to be able to interact with the server using a GUI.
 
 Authors:
+Henry Peng
 
 Methods:
-
+- Client(int portNum)
+  - Initializes a Client class with a specified port number.
+- main (String[] args)
+  - Main class run by the user, starts the GUI.
+- sendMessage (String message)
+  - Sends specified message to the server
+- receiveMessage ()
+  - reads message from the server and returns the String read.
+- actionPerformed (ActionEvent e)
+  - BUTTONS
+  
 Testing:
+Standard Model
 
 ### Server Class
 Description:

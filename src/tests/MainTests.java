@@ -1,6 +1,8 @@
 package tests;
 
 import main.*;
+import client.*;
+import gui.*;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -10,6 +12,8 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -1397,6 +1401,485 @@ public class MainTests {
             } catch (NoSuchMethodException e) {
                 fail("Ensure that you have a constructor that takes a message parameter and is public in class FriendNotFoundException.");
                 e.printStackTrace();
+                return;
+            }
+        }
+
+        @Test(timeout = 1_000)
+        public void clientClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Client.class;
+            className = "Client";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends JComponent.", JComponent.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements 2 interfaces.", 2, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void clientClassSetupTest() {
+            Field[] fields = Client.class.getDeclaredFields();
+            if (fields.length < 15) {
+                fail("Client class requires fifteen fields.");
+                return;
+            }
+
+            try {
+                Field portNum = Client.class.getDeclaredField("portNum");
+                if (portNum.getType() != int.class) {
+                    fail("Ensure that portNum in class Client is of type int.");
+                    return;
+                }
+                if (portNum.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC)) {
+                    fail("Ensure that portNum in class Client has modifiers private and static.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field portNum in class Client " +
+                        "that is of type int and is private and static.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field writer = Client.class.getDeclaredField("writer");
+                if (writer.getType() != PrintWriter.class) {
+                    fail("Ensure that writer in class Client is of type PrintWriter.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field writer in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field reader = Client.class.getDeclaredField("reader");
+                if (reader.getType() != BufferedReader.class) {
+                    fail("Ensure that reader in class Client is of type BufferedReader.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field reader in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field currentUsername = Client.class.getDeclaredField("currentUsername");
+                if (currentUsername.getType() != String.class) {
+                    fail("Ensure that currentUsername in class Client is of type String.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field currentUsername in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field temp = Client.class.getDeclaredField("temp");
+                if (temp.getType() != String.class) {
+                    fail("Ensure that temp in class Client is of type String.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field temp in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field homeFrame = Client.class.getDeclaredField("homeFrame");
+                if (homeFrame.getType() != gui.HomeFrame.class) {
+                    fail("Ensure that homeFrame in class Client is of type gui.HomeFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field homeFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field signUpFrame = Client.class.getDeclaredField("signUpFrame");
+                if (signUpFrame.getType() != gui.SignUpFrame.class) {
+                    fail("Ensure that signUpFrame in class Client is of type gui.SignUpFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field signUpFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field friendsListFrame = Client.class.getDeclaredField("friendsListFrame");
+                if (friendsListFrame.getType() != gui.FriendsListFrame.class) {
+                    fail("Ensure that friendsListFrame in class Client is of type gui.FriendsListFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field friendsListFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field viewRequestsFrame = Client.class.getDeclaredField("viewRequestsFrame");
+                if (viewRequestsFrame.getType() != gui.ViewRequestsFrame.class) {
+                    fail("Ensure that viewRequestsFrame in class Client is of type gui.ViewRequestsFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field viewRequestsFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field incomingFriendRequestsFrame = Client.class.getDeclaredField("incomingFriendRequestsFrame");
+                if (incomingFriendRequestsFrame.getType() != gui.IncomingFriendRequestsFrame.class) {
+                    fail("Ensure that incomingFriendRequestsFrame in class Client is of type gui.IncomingFriendRequestsFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field incomingFriendRequestsFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field outgoingFriendRequestsFrame = Client.class.getDeclaredField("outgoingFriendRequestsFrame");
+                if (outgoingFriendRequestsFrame.getType() != gui.OutgoingFriendRequestsFrame.class) {
+                    fail("Ensure that outgoingFriendRequestsFrame in class Client is of type gui.OutgoingFriendRequestsFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field outgoingFriendRequestsFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field sendFriendRequestFrame = Client.class.getDeclaredField("sendFriendRequestFrame");
+                if (sendFriendRequestFrame.getType() != gui.SendFriendRequestFrame.class) {
+                    fail("Ensure that sendFriendRequestFrame in class Client is of type gui.SendFriendRequestFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field sendFriendRequestFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field profileFrame = Client.class.getDeclaredField("profileFrame");
+                if (profileFrame.getType() != gui.ProfileFrame.class) {
+                    fail("Ensure that profileFrame in class Client is of type gui.ProfileFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field profileFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field editProfileFrame = Client.class.getDeclaredField("editProfileFrame");
+                if (editProfileFrame.getType() != gui.EditProfileFrame.class) {
+                    fail("Ensure that editProfileFrame in class Client is of type gui.EditProfileFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field editProfileFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field editProfileFrame = Client.class.getDeclaredField("editProfileFrame");
+                if (editProfileFrame.getType() != gui.EditProfileFrame.class) {
+                    fail("Ensure that editProfileFrame in class Client is of type gui.EditProfileFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field editProfileFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field profileFrameRestricted = Client.class.getDeclaredField("profileFrameRestricted");
+                if (profileFrameRestricted.getType() != gui.ProfileFrameRestricted.class) {
+                    fail("Ensure that profileFrameRestricted in class Client is of type gui.ProfileFrameRestricted.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field profileFrameRestricted in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<Client> constructor = Client.class.getDeclaredConstructor(int.class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class Client is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes 1 parameter and is public in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method main = Client.class.getDeclaredMethod("main");
+                if (main.getModifiers() != Modifier.PUBLIC + Modifier.STATIC) {
+                    fail("Ensure that your method main in class Client is public and static.");
+                    return;
+                }
+                if (!main.getReturnType().equals(void.class)) {
+                    fail("Ensure that your getSender method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the main method that is public and static  and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method sendMessage = Client.class.getDeclaredMethod("sendMessage", String.class);
+                if (sendMessage.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method sendMessage in class Client is public.");
+                    return;
+                }
+                if (!sendMessage.getReturnType().equals(void.class)) {
+                    fail("Ensure that your sendMessage method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the sendMessage method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method receiveMessage = Client.class.getDeclaredMethod("receiveMessage");
+                if (receiveMessage.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method receiveMessage in class Client is public.");
+                    return;
+                }
+                if (!receiveMessage.getReturnType().equals(String.class)) {
+                    fail("Ensure that your receiveMessage method in class Client returns a String.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the receiveMessage method that is public and returns a String.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method actionPerformed = Client.class.getDeclaredMethod("actionPerformed", ActionEvent.class);
+                if (actionPerformed.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method actionPerformed in class Client is public.");
+                    return;
+                }
+                if (!actionPerformed.getReturnType().equals(void.class)) {
+                    fail("Ensure that your actionPerformed method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the actionPerformed method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showHomeFrame = Client.class.getDeclaredMethod("showHomeFrame");
+                if (showHomeFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showHomeFrame in class Client is private.");
+                    return;
+                }
+                if (!showHomeFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showHomeFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showHomeFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showSignUpFrame = Client.class.getDeclaredMethod("showSignUpFrame");
+                if (showSignUpFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showSignUpFrame in class Client is private.");
+                    return;
+                }
+                if (!showSignUpFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showSignUpFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showSignUpFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showProfileFrame = Client.class.getDeclaredMethod("showProfileFrame", String.class, boolean.class);
+                if (showProfileFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showProfileFrame in class Client is private.");
+                    return;
+                }
+                if (!showProfileFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showProfileFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showProfileFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showEditProfileFrame = Client.class.getDeclaredMethod("showEditProfileFrame", String.class);
+                if (showEditProfileFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showEditProfileFrame in class Client is private.");
+                    return;
+                }
+                if (!showEditProfileFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showEditProfileFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showEditProfileFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showFriendsListFrame = Client.class.getDeclaredMethod("showFriendsListFrame", String.class);
+                if (showFriendsListFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showFriendsListFrame in class Client is private.");
+                    return;
+                }
+                if (!showFriendsListFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showFriendsListFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showFriendsListFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showIncomingFriendRequestFrame = Client.class.getDeclaredMethod("showIncomingFriendRequestFrame", String.class);
+                if (showIncomingFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showIncomingFriendRequestFrame in class Client is private.");
+                    return;
+                }
+                if (!showIncomingFriendRequestFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showIncomingFriendRequestFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showIncomingFriendRequestFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showOutgoingFriendRequestFrame = Client.class.getDeclaredMethod("showOutgoingFriendRequestFrame", String.class);
+                if (showOutgoingFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showOutgoingFriendRequestFrame in class Client is private.");
+                    return;
+                }
+                if (!showOutgoingFriendRequestFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showOutgoingFriendRequestFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showOutgoingFriendRequestFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showSendFriendRequestFrame = Client.class.getDeclaredMethod("showSendFriendRequestFrame", String.class);
+                if (showSendFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showSendFriendRequestFrame in class Client is private.");
+                    return;
+                }
+                if (!showSendFriendRequestFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showSendFriendRequestFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showSendFriendRequestFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method showViewRequestsFrame = Client.class.getDeclaredMethod("showViewRequestsFrame");
+                if (showViewRequestsFrame.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method showViewRequestsFrame in class Client is private.");
+                    return;
+                }
+                if (!showViewRequestsFrame.getReturnType().equals(void.class)) {
+                    fail("Ensure that your showViewRequestsFrame method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the showViewRequestsFrame method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method run = Client.class.getDeclaredMethod("run");
+                if (run.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method run in class Client is public.");
+                    return;
+                }
+                if (!run.getReturnType().equals(void.class)) {
+                    fail("Ensure that your run method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the run method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1000)
+        public void clientClassImplementationTest() {
+            try {
+                FriendRequest testFriendRequest = new FriendRequest(new User("user1", "user1", "user1"), new User("user2", "user2", "user2"));
+                ArrayList<User> testEmpty = new ArrayList<User>();
+                assertEquals("Make sure getSender() returns the correct field.","user1",testFriendRequest.getSender().getUserName());
+                assertEquals("Make sure getRecipient() returns the correct field.","user2",testFriendRequest.getRecipient().getUserName());
+
+
+            } catch (Exception e) {
+                fail("Error in creating Client Class: Some fields or methods not functional or present.");
                 return;
             }
         }

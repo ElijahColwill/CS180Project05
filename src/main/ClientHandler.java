@@ -266,6 +266,19 @@ public class ClientHandler extends Thread {
                     }
                 }
 
+                //displaying all users
+                if (message.equalsIgnoreCase("Get all users")) {
+
+                    StringBuilder allUsers = new StringBuilder();
+
+                    for (int i = 0; i < userList.size(); i++) {
+
+                        allUsers.append(userList.get(i).getUserName());
+                    }
+
+                    messageToClient(String.valueOf(allUsers));
+                }
+
             } catch (IOException ioe) {
                 ioe.getMessage();
 

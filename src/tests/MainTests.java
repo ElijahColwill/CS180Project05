@@ -958,7 +958,7 @@ public class MainTests {
                     return;
                 }
                 if (!getBio.getReturnType().equals(String.class)) {
-                    fail("Ensure that your getBio method in class User returns a String.");
+                    fail("Ensure that your getBio method in class Profile returns a String.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
@@ -1225,6 +1225,178 @@ public class MainTests {
 
             } catch (Exception e) {
                 fail("Error in creating Profile Class: Some fields or methods not functional or present.");
+                return;
+            }
+        }
+
+        @Test(timeout = 1_000)
+        public void friendRequestClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = FriendRequest.class;
+            className = "FriendRequest";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void friendRequestClassSetupTest() {
+            Field[] fields = FriendRequest.class.getDeclaredFields();
+            if (fields.length < 2) {
+                fail("FriendRequest class requires two fields.");
+                return;
+            }
+
+            try {
+                Field sender = FriendRequest.class.getDeclaredField("sender");
+                if (sender.getType() != User.class) {
+                    fail("Ensure that sender in class FriendRequest is of type User.");
+                    return;
+                }
+                if (sender.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that sender in class FriendRequest has modifier private.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field sender in class FriendRequest " +
+                        "that is of type User and is private.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field recipient = FriendRequest.class.getDeclaredField("sender");
+                if (recipient.getType() != User.class) {
+                    fail("Ensure that recipient in class FriendRequest is of type User.");
+                    return;
+                }
+                if (recipient.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that recipient in class FriendRequest has modifier private.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field recipient in class FriendRequest " +
+                        "that is of type User and is private.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<FriendRequest> constructor = FriendRequest.class.getDeclaredConstructor(User.class, User.class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class FriendRequest is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes 2 parameters and is public in class FriendRequest.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method getSender = FriendRequest.class.getDeclaredMethod("getSender");
+                if (getSender.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method getSender in class FriendRequest is public.");
+                    return;
+                }
+                if (!getSender.getReturnType().equals(User.class)) {
+                    fail("Ensure that your getSender method in class FriendRequest returns a User.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the getSender method that is public and returns a User.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method getRecipient = FriendRequest.class.getDeclaredMethod("getRecipient");
+                if (getRecipient.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method getRecipient in class FriendRequest is public.");
+                    return;
+                }
+                if (!getRecipient.getReturnType().equals(User.class)) {
+                    fail("Ensure that your getRecipient method in class FriendRequest returns a User.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the getRecipient method that is public and returns a User.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1000)
+        public void friendRequestClassImplementationTest() {
+            try {
+                FriendRequest testFriendRequest = new FriendRequest(new User("user1", "user1", "user1"), new User("user2", "user2", "user2"));
+                ArrayList<User> testEmpty = new ArrayList<User>();
+                assertEquals("Make sure getSender() returns the correct field.","user1",testFriendRequest.getSender().getUserName());
+                assertEquals("Make sure getRecipient() returns the correct field.","user2",testFriendRequest.getRecipient().getUserName());
+
+
+            } catch (Exception e) {
+                fail("Error in creating FriendRequest Class: Some fields or methods not functional or present.");
+                return;
+            }
+        }
+
+        @Test(timeout = 1_000)
+        public void friendNotFoundExceptionClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = FriendNotFoundException.class;
+            className = "FriendNotFoundException";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends Exception.", Exception.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void friendNotFoundExceptionClassSetupTest() {
+            try {
+                Constructor<FriendNotFoundException> constructor = FriendNotFoundException.class.getDeclaredConstructor();
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class FriendNotFoundException is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes no parameters and is public in class FriendNotFoundException.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<FriendNotFoundException> constructor = FriendNotFoundException.class.getDeclaredConstructor(String.class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class FriendNotFoundException is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes a message parameter and is public in class FriendNotFoundException.");
+                e.printStackTrace();
                 return;
             }
         }

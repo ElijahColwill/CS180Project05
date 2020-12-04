@@ -1,5 +1,3 @@
-package main;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -23,6 +21,7 @@ public class ClientHandler extends Thread {
     final PrintWriter writer;
 
     private static ArrayList<User> userList = new ArrayList<User>();       //array list that holds all the existing users
+    private static ArrayList<Profile> profilesList = new ArrayList<Profile>();  //array list that holds all the existing profiles
 
     public ClientHandler(Socket s, BufferedReader r, PrintWriter w) {
         this.s = s;
@@ -65,24 +64,14 @@ public class ClientHandler extends Thread {
 
                 userReader.close();
                 userFileReader.close();
-/*
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());*/
-
-                //Thread t = new Client(portNum);
-
-                //t.start();
 
                 User newUser = null;
 
-                //find out if its login or sign-up
-                //receives a 1 if its login and 2 if its a sign-up.
-
-                int choice = Integer.parseInt(reader.readLine());   //1 or 2 for determining login or sign-up
+                String choice = reader.readLine();   //determining login or sign-up
 
                 //if sign-up, creates a new user account
 
-                if (choice == 2) {
+                if (choice.equalsIgnoreCase("sign up")) {
 
                     if (reader.readLine() != null) {
 
@@ -95,7 +84,7 @@ public class ClientHandler extends Thread {
                             if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
 
                                 usernameExists = true;
-                                writer.write("Username already taken!");
+                                messageToClient("Username already taken");
                             }
                         }
 
@@ -106,111 +95,23 @@ public class ClientHandler extends Thread {
 
                             String name = reader.readLine();            //gets user's name from client
 
+                            String emailId = reader.readLine();         //gets email from client
+
                             newUser = new User(name, username, password);      //creates a user object
 
-                            Profile newProfile;                             //creates a profile object for the user
+                            userList.add(newUser);                      //adding the new user to the User List
 
                             newUser.writeUserToFile(newUser);           //writes user data to file for storage
 
-                            writer.write("Success");                //writes back to client
+                            messageToClient("Success");                //writes back to client
 
-                            //creating a profile object using data entered by the user through the GUI
-                            //receives all the user profile data as one line separated by commas (without spaces) up
-                            //to the friendsList array list. The friendsList can be sent separately in another line
-                            //with the friend usernames separated by commas.
-
-                            String basicProfileInfo = reader.readLine();
-                            String[] basicProfileArray = basicProfileInfo.split(",");
-
-                            String ownerName = basicProfileArray[0];
-                            String bio = basicProfileArray[1];
-                            String email = basicProfileArray[2];
-                            String locationInfo = "";
-                            String interestsInfo = "";
-                            int phoneNumber = 0;
-
-                            String listOfFriends = reader.readLine();   //string of friends usernames
-                            String[] arrayOfFriends = listOfFriends.split(",");
-
-                            for (int i = 0; i < arrayOfFriends.length; i++) {
-
-                                for (int j = 0; j < userList.size(); j++) {
-
-                                    if (arrayOfFriends[i].equalsIgnoreCase(userList.get(j).getUserName())) {
-
-                                        newUser.getFriendList().add(userList.get(j));   //adds the user to the friendsList
-                                    }
-                                }
-                            }
-
-                            //if the user enters other data such as phone number, location, interests, etc:
-
-                            if (reader.readLine() != null) {
-
-                                String moreProfileInfo = reader.readLine();
-                                String[] moreProfileArray = moreProfileInfo.split(",");
-
-                                if (moreProfileArray.length == 1) {
-
-                                    locationInfo = moreProfileArray[0];
-
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo);
-
-                                } else if (moreProfileArray.length == 2) {
-
-                                    locationInfo = moreProfileArray[0];
-                                    interestsInfo = moreProfileArray[1];
-
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo, interestsInfo);
-
-                                } else if (moreProfileArray.length == 3) {
-
-                                    locationInfo = moreProfileArray[0];
-                                    interestsInfo = moreProfileArray[1];
-                                    phoneNumber = Integer.parseInt(moreProfileArray[2]);
-
-                                    newProfile = new Profile(ownerName, bio, email, newUser.getFriendList(), locationInfo,
-                                            interestsInfo, phoneNumber);
-
-                                }
-
-                            } else {
-
-                                newProfile = new Profile(ownerName, bio, email, newUser.getFriendList());
-                            }
-
-                            File newProfileInfo = new File(username + "Profile.txt");   //creates a new file for each user
-
-                            FileOutputStream fos = new FileOutputStream(newProfileInfo);        //file output stream
-
-                            PrintWriter profileInfoWriter = new PrintWriter(fos);               //print writer
-
-                            profileInfoWriter.println(username);
-                            profileInfoWriter.println(ownerName + "," + bio + "," + email);
-                            profileInfoWriter.println(listOfFriends);
-
-                            if (locationInfo != null) {
-
-                                profileInfoWriter.write(locationInfo + ",");
-                            }
-
-                            if (interestsInfo != null) {
-
-                                profileInfoWriter.write(interestsInfo + ",");
-                            }
-
-                            if (phoneNumber != 0) {
-
-                                profileInfoWriter.write(phoneNumber);
-                            }
                         }
-
                     }
                 }
 
-                //if the user is logging in
+                //if the user is logging in/signing in
 
-                if (choice == 1) {
+                if (choice.equalsIgnoreCase("sign in")) {
 
                     boolean invalidUsername = true;
 
@@ -232,22 +133,43 @@ public class ClientHandler extends Thread {
 
                     if (invalidUsername == false) {         //if the user entered the correct login details
 
-                        writer.write("Success");
+                        messageToClient("Success");
 
                     } else {                                //if the user didn't enter the correct login details
 
-                        writer.write("incorrect username or password");
+                        messageToClient("incorrect username or password");
                     }
                 }
 
+                String message = reader.readLine();             //reading from client
+
                 //edit profile
-                String deleteMessage = reader.readLine();
+
+                //if the user wishes to edit their profile
+
+                if (message.equalsIgnoreCase("change profile")) {
+
+                    String nameField = reader.readLine();
+                    String usernameField = reader.readLine();
+                    String emailField = reader.readLine();
+                    String passwordField = reader.readLine();
+                    String locationField = reader.readLine();
+                    String bioField = reader.readLine();
+                    String interestsField = reader.readLine();
+
+                    Profile newProfile = new Profile(nameField, bioField, emailField,
+                            newUser.getFriendList(), locationField, interestsField);   //creates a profile object for the user
+
+                    profilesList.add(newProfile);       //adding the profile to the ProfilesList array
+
+                    messageToClient("Success");
+                }
 
                 //if the user wishes to delete their account
-                if (deleteMessage.equalsIgnoreCase("delete account")) {
+                if (message.equalsIgnoreCase("delete account")) {
 
                     userList.remove(newUser);       //removes user from the userList array
-                    writer.write("Success");
+                    messageToClient("Success");
 
                     //overwriting the User List file
                     for (int i = 0; i < userList.size(); i++) {
@@ -256,6 +178,71 @@ public class ClientHandler extends Thread {
                     }
                 }
 
+                //user wants to view profile
+                if (message.equalsIgnoreCase("Information for user")) {
+
+                    String currentUsername = reader.readLine();         //gets username from client
+                    String currentOwner = null;
+
+                    boolean userFound = false;
+
+                    for (int i = 0; i < userList.size(); i++) {
+
+                        if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                            userFound = true;
+                            currentOwner = userList.get(i).getFullName();
+                        }
+                    }
+
+                    if (!userFound) {       //if the user isn't found/ doesn't exist
+
+                        messageToClient("User does not exist");
+                    }
+
+                    for (int j = 0; j < profilesList.size(); j++) {
+
+                        if (currentOwner.equalsIgnoreCase(profilesList.get(j).getOwner())) {
+
+                            String nameOfUser = profilesList.get(j).getOwner();
+                            String userEmail = profilesList.get(j).getEmail();
+                            String userLocation = profilesList.get(j).getLocation();
+                            String userBio = profilesList.get(j).getBio();
+                            String userInterests = profilesList.get(j).getInterests();
+
+                            messageToClient(String.format("%s\n%s\n%s\n%s\n%s\n%s",nameOfUser, currentUsername,
+                                                userEmail, userLocation, userBio, userInterests));
+                        }
+                    }
+                }
+
+                //to display friends list
+                if (message.equalsIgnoreCase("Friends for user")) {
+
+                    String currentUsername = reader.readLine();         //gets the username from the client
+                    User currentUser = null;
+                    StringBuilder friendsUsernames = new StringBuilder();
+                    StringBuilder friendsNames = new StringBuilder();
+
+                    for (int i = 0; i < userList.size(); i++) {
+
+                        if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                            currentUser = userList.get(i);
+                        }
+                    }
+
+                    //gets all the usernames of the friends
+                    for (int j = 0; j < currentUser.getFriendList().size(); j++) {
+
+                        friendsNames.append(currentUser.getFriendList().get(j).getFullName());      //string of names
+                        friendsUsernames.append(currentUser.getFriendList().get(j).getUserName());  //string of usernames
+                    }
+
+                    messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));
+                }
+
+
             } catch (IOException ioe) {
                 ioe.getMessage();
 
@@ -263,5 +250,16 @@ public class ClientHandler extends Thread {
                 nfe.getMessage();
             }
         }
+    }
+
+    /**
+     * This method writes back to the client.
+     * @param message String message that needs to be written to the client.
+     */
+    public void messageToClient(String message) {
+
+        writer.write(message);
+        writer.println();
+        writer.flush();
     }
 }

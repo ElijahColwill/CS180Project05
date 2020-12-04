@@ -242,6 +242,29 @@ public class ClientHandler extends Thread {
                     messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));
                 }
 
+                //incoming or outgoing friend request
+                if (message.equalsIgnoreCase("Incoming friend request for user") ||
+                        message.equalsIgnoreCase("Outgoing friend request for user")) {
+
+                    String currentUsername = reader.readLine();
+                    boolean userExists = false;
+
+                    for (int i = 0; i < userList.size(); i++) {
+
+                        if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                            userExists = true;
+                            String userFullName = userList.get(i).getFullName();
+
+                            messageToClient(String.format("User exists\n%s\n%s", userFullName, currentUsername));
+                        }
+                    }
+
+                    if (!userExists) {          //if the user doesn't exist
+
+                        messageToClient("User does not exist");
+                    }
+                }
 
             } catch (IOException ioe) {
                 ioe.getMessage();

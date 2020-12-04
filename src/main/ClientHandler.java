@@ -273,7 +273,7 @@ public class ClientHandler extends Thread {
 
                     for (int i = 0; i < userList.size(); i++) {
 
-                        allUsers.append(userList.get(i).getUserName());
+                        allUsers.append(userList.get(i).getUserName() + ",");
                     }
 
                     messageToClient(String.valueOf(allUsers));

@@ -235,8 +235,8 @@ public class ClientHandler extends Thread {
                     //gets all the usernames of the friends
                     for (int j = 0; j < currentUser.getFriendList().size(); j++) {
 
-                        friendsNames.append(currentUser.getFriendList().get(j).getFullName());      //string of names
-                        friendsUsernames.append(currentUser.getFriendList().get(j).getUserName());  //string of usernames
+                        friendsNames.append(currentUser.getFriendList().get(j).getFullName() + ",");      //string of names
+                        friendsUsernames.append(currentUser.getFriendList().get(j).getUserName() + ",");  //string of usernames
                     }
 
                     messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));

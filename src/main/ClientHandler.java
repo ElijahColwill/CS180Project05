@@ -383,47 +383,53 @@ public class ClientHandler extends Thread {
 
             String userUsername = reader.readLine();
 
-            String[] basicUserData = reader.readLine().split(",");
+            String userData = reader.readLine();
 
-            String owner = basicUserData[0];
-            String bio = basicUserData[1];
-            String email = basicUserData[2];
+            if (userData != null) {
 
-            String[] friendsData = reader.readLine().split(",");
+                String[] basicUserData = userData.split(",");
 
-            ArrayList<User> listOfFriends = initialiseFriendsList(friendsData);     //gets the array list of friends
+                String owner = basicUserData[0];
+                String bio = basicUserData[1];
+                String email = basicUserData[2];
 
-            //location, interests, phoneNum
+                String[] friendsData = reader.readLine().split(",");
 
-            if (reader.readLine() != null) {
+                ArrayList<User> listOfFriends = initialiseFriendsList(friendsData);     //gets the array list of friends
 
-                String[] otherUserData = reader.readLine().split(",");
+                //location, interests, phoneNum
 
-                if (otherUserData.length == 1) {
+                if (reader.readLine() != null) {
 
-                    String location = otherUserData[0];
+                    String[] otherUserData = reader.readLine().split(",");
 
-                    profile = new Profile(owner, bio, email, listOfFriends, location);
+                    if (otherUserData.length == 1) {
 
-                } else if (otherUserData.length == 2) {
+                        String location = otherUserData[0];
 
-                    String location = otherUserData[0];
-                    String interests = otherUserData[1];
+                        profile = new Profile(owner, bio, email, listOfFriends, location);
 
-                    profile = new Profile(owner, bio, email, listOfFriends, location, interests);
+                    } else if (otherUserData.length == 2) {
 
-                } else if (otherUserData.length == 3) {
+                        String location = otherUserData[0];
+                        String interests = otherUserData[1];
 
-                    String location = otherUserData[0];
-                    String interests = otherUserData[1];
-                    int phoneNum = Integer.parseInt(otherUserData[2]);
+                        profile = new Profile(owner, bio, email, listOfFriends, location, interests);
 
-                    profile = new Profile(owner, bio, email, listOfFriends, location, interests, phoneNum);
+                    } else if (otherUserData.length == 3) {
+
+                        String location = otherUserData[0];
+                        String interests = otherUserData[1];
+                        int phoneNum = Integer.parseInt(otherUserData[2]);
+
+                        profile = new Profile(owner, bio, email, listOfFriends, location, interests, phoneNum);
+                    }
+
+                } else {
+
+                    profile = new Profile(owner, bio, email, listOfFriends);
                 }
 
-            } else {
-
-                profile = new Profile(owner, bio, email, listOfFriends);
             }
 
         } catch (FileNotFoundException fne) {

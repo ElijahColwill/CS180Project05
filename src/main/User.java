@@ -120,16 +120,16 @@ public class User {
     
     /**
      * This method writes the user details to a file for storing this data.
-     * @param user User object whose data is being stored.
+     * @param user the user object whose data is being stored.
      */
     public void writeUserToFile(User user) {
 
         try {
 
-            FileOutputStream fileOutputStream = new FileOutputStream("userListFile.txt");
+            FileOutputStream fileOutputStream = new FileOutputStream("userListFile", true);
             PrintWriter writer = new PrintWriter(fileOutputStream);
 
-            writer.println(user.getUserName() + "," + user.getPassword() + "," + user.getFullName());
+            writer.println(this.userName + "," + this.password + "," + this.fullName);
 
             fileOutputStream.close();
             writer.close();

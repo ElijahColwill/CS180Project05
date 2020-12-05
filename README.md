@@ -363,7 +363,7 @@ Methods:
   - run method that is run when the program is started.
   
 Testing:
-Yes?
+The program was run with a TestServer initially and later the actual server to test the functionality of the program.
 
 ### Server Class
 Description:

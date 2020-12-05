@@ -1,5 +1,3 @@
-package main;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -41,68 +39,75 @@ public class ClientHandler extends Thread {
                 userList = readUsersList();        //initialises the userList array using data from a file.
 
                 User newUser = null;
+                Profile newProfile = null;
 
-                String message = reader.readLine();   //determining login or sign-up
-                System.out.println("Received:" + message);
+                String choice = reader.readLine();   //determining login or sign-up
 
                 //if sign-up, creates a new user account
 
-                if (message.equalsIgnoreCase("sign up")) {
+                if (choice.equalsIgnoreCase("sign up")) {
 
-                    boolean usernameExists = false;
+                    if (reader.readLine() != null) {
 
-                    String username = reader.readLine();        //gets username from client
+                        boolean usernameExists = false;
 
-                    for (int i = 0; i < userList.size(); i++) {     //checking to see if username already exists
+                        String username = reader.readLine();        //gets username from client
 
-                        if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
+                        for (int i = 0; i < userList.size(); i++) {     //checking to see if username already exists
 
-                            usernameExists = true;
-                            messageToClient("Username already taken");
+                            if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                                usernameExists = true;
+                                messageToClient("Username already taken");
+                            }
                         }
-                    }
 
-                    if (!usernameExists) {      //if the username is unique and not taken already
+                        if (!usernameExists) {      //if the username is unique and not taken already
 
 
-                        String password = reader.readLine();        //gets password from client
+                            String password = reader.readLine();        //gets password from client
 
-                        String name = reader.readLine();            //gets user's name from client
+                            String name = reader.readLine();            //gets user's name from client
 
-                        String emailId = reader.readLine();         //gets email from client
+                            String emailId = reader.readLine();         //gets email from client
 
-                        newUser = new User(name, username, password);      //creates a user object
+                            newUser = new User(name, username, password);      //creates a user object
 
-                        userList.add(newUser);                      //adding the new user to the User List
+                            userList.add(newUser);                      //adding the new user to the User List
 
-                        newUser.writeUserToFile(newUser);           //writes user data to file for storage
+                            newUser.writeUserToFile(newUser);           //writes user data to file for storage
 
-                        Profile newProfile = new Profile(name, "", emailId,
-                                newUser.getFriendList(), "", "");   //creates a profile object for the user
+                            newProfile = new Profile(name, "", emailId,
+                                    newUser.getFriendList(), "", "");   //creates a profile object for the user
 
-                        profilesList.add(newProfile);       //adding the profile to the ProfilesList array
+                            profilesList.add(newProfile);       //adding the profile to the ProfilesList array
 
-                        messageToClient("Success");                //writes back to client
 
+                            messageToClient("Success");                //writes back to client
+
+                        }
                     }
                 }
 
                 //if the user is logging in/signing in
 
-                if (message.equalsIgnoreCase("sign in")) {
+                if (choice.equalsIgnoreCase("sign in")) {
 
                     boolean invalidUsername = true;
 
-                    String username = reader.readLine();    //username entered by client
+                    if (reader.readLine() != null) {
 
-                    String password = reader.readLine();    //password entered by client
+                        String username = reader.readLine();    //username entered by client
 
-                    for (int i = 0; i < userList.size(); i++) {
+                        String password = reader.readLine();    //password entered by client
 
-                        if (username.equalsIgnoreCase(userList.get(i).getUserName()) &&
-                                password.equalsIgnoreCase(userList.get(i).getPassword())) {
+                        for (int i = 0; i < userList.size(); i++) {
 
-                            invalidUsername = false;
+                            if (username.equalsIgnoreCase(userList.get(i).getUserName()) &&
+                                    password.equalsIgnoreCase(userList.get(i).getPassword())) {
+
+                                invalidUsername = false;
+                            }
                         }
                     }
 
@@ -115,6 +120,8 @@ public class ClientHandler extends Thread {
                         messageToClient("incorrect username or password");
                     }
                 }
+
+                String message = reader.readLine();             //reading from client
 
                 //edit profile
 
@@ -130,10 +137,14 @@ public class ClientHandler extends Thread {
                     String bioField = reader.readLine();
                     String interestsField = reader.readLine();
 
-                    Profile newProfile = new Profile(nameField, bioField, emailField,
-                            newUser.getFriendList(), locationField, interestsField);   //creates a profile object for the user
+                    //setting the new data changed by user
 
-                    profilesList.add(newProfile);       //adding the profile to the ProfilesList array
+                    newProfile.setBio(bioField);
+                    newProfile.setEmail(emailField);
+                    newProfile.setLocation(locationField);
+                    newProfile.setInterests(interestsField);
+
+                    writeProfileToFile(usernameField, newProfile);      //writes changes to file
 
                     messageToClient("Success");
                 }
@@ -165,7 +176,6 @@ public class ClientHandler extends Thread {
 
                             userFound = true;
                             currentOwner = userList.get(i).getFullName();
-
                         }
                     }
 
@@ -174,7 +184,6 @@ public class ClientHandler extends Thread {
                         messageToClient("User does not exist");
                     }
 
-                    System.out.println(profilesList.size());
                     for (int j = 0; j < profilesList.size(); j++) {
 
                         if (currentOwner.equalsIgnoreCase(profilesList.get(j).getOwner())) {
@@ -187,7 +196,6 @@ public class ClientHandler extends Thread {
 
                             messageToClient(String.format("%s\n%s\n%s\n%s\n%s\n%s",nameOfUser, currentUsername,
                                                 userEmail, userLocation, userBio, userInterests));
-                            System.out.println("Sent response");
                         }
                     }
                 }
@@ -368,12 +376,40 @@ public class ClientHandler extends Thread {
      */
     public void writeProfileToFile(String username, Profile profile) {
 
+        StringBuilder listOfFriends = new StringBuilder();
+
         try {
 
-            File profileDataFile = new File(username + ".profile.txt");     //creating a new file
+            String home = System.getProperty("user.home");
+
+            File profileDataFile = new File(home + File.separator + username + ".profile.txt");    //creating a new file
             FileOutputStream fileOutputStream = new FileOutputStream(profileDataFile);
             PrintWriter printWriter = new PrintWriter(fileOutputStream);
 
+            printWriter.println(username);
+            printWriter.println(profile.getOwner() + "," + profile.getBio() + "," + profile.getEmail());
+
+            for (int i = 0; i < profile.getFriendList().size(); i++) {
+
+                listOfFriends.append(profile.getFriendList().get(i).getUserName() + ",");
+            }
+
+            printWriter.println(String.valueOf(listOfFriends));         //writes friends' usernames to the file
+
+            if (profile.getLocation() != null) {
+
+                printWriter.write(profile.getLocation() + ",");
+
+                if (profile.getInterests() != null) {
+
+                    printWriter.write(profile.getInterests() + ",");
+
+                    if (String.valueOf(profile.getPhoneNum()) != null) {
+
+                        printWriter.write(profile.getPhoneNum());
+                    }
+                }
+            }
 
 
         } catch (FileNotFoundException fne) {

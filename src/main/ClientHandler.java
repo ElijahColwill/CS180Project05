@@ -432,6 +432,9 @@ public class ClientHandler extends Thread {
 
             }
 
+            reader.close();
+            profileFileReader.close();  //commit these changes
+
         } catch (FileNotFoundException fne) {
 
             fne.getMessage();
@@ -488,10 +491,16 @@ public class ClientHandler extends Thread {
                 }
             }
 
+            fileOutputStream.close();
+            printWriter.close();
 
         } catch (FileNotFoundException fne) {
 
             fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
         }
 
     }

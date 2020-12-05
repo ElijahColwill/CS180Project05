@@ -270,7 +270,7 @@ public class ClientHandler extends Thread {
 
                     for (int i = 0; i < userList.size(); i++) {
 
-                        if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+                        if (temp.equalsIgnoreCase(userList.get(i).getUserName())) {
 
                             userExists = true;
                             currentFriend = userList.get(i);        //gets the friend user object

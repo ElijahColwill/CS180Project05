@@ -313,17 +313,57 @@ Henry Peng
 Methods:
 - Client(int portNum)
   - Initializes a Client class with a specified port number.
+  - Parameters:
+    - port number of the server.
 - main (String[] args)
   - Main class run by the user, starts the GUI.
 - sendMessage (String message)
   - Sends specified message to the server
+  - Parameters:
+    - message String to send to server
 - receiveMessage ()
-  - reads message from the server and returns the String read.
+  - Reads message from the server and returns the String read.
+  - Returns:
+    - String read from server
 - actionPerformed (ActionEvent e)
-  - BUTTONS
+  - Adds functionality for the buttons in the GUI.
+  - Parameters:
+    - action event that is being listened to
+- showHomeFrame ()
+  - Creates a HomeFrame and adds action listeners.
+- showSignUpFrame ()
+  - Creates a SignUpFrame and adds action listeners.
+- showProfileFrame (String username, boolean isRestricted)
+  - Creates a ProfileFrame for the user specified and adds action listeners. Also, creates a RestrictedProfileFrame if isRestricted is true.
+  - Parameters:
+    - username of the current user, and whether or not the user viewing it should have controll over the profile
+- showEditProfileFrame (String username)
+  - Creates an EditProfileFrame for the user specified and adds action listeners.
+  - Parameters:
+    - username of the current user
+- showFirendsListFrame (String username)
+  - Creates a FriendsListFrame for the user specified and adds action listeners.
+  - Parameters:
+    - username of the current user
+- showIncomingFriendRequestFrame (String username)
+  - Creates an IncomingFriendRequestFrame for the user specified and adds action listeners.
+  - Parameters:
+    - username of the current user
+- showOutgoingFriendRequestFrame (String username)
+  - Creates an OutgoingFriendRequestFrame for the user specified and adds action listeners.
+  - Parameters:
+    - username of the current user
+- showSendFriendRequestFrame (String username)
+  - Creates a SendFriendRequest for the user specified and adds action listeners.
+  - Parameters:
+    - username of the current user
+- showViewRequestFrame ()
+  - Creates a ViewRequestFrame and adds action listeners.
+- run()
+  - run method that is run when the program is started.
   
 Testing:
-Standard Model
+Yes
 
 ### Server Class
 Description:

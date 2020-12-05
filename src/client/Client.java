@@ -238,15 +238,15 @@ public class Client extends JComponent implements Runnable, ActionListener {
         //View Requests
         if (buttonPressed == viewRequestsFrame.incomingRequestsButton) {
             showIncomingFriendRequestFrame(currentUsername);
-            profileFrameRestricted.dispose();
+            viewRequestsFrame.dispose();
         }
         if (buttonPressed == viewRequestsFrame.outgoingRequestsButton) {
             showOutgoingFriendRequestFrame(currentUsername);
-            profileFrameRestricted.dispose();
+            viewRequestsFrame.dispose();
         }
         if (buttonPressed == viewRequestsFrame.backButton) {
             showProfileFrame(currentUsername, false);
-            profileFrameRestricted.dispose();
+            viewRequestsFrame.dispose();
         }
 
     }

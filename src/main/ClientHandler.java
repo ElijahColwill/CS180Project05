@@ -107,6 +107,8 @@ public class ClientHandler extends Thread {
                         }
                     }
 
+                    newProfile = readFromProfileFile(username);     //assigning the profile object to the user
+
                     if (invalidUsername == false) {         //if the user entered the correct login details
 
                         messageToClient("Success");
@@ -363,6 +365,81 @@ public class ClientHandler extends Thread {
         writer.flush();
     }
 
+    /**
+     * This method reads data from a file to initialise the user's Profile.
+     * @param username a String that contains the username.
+     */
+    public Profile readFromProfileFile(String username) {
+
+        Profile profile = null;
+
+        try {
+
+            String home = System.getProperty("user.home");
+
+            File profileDataFile = new File(home + File.separator + username + ".profile.txt");
+            FileReader profileFileReader = new FileReader(profileDataFile);
+            BufferedReader reader = new BufferedReader(profileFileReader);
+
+            String userUsername = reader.readLine();
+
+            String[] basicUserData = reader.readLine().split(",");
+
+            String owner = basicUserData[0];
+            String bio = basicUserData[1];
+            String email = basicUserData[2];
+
+            String[] friendsData = reader.readLine().split(",");
+
+            ArrayList<User> listOfFriends = initialiseFriendsList(friendsData);     //gets the array list of friends
+
+            //location, interests, phoneNum
+
+            if (reader.readLine() != null) {
+
+                String[] otherUserData = reader.readLine().split(",");
+
+                if (otherUserData.length == 1) {
+
+                    String location = otherUserData[0];
+
+                    profile = new Profile(owner, bio, email, listOfFriends, location);
+
+                } else if (otherUserData.length == 2) {
+
+                    String location = otherUserData[0];
+                    String interests = otherUserData[1];
+
+                    profile = new Profile(owner, bio, email, listOfFriends, location, interests);
+
+                } else if (otherUserData.length == 3) {
+
+                    String location = otherUserData[0];
+                    String interests = otherUserData[1];
+                    int phoneNum = Integer.parseInt(otherUserData[2]);
+
+                    profile = new Profile(owner, bio, email, listOfFriends, location, interests, phoneNum);
+                }
+
+            } else {
+
+                profile = new Profile(owner, bio, email, listOfFriends);
+            }
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
+        }
+
+        return profile;
+
+    }
+
+
 
     /**
      * This method creates a new file for each profile object to store the data.
@@ -411,5 +488,28 @@ public class ClientHandler extends Thread {
             fne.getMessage();
         }
 
+    }
+
+    /**
+     * This method initializes the friends list array of the user.
+     * @param friendsListData a string array of friends' usernames.
+     * @return an Array List of type user
+     */
+    public ArrayList<User> initialiseFriendsList(String[] friendsListData) {
+
+        ArrayList<User> listOfFriends = new ArrayList<User>();
+
+        for (int i = 0; i < friendsListData.length; i++) {
+
+            for (int j = 0; j < userList.size(); j++) {
+
+                if (friendsListData[i].equalsIgnoreCase(userList.get(j).getUserName())) {
+
+                    listOfFriends.add(userList.get(j));
+                }
+            }
+        }
+
+        return listOfFriends;
     }
 }

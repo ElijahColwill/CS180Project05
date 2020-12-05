@@ -1,5 +1,3 @@
-package main;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -38,34 +36,7 @@ public class ClientHandler extends Thread {
 
             try {
 
-                File userListFile = new File("userList");           //file that stores user object information
-
-                File friendsList = new File("friendsList");     //file that stores user's friends list
-
-                FileReader userFileReader = new FileReader(userListFile);       //file reader for userList
-                FileReader friendsListReader = new FileReader(friendsList); //file reader for friendsList
-
-                BufferedReader userReader = new BufferedReader(userFileReader); //buffered reader for userList
-
-                String line = userReader.readLine();
-
-                //reading all the users from the userList and initialising the userList array list
-                while (line != null) {
-
-                    String[] userData = line.split(",");
-
-                    String fullNameData = userData[0];
-                    String usernameData = userData[1];
-                    String passwordData = userData[2];
-
-                    User user = new User(fullNameData, usernameData, passwordData);
-                    userList.add(user);             //adding the user to the userList array
-
-                    line = userReader.readLine();   //reads next line
-                }
-
-                userReader.close();
-                userFileReader.close();
+                userList = readUsersList();        //initialises the userList array using data from a file.
 
                 User newUser = null;
 
@@ -281,6 +252,45 @@ public class ClientHandler extends Thread {
                     messageToClient(String.valueOf(allUsers));
                 }
 
+                //accepting friend request
+                if (message.equalsIgnoreCase("Accept request")) {
+
+                    String currentUsername = reader.readLine();
+                    String temp = reader.readLine();        //temp is the other user
+                    boolean userExists =  false;
+
+                    User currentFriend = null;
+
+                    for (int i = 0; i < userList.size(); i++) {
+
+                        if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                            userExists = true;
+                            currentFriend = userList.get(i);        //gets the friend user object
+                        }
+                    }
+
+                    if (userExists) {
+
+                        newUser.getFriendList().add(currentFriend);     //adding friend to the user's friends list
+                        messageToClient("Success");
+
+                    } else {
+
+                        messageToClient("User not found");
+                    }
+
+                }
+
+                //denying friend request
+                if (message.equalsIgnoreCase("Deny request")) {
+
+                    String currentUsername = reader.readLine();
+                    String temp = reader.readLine();
+
+                    messageToClient("Success");
+                }
+
             } catch (IOException ioe) {
                 ioe.getMessage();
 
@@ -288,6 +298,53 @@ public class ClientHandler extends Thread {
                 nfe.getMessage();
             }
         }
+    }
+
+    /**
+     * This method initialises the UserList array by reading from a file.
+     */
+    public ArrayList<User> readUsersList() {
+
+        try {
+
+            String home = System.getProperty("user.home");
+
+            File userListFile = new File(home + File.separator + "userList.txt");           //file that stores user object information
+
+            FileReader userFileReader = new FileReader(userListFile);       //file reader for userList
+
+            BufferedReader userReader = new BufferedReader(userFileReader); //buffered reader for userList
+
+            String line = userReader.readLine();
+
+            //reading all the users from the userList and initialising the userList array list
+            while (line != null) {
+
+                String[] userData = line.split(",");
+
+                String fullNameData = userData[0];
+                String usernameData = userData[1];
+                String passwordData = userData[2];
+
+                User user = new User(fullNameData, usernameData, passwordData);
+                userList.add(user);             //adding the user to the userList array
+
+                line = userReader.readLine();   //reads next line
+            }
+
+            userReader.close();
+            userFileReader.close();
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
+        }
+
+        return userList;
     }
 
     /**
@@ -299,5 +356,27 @@ public class ClientHandler extends Thread {
         writer.write(message);
         writer.println();
         writer.flush();
+    }
+
+
+    /**
+     * This method creates a new file for each profile object to store the data.
+     * @param profile
+     */
+    public void writeProfileToFile(String username, Profile profile) {
+
+        try {
+
+            File profileDataFile = new File(username + ".profile.txt");     //creating a new file
+            FileOutputStream fileOutputStream = new FileOutputStream(profileDataFile);
+            PrintWriter printWriter = new PrintWriter(fileOutputStream);
+
+
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+        }
+
     }
 }

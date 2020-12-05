@@ -1,3 +1,5 @@
+package main;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -41,73 +43,67 @@ public class ClientHandler extends Thread {
                 User newUser = null;
                 Profile newProfile = null;
 
-                String choice = reader.readLine();   //determining login or sign-up
+                String message = reader.readLine();   //determining login or sign-up
 
                 //if sign-up, creates a new user account
 
-                if (choice.equalsIgnoreCase("sign up")) {
+                if (message.equalsIgnoreCase("sign up")) {
 
-                    if (reader.readLine() != null) {
+                    boolean usernameExists = false;
 
-                        boolean usernameExists = false;
+                    String username = reader.readLine();        //gets username from client
 
-                        String username = reader.readLine();        //gets username from client
+                    for (int i = 0; i < userList.size(); i++) {     //checking to see if username already exists
 
-                        for (int i = 0; i < userList.size(); i++) {     //checking to see if username already exists
+                        if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
 
-                            if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
-
-                                usernameExists = true;
-                                messageToClient("Username already taken");
-                            }
+                            usernameExists = true;
+                            messageToClient("Username already taken");
                         }
+                    }
 
-                        if (!usernameExists) {      //if the username is unique and not taken already
-
-
-                            String password = reader.readLine();        //gets password from client
-
-                            String name = reader.readLine();            //gets user's name from client
-
-                            String emailId = reader.readLine();         //gets email from client
-
-                            newUser = new User(name, username, password);      //creates a user object
-
-                            userList.add(newUser);                      //adding the new user to the User List
-
-                            newUser.writeUserToFile(newUser);           //writes user data to file for storage
-
-                            newProfile = new Profile(name, "", emailId,
-                                    newUser.getFriendList(), "", "");   //creates a profile object for the user
-
-                            profilesList.add(newProfile);       //adding the profile to the ProfilesList array
+                    if (!usernameExists) {      //if the username is unique and not taken already
 
 
-                            messageToClient("Success");                //writes back to client
+                        String password = reader.readLine();        //gets password from client
 
-                        }
+                        String name = reader.readLine();            //gets user's name from client
+
+                        String emailId = reader.readLine();         //gets email from client
+
+                        newUser = new User(name, username, password);      //creates a user object
+
+                        userList.add(newUser);                      //adding the new user to the User List
+
+                        newUser.writeUserToFile(newUser);           //writes user data to file for storage
+
+                        newProfile = new Profile(name, "", emailId,
+                                newUser.getFriendList(), "", "");   //creates a profile object for the user
+
+                        profilesList.add(newProfile);       //adding the profile to the ProfilesList array
+
+
+                        messageToClient("Success");                //writes back to client
+
                     }
                 }
 
                 //if the user is logging in/signing in
 
-                if (choice.equalsIgnoreCase("sign in")) {
+                if (message.equalsIgnoreCase("sign in")) {
 
                     boolean invalidUsername = true;
 
-                    if (reader.readLine() != null) {
+                    String username = reader.readLine();    //username entered by client
 
-                        String username = reader.readLine();    //username entered by client
+                    String password = reader.readLine();    //password entered by client
 
-                        String password = reader.readLine();    //password entered by client
+                    for (int i = 0; i < userList.size(); i++) {
 
-                        for (int i = 0; i < userList.size(); i++) {
+                        if (username.equalsIgnoreCase(userList.get(i).getUserName()) &&
+                                password.equalsIgnoreCase(userList.get(i).getPassword())) {
 
-                            if (username.equalsIgnoreCase(userList.get(i).getUserName()) &&
-                                    password.equalsIgnoreCase(userList.get(i).getPassword())) {
-
-                                invalidUsername = false;
-                            }
+                            invalidUsername = false;
                         }
                     }
 
@@ -120,8 +116,6 @@ public class ClientHandler extends Thread {
                         messageToClient("incorrect username or password");
                     }
                 }
-
-                String message = reader.readLine();             //reading from client
 
                 //edit profile
 

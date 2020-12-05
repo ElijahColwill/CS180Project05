@@ -96,6 +96,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 JOptionPane.showMessageDialog(null, "Username Taken",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (signUpResponse.equals("Success")) {
+                currentUsername = signUpFrame.usernameField.getText();
                 showProfileFrame(currentUsername, false);
                 signUpFrame.dispose();
             }
@@ -139,7 +140,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
                     editProfileFrame.interestsField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Error")) {
-                //Error Message
+                JOptionPane.showMessageDialog(null, "Error",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             } else if (signUpResponse.equals("Success")) {
 
             }
@@ -181,7 +183,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {
-                //Error message
+                JOptionPane.showMessageDialog(null, "Error",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
         if (buttonPressed == incomingFriendRequestsFrame.denyRequestButton) {
@@ -191,7 +194,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {
-                //Error message
+                JOptionPane.showMessageDialog(null, "Error",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -261,10 +265,6 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     private void showProfileFrame(String username, boolean isRestricted) {
         sendMessage(String.format("Information for user\n%s", username));
-        String userExists = receiveMessage();
-        if (userExists.equals("User does not exist")) {
-            //Error message
-        }
         String userName= receiveMessage();
         String userUsername = receiveMessage();
         String userEmail = receiveMessage();
@@ -287,10 +287,6 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     private void showEditProfileFrame(String username) {
         sendMessage(String.format("Information for user\n%s", username));
-        String userExists = receiveMessage();
-        if (userExists.equals("User does not exist")) {
-            //Error message
-        }
         String userName= receiveMessage();
         String userUsername = receiveMessage();
         String userEmail = receiveMessage();

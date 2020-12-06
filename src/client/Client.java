@@ -5,7 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
-
+/**
+ * A Client class that handles the User connecting to the network and interacting
+ * with the Server.
+ *
+ * <p>Purdue University -- CS18000 -- Fall 2020 -- Project 05</p>
+ *
+ * @author Henry Peng
+ * @version December 02, 2020
+ */
 public class Client extends JComponent implements Runnable, ActionListener {
 
     private static int portNum;
@@ -29,7 +37,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
     gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame("", "", "", "", "", "");
 
     gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted("", "", "", "","");
-
+    /**
+     * Constructor that creates a Client class with the port number.
+     * Testing:
+     * Verify that portNun, reader, and writer fields are set correctly.
+     * @param portNum int Port to connect to Server with.
+     */
     public Client(int portNum) throws IOException {
         this.portNum = portNum;
 
@@ -39,6 +52,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
         this.writer = new PrintWriter(socket.getOutputStream());
     }
 
+    /**
+     * Main method that creates and runs an instance of Client with port 2400.
+     * Testing:
+     * Verify that instance of Client class is created when class initialized with correct information.
+     * @param args String[] Default parameter for main method.
+     */
     public static void main(String[] args) {
         try {
             SwingUtilities.invokeLater(new Client(2400));
@@ -47,12 +66,27 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * Method that send information to the server.
+     * Testing:
+     * Verify that when testing overall project, server receives message sent when method is called.
+     * Verify that string parameter sends the correct text.
+     * @param message String Message to be sent to Server.
+     */
     private void sendMessage(String message) {
         writer.write(message);
         writer.println();
         writer.flush();
     }
 
+    /**
+     * Method that receives information from the server.
+     * Testing:
+     * Verify that when testing overall project, Server sends correct message and Client receives that same
+     * message sent without a significant delay.
+     * Verify that returned message equals the message sent by Server.
+     * @return String message received from server.
+     */
     private String receiveMessage() {
         try {
             return reader.readLine();
@@ -62,6 +96,40 @@ public class Client extends JComponent implements Runnable, ActionListener {
         return "";
     }
 
+    /**
+     * Method that contains action Listeners and information for buttons pressed by User.
+     * Sends message to server based on button pressed so that Server can complete interaction.
+     * Testing:
+     * Verify that method connects to Server and GUI and is triggered when action is performed.
+     * Verify that homeFrame.signInButton sends correct message and initializes/disposes correct Frames.
+     * Verify that homeFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+     * Verify that signUpFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+     * Verify that signUpFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrame.editProfileButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrame.viewFriendsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrame.addFriendButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrame.viewRequestsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrame.signOutButton sends correct message and initializes/disposes correct Frames.
+     * Verify that editProfileFrame.updateProfileButton sends correct message and initializes/disposes correct Frames.
+     * Verify that editProfileFrame.deleteAccountButton sends correct message and initializes/disposes correct Frames.
+     * Verify that editProfileFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that friendsListFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that friendsListFrame.viewProfileButton sends correct message and initializes/disposes correct Frames.
+     * Verify that incomingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that incomingFriendRequestsFrame.acceptRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that incomingFriendRequestsFrame.denyRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that outgoingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that outgoingFriendRequestsFrame.nextButton sends correct message and initializes/disposes correct Frames.
+     * Verify that outgoingFriendRequestsFrame.cancelRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that sendFriendRequestFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that sendFriendRequestFrame.sendRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrameRestricted.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrameRestricted.viewFriendsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that viewRequestsFrame.incomingRequestsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that viewRequestsFrame.outgoingRequestsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that viewRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * @param e ActionEvent from button pressed/drop down menu/etc.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object buttonPressed = e.getSource();
@@ -251,21 +319,41 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
     }
 
+    /**
+     * Method that sets up and displays homeFrame with actionListeners.
+     * Testing:
+     * Verify that homeFrame is initialized with correct actionListeners.
+     */
     private void showHomeFrame() {
         homeFrame = new gui.HomeFrame();
         homeFrame.signInButton.addActionListener(this);
         homeFrame.signUpButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays signUpFrame with actionListeners.
+     * Testing:
+     * Verify that signUpFrame is initialized with correct actionListeners.
+     */
     private void showSignUpFrame() {
         signUpFrame = new gui.SignUpFrame();
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays profileFrame with actionListeners, depending on if user can
+     * edit profile or not.
+     * Testing:
+     * Verify that profileFrame is initialized with correct actionListeners.
+     * Verify that username is passed to Server.
+     * Verify that client allows/denys editing based on isRestricted.
+     * @param username User name of user's profile being displayed.
+     * @param isRestricted boolean to determine if user can edit profile or not.
+     */
     private void showProfileFrame(String username, boolean isRestricted) {
         sendMessage(String.format("Information for user\n%s", username));
-        String userName= receiveMessage();
+        String userName = receiveMessage();
         String userUsername = receiveMessage();
         String userEmail = receiveMessage();
         String userLocation = receiveMessage();
@@ -285,6 +373,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
     }
 
+    /**
+     * Method that sets up and displays editProfileFrame with actionListeners.
+     * Testing:
+     * Verify that editProfileFrame is initialized with correct actionListeners.
+     * Verify that correst user is being edited.
+     * @param username String name of user being edited.
+     */
     private void showEditProfileFrame(String username) {
         sendMessage(String.format("Information for user\n%s", username));
         String userName= receiveMessage();
@@ -299,6 +394,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         editProfileFrame.backButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays friendsListFrame with actionListeners.
+     * Testing:
+     * Verify that friendsListFrame is initialized with correct actionListeners.
+     * Verify that the correct user is being displayed.
+     * @param username String username of user having friends list displayed.
+     */
     private void showFriendsListFrame(String username) {
         sendMessage(String.format("Friends for user\n%s", username));
         String[] friendsListFullName = receiveMessage().split(",");
@@ -308,6 +410,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         friendsListFrame.viewProfileButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays incomingFriendRequestFrame with actionListeners.
+     * Testing:
+     * Verify that incomingFriendRequestFrame is initialized with correct actionListeners.
+     * Verify that the correct user is being displayed.
+     * @param username String username of user having friend requests displayed.
+     */
     private void showIncomingFriendRequestFrame(String username) {
         sendMessage(String.format("Incoming friend request for user\n%s", username));
         String incomingUserExists = receiveMessage();
@@ -323,6 +432,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays outgoingFriendRequestFrame with actionListeners.
+     * Testing:
+     * Verify that outgoingFriendRequestFrame is initialized with correct actionListeners.
+     * Verify that the correct user is being displayed.
+     * @param username String username of user having friend requests displayed.
+     */
     private void showOutgoingFriendRequestFrame(String username) {
         sendMessage(String.format("Outgoing friend request for user\n%s", username));
         String outgoingUserExists = receiveMessage();
@@ -338,6 +454,13 @@ public class Client extends JComponent implements Runnable, ActionListener {
         outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays sendFriendRequestFrame with actionListeners.
+     * Testing:
+     * Verify that sendFriendRequestFrame is initialized with correct actionListeners.
+     * Verify that the correct user if being called.
+     * @param username String username of user sending friend request.
+     */
     private void showSendFriendRequestFrame(String username) {
         sendMessage(String.format("Get all users\n%s", username));
         String[] allUsers = receiveMessage().split(",");
@@ -346,6 +469,11 @@ public class Client extends JComponent implements Runnable, ActionListener {
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
     }
 
+    /**
+     * Method that sets up and displays viewRequestsFrame with actionListeners.
+     * Testing:
+     * Verify that viewRequestsFrame is initialized with correct actionListeners.
+     */
     private void showViewRequestsFrame() {
         viewRequestsFrame = new gui.ViewRequestsFrame();
         viewRequestsFrame.backButton.addActionListener(this);
@@ -353,6 +481,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
         viewRequestsFrame.outgoingRequestsButton.addActionListener(this);
     }
 
+    /**
+     * Method that runs instance of Client and sets up all necessary GUI components and actionListeners.
+     * Testing:
+     * Verify that when testing overall project for a variety of functions, the correct Frame is always called depending on user action.
+     * Verify all actionListeners are added to correct buttons and are working.
+     */
     public void run() {
 
 

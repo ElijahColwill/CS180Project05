@@ -75,16 +75,16 @@ public final class SignUpFrame extends JFrame {
         signUpDescriptionLabel = new JLabel("Enter your details below to sign up.");
         nameLabel = new JLabel("Name:");
         usernameLabel = new JLabel("Username:");
-        emailLabel = new JLabel("Email:        ");
+        emailLabel = new JLabel("Email:");
         passwordLabel = new JLabel("Password:");
 
         signUpButton = new JButton("Sign Up");
         backButton = new JButton("Back");
 
-        nameField = new JTextField(12);
-        usernameField = new JTextField(12);
-        emailField = new JTextField(12);
-        passwordField = new JPasswordField(12);
+        nameField = new JTextField(15);
+        usernameField = new JTextField(15);
+        emailField = new JTextField(15);
+        passwordField = new JPasswordField(15);
 
         this.setSize(450, 500);
         this.setLocationRelativeTo(null);
@@ -153,7 +153,5 @@ public final class SignUpFrame extends JFrame {
         frameContainer.add(headerPanel, BorderLayout.NORTH);
         frameContainer.add(contentPanel, BorderLayout.CENTER);
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
-
-        this.setVisible(true);
     }
 }

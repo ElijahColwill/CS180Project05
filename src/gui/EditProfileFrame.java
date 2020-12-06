@@ -93,23 +93,23 @@ public final class EditProfileFrame extends JFrame {
         editProfileDescriptionLabel = new JLabel("Enter your details below to edit your profile.");
         nameLabel = new JLabel("Full Name:");
         usernameLabel = new JLabel("Username:");
-        emailLabel = new JLabel("Email:        ");
+        emailLabel = new JLabel("Email:");
         passwordLabel = new JLabel("Password:");
         locationLabel = new JLabel("Location: ");
-        bioLabel = new JLabel("Bio:           ");
-        interestsLabel = new JLabel("Interests:  ");
+        bioLabel = new JLabel("Bio:");
+        interestsLabel = new JLabel("Interests:");
 
         updateProfileButton = new JButton("Update Profile");
         deleteAccountButton = new JButton("Delete Account");
         backButton = new JButton("Back");
 
-        nameField = new JTextField(12);
-        usernameField = new JTextField(12);
-        emailField = new JTextField(12);
-        passwordField = new JPasswordField(12);
-        locationField = new JTextField(12);
-        bioField = new JTextField(12);
-        interestsField = new JTextField(12);
+        nameField = new JTextField(15);
+        usernameField = new JTextField(15);
+        emailField = new JTextField(15);
+        passwordField = new JPasswordField(15);
+        locationField = new JTextField(15);
+        bioField = new JTextField(25);
+        interestsField = new JTextField(25);
 
         this.setSize(450, 650);
         this.setLocationRelativeTo(null);
@@ -197,8 +197,6 @@ public final class EditProfileFrame extends JFrame {
         frameContainer.add(headerPanel, BorderLayout.NORTH);
         frameContainer.add(contentPanel, BorderLayout.CENTER);
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
-
-        this.setVisible(true);
     }
 
     /**

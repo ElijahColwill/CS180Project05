@@ -136,7 +136,5 @@ public final class FriendsListFrame extends JFrame {
         frameContainer.add(headerPanel, BorderLayout.NORTH);
         frameContainer.add(contentPanel, BorderLayout.CENTER);
         frameContainer.add(navigationPanel, BorderLayout.SOUTH);
-
-        this.setVisible(true);
     }
 }

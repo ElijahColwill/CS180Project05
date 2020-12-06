@@ -37,6 +37,10 @@ public class Client extends JComponent implements Runnable, ActionListener {
     gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame("", "", "", "", "", "");
 
     gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted("", "", "", "","");
+
+    gui.ErrorFrame errorFrame = new gui.ErrorFrame("");
+    gui.SuccessFrame successFrame = new gui.SuccessFrame("");
+
     /**
      * Constructor that creates a Client class with the port number.
      * Testing:
@@ -144,8 +148,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                     String.valueOf(homeFrame.passwordField.getPassword())));
             String signInResponse = receiveMessage();
             if (signInResponse.equals("incorrect username or password")) {
-                JOptionPane.showMessageDialog(null, "Incorrect Username or Password",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                showErrorFrame("Username or Password is Incorrect");
             } else if (signInResponse.equals("Success")) {
                 currentUsername = homeFrame.usernameField.getText();
                 showProfileFrame(currentUsername, false);
@@ -165,8 +168,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                     signUpFrame.emailField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Username already taken")) {
-                JOptionPane.showMessageDialog(null, "Username Taken",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                showErrorFrame("Username Taken");
             } else if (signUpResponse.equals("Success")) {
                 currentUsername = signUpFrame.usernameField.getText();
                 showProfileFrame(currentUsername, false);
@@ -212,8 +214,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                     editProfileFrame.interestsField.getText()));
             String signUpResponse = receiveMessage();
             if (signUpResponse.equals("Error")) {
-                JOptionPane.showMessageDialog(null, "Error",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                showErrorFrame("Error");
             } else if (signUpResponse.equals("Success")) {
 
             }
@@ -222,7 +223,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             sendMessage("delete account");
             String deleteAccountResponse = receiveMessage();
             if (deleteAccountResponse.equals("Error")) {
-                //Error Message
+                showErrorFrame("Error");
             } else if (deleteAccountResponse.equals("Success")) {
                 showHomeFrame();
                 editProfileFrame.dispose();
@@ -255,8 +256,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {
-                JOptionPane.showMessageDialog(null, "Error",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                showErrorFrame("Error");
             }
         }
         if (buttonPressed == incomingFriendRequestsFrame.denyRequestButton) {
@@ -266,8 +266,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {
-                JOptionPane.showMessageDialog(null, "Error",
-                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                showErrorFrame("Error");
             }
         }
 
@@ -321,6 +320,15 @@ public class Client extends JComponent implements Runnable, ActionListener {
             viewRequestsFrame.dispose();
         }
 
+        //Success Frame
+        if (buttonPressed == successFrame.closeButton) {
+            successFrame.dispose();
+        }
+
+        //Error Frame
+        if (buttonPressed == errorFrame.closeButton) {
+            errorFrame.dispose();
+        }
     }
 
     /**
@@ -430,7 +438,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         String incomingFullName = receiveMessage();
         String incomingUsername = receiveMessage();
         if (incomingUserExists.equals("User does not exist")) {
-            //Error message
+            showErrorFrame("User does not exist");
         }
         temp = incomingUsername;
         incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
@@ -453,7 +461,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         String outgoingFullName = receiveMessage();
         String outgoingUsername = receiveMessage();
         if (outgoingUserExists.equals("User does not exist")) {
-            //Error message
+            showErrorFrame("User does not exist");
         }
         temp = outgoingUsername;
         outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
@@ -490,6 +498,18 @@ public class Client extends JComponent implements Runnable, ActionListener {
         viewRequestsFrame.incomingRequestsButton.addActionListener(this);
         viewRequestsFrame.outgoingRequestsButton.addActionListener(this);
         viewRequestsFrame.setVisible(true);
+    }
+
+    private void showSuccessFrame(String message) {
+        successFrame = new gui.SuccessFrame(message);
+        successFrame.closeButton.addActionListener(this);
+        successFrame.setVisible(true);
+    }
+
+    private void showErrorFrame(String message) {
+        errorFrame = new gui.ErrorFrame(message);
+        errorFrame.closeButton.addActionListener(this);
+        errorFrame.setVisible(true);
     }
 
     /**
@@ -538,6 +558,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
         viewRequestsFrame.backButton.addActionListener(this);
         viewRequestsFrame.backButton.addActionListener(this);
         viewRequestsFrame.backButton.addActionListener(this);
+
+        successFrame.closeButton.addActionListener(this);
+        errorFrame.closeButton.addActionListener(this);
 
     }
 

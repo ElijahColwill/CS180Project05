@@ -126,13 +126,19 @@ public class User {
 
         try {
 
-            FileOutputStream fileOutputStream = new FileOutputStream("userListFile", true);
+            String home = System.getProperty("user.home");
+
+            FileOutputStream fileOutputStream = new FileOutputStream(home + File.separator + "userListFile", true);
             PrintWriter writer = new PrintWriter(fileOutputStream);
 
             writer.println(this.userName + "," + this.password + "," + this.fullName);
 
+            writer.flush();
+
             fileOutputStream.close();
             writer.close();
+
+
 
 
         } catch (FileNotFoundException fne) {

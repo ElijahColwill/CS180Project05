@@ -77,6 +77,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
         writer.write(message);
         writer.println();
         writer.flush();
+
+        //System.out.println("Sent: " + message);
     }
 
     /**
@@ -89,7 +91,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
      */
     private String receiveMessage() {
         try {
-            return reader.readLine();
+            String message = reader.readLine();
+            //System.out.println("Recieved: " + message);
+            return message;
         } catch (IOException ex) {
 
         }
@@ -137,7 +141,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         //Home
         if (buttonPressed == homeFrame.signInButton) {
             sendMessage(String.format("sign in\n%s\n%s", homeFrame.usernameField.getText(),
-                    homeFrame.passwordField.getText()));
+                    String.valueOf(homeFrame.passwordField.getPassword())));
             String signInResponse = receiveMessage();
             if (signInResponse.equals("incorrect username or password")) {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password",
@@ -290,7 +294,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         if (buttonPressed == sendFriendRequestFrame.sendRequestButton) {
             sendMessage(String.format("Send request\n%s\n%s", currentUsername,
                     String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex())));
-            System.out.println(String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex()));
+            //System.out.println(String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex()));
         }
 
         //Restricted profile page
@@ -320,14 +324,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
     }
 
     /**
-     * Method that sets up and displays homeFrame with actionListeners.
+     * Method that displays homeFrame.
      * Testing:
-     * Verify that homeFrame is initialized with correct actionListeners.
+     * Verify that homeFrame is displayed properly.
      */
     private void showHomeFrame() {
-        homeFrame = new gui.HomeFrame();
-        homeFrame.signInButton.addActionListener(this);
-        homeFrame.signUpButton.addActionListener(this);
+        homeFrame.setVisible(true);
     }
 
     /**
@@ -339,6 +341,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         signUpFrame = new gui.SignUpFrame();
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);
+        signUpFrame.setVisible(true);
     }
 
     /**
@@ -366,10 +369,12 @@ public class Client extends JComponent implements Runnable, ActionListener {
             profileFrame.addFriendButton.addActionListener(this);
             profileFrame.viewRequestsButton.addActionListener(this);
             profileFrame.signOutButton.addActionListener(this);
+            profileFrame.setVisible(true);
         } else {
             profileFrameRestricted = new gui.ProfileFrameRestricted(userName, userUsername, userLocation, userBio, userInterests);
             profileFrameRestricted.backButton.addActionListener(this);
             profileFrameRestricted.viewFriendsButton.addActionListener(this);
+            profileFrameRestricted.setVisible(true);
         }
     }
 
@@ -392,6 +397,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         editProfileFrame.updateProfileButton.addActionListener(this);
         editProfileFrame.deleteAccountButton.addActionListener(this);
         editProfileFrame.backButton.addActionListener(this);
+        editProfileFrame.setVisible(true);
     }
 
     /**
@@ -408,6 +414,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         friendsListFrame = new gui.FriendsListFrame(friendsListFullName, friendsListUsername);
         friendsListFrame.backButton.addActionListener(this);
         friendsListFrame.viewProfileButton.addActionListener(this);
+        friendsListFrame.setVisible(true);
     }
 
     /**
@@ -430,6 +437,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         incomingFriendRequestsFrame.backButton.addActionListener(this);
         incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
         incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
+        incomingFriendRequestsFrame.setVisible(true);
     }
 
     /**
@@ -452,6 +460,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         outgoingFriendRequestsFrame.backButton.addActionListener(this);
         outgoingFriendRequestsFrame.nextButton.addActionListener(this);
         outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
+        outgoingFriendRequestsFrame.setVisible(true);
     }
 
     /**
@@ -467,6 +476,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         sendFriendRequestFrame = new gui.SendFriendRequestFrame(allUsers);
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
+        sendFriendRequestFrame.setVisible(true);
     }
 
     /**
@@ -479,6 +489,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         viewRequestsFrame.backButton.addActionListener(this);
         viewRequestsFrame.incomingRequestsButton.addActionListener(this);
         viewRequestsFrame.outgoingRequestsButton.addActionListener(this);
+        viewRequestsFrame.setVisible(true);
     }
 
     /**
@@ -489,16 +500,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
      */
     public void run() {
 
-
-        signUpFrame.dispose();
-        profileFrame.dispose();
-        editProfileFrame.dispose();
-        friendsListFrame.dispose();
-        incomingFriendRequestsFrame.dispose();
-        outgoingFriendRequestsFrame.dispose();
-        sendFriendRequestFrame.dispose();
-        profileFrameRestricted.dispose();
-        viewRequestsFrame.dispose();
+        showHomeFrame();
 
         signUpFrame.signUpButton.addActionListener(this);
         signUpFrame.backButton.addActionListener(this);

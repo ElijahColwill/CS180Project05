@@ -309,6 +309,7 @@ A class run by the user to be able to interact with the server using a GUI.
 
 Authors:
 Henry Peng
+Kevin Choe
 
 Methods:
 - Client(int portNum)
@@ -364,120 +365,409 @@ Methods:
   
 Testing:
 The program was run with a TestServer initially and later the actual server to test the functionality of the program.
+- Client()
+  - Verify that portNun, reader, and writer fields are set correctly.
+- main()
+  - Verify that instance of Client class is created when class initialized with correct information.
+- sendMessage()
+  - Verify that when testing overall project, server receives message sent when method is called.
+  - Verify that string parameter sends the correct text.
+- receiveMessage()
+  - Verify that when testing overall project, Server sends correct message and Client receives that same message sent without a significant delay.
+  - Verify that returned message equals the message sent by Server.
+- actionPerformed()
+  - Verify that method connects to Server and GUI and is triggered when action is performed.
+  - Verify that homeFrame.signInButton sends correct message and initializes/disposes correct Frames.
+  - Verify that homeFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+  - Verify that signUpFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+  - Verify that signUpFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrame.editProfileButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrame.viewFriendsButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrame.addFriendButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrame.viewRequestsButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrame.signOutButton sends correct message and initializes/disposes correct Frames.
+  - Verify that editProfileFrame.updateProfileButton sends correct message and initializes/disposes correct Frames.
+  - Verify that editProfileFrame.deleteAccountButton sends correct message and initializes/disposes correct Frames.
+  - Verify that editProfileFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that friendsListFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that friendsListFrame.viewProfileButton sends correct message and initializes/disposes correct Frames.
+  - Verify that incomingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that incomingFriendRequestsFrame.acceptRequestButton sends correct message and initializes/disposes correct Frames.
+  - Verify that incomingFriendRequestsFrame.denyRequestButton sends correct message and initializes/disposes correct Frames.
+  - Verify that outgoingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that outgoingFriendRequestsFrame.nextButton sends correct message and initializes/disposes correct Frames.
+  - Verify that outgoingFriendRequestsFrame.cancelRequestButton sends correct message and initializes/disposes correct Frames.
+  - Verify that sendFriendRequestFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that sendFriendRequestFrame.sendRequestButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrameRestricted.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that profileFrameRestricted.viewFriendsButton sends correct message and initializes/disposes correct Frames.
+  - Verify that viewRequestsFrame.incomingRequestsButton sends correct message and initializes/disposes correct Frames.
+  - Verify that viewRequestsFrame.outgoingRequestsButton sends correct message and initializes/disposes correct Frames.
+  - Verify that viewRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+- showHomeFrame()
+  - Verify that homeFrame is initialized with correct actionListeners.
+- showSignUpFrame()
+  - Verify that signUpFrame is initialized with correct actionListeners.
+- showProfileFrame()
+  - Verify that profileFrame is initialized with correct actionListeners.
+  - Verify that username is passed to Server.
+  - Verify that client allows/denys editing based on isRestricted.
+- showEditProfileFrame()
+  - Verify that editProfileFrame is initialized with correct actionListeners.
+  - Verify that correct user is being edited.
+- showFriendsListFrame()
+  - Verify that friendsListFrame is initialized with correct actionListeners.
+  - Verify that the correct user is being displayed.
+- showIncomingFriendRequestFrame()
+  - Verify that incomingFriendRequestFrame is initialized with correct actionListeners.
+  - Verify that the correct user is being displayed.
+- showOutgoingFriendRequestFrame()
+  - Verify that outgoingFriendRequestFrame is initialized with correct actionListeners.
+  - Verify that the correct user is being displayed.
+- showSendFriendRequestFrame()
+  - Verify that sendFriendRequestFrame is initialized with correct actionListeners.
+  - Verify that the correct user if being called.
+- showViewRequestsFrame()
+  - Verify that viewRequestsFrame is initialized with correct actionListeners.
+- run()
+  - Verify that when testing overall project for a variety of functions, the correct Frame is always called depending on user action.
+  - Verify all actionListeners are added to correct buttons and are working.
+
+### ClientHandler Class
+Description:  
+
+Authors:  
+
+Methods:  
+
+Testing:  
+Standard Model
 
 ### Server Class
-Description:
+Description:  
+A multithreaded server that connects clients via Client Handlers.
 
-Authors:
+Authors:  
+Sindhuja Kancharla
 
-Methods:
+Methods:  
+- main (String[] args)
+  - Main method, initializes sockets/readers/writers.
 
-Testing:
+Testing:  
+- Verify that when testing overall project, Server creates a thread for ClientHandler operations.
 
 ### MainTests Class
-Description:
+Description:  
+Main testing class for entire project, implements JUnit tests to test Class declarations, Field  
+and Method declarations, access modifiers, and return types/parameters when applicable.
 
-Authors:
+Authors:  
+Elijah Colwill
 
-Methods:
+Methods:  
+The following structure was applied to the class:
+- Main Method
+- TestCase Class inside of MainTests that contains:
+  - Setup Methods (outputStart, restoreInputandOutput, getOutput, receiveInput)
+  - For each class in project:
+    - *classname*DeclarationTest: tests modifiers, superclass, inheritance, abstraction of clas
+    - *classname*SetUpTest: tests number of fields, each field's existence, return type, and modifiers, and each methods parameters, return types, and modifiers
+    - *classname*ImplementationTest: tests for each method, valid input for all methods and invalid input when necessary **(only for classes following Standard Model)**
 
-Testing:
+Testing:  
+N/A (This class is the Testing Class, Standard Debugging was done on each method)
 
-### GUI Class
-Description:
+### Constants Class
+Description:  
+Global constants for the application.
 
-Authors:
+Authors:   
+Henrik Berg
 
-Methods:
+Methods:  
+N/A
 
-Testing:
-
-### HomeFrame Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
-
-### SignUpFrame Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
-
-### SuccessFrame Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
-
-### SendFriendRequestFrame Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
-
-### ProfileFrame Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
-
-### ProfileFrameRestricted Class
-Description:
-
-Authors:
-
-Methods:
-
-Testing:
+Testing:  
+Standard Model
 
 ### EditProfileFrame Class
-Description:
+Description:  
+Edit profile frame for the application.
 
-Authors:
+Authors:  
+Henrik Berg
 
-Methods:
+Methods:  
+- EditProfileFrame()
+  - Constructor that creates a frame that allows the user to edit their profile.
+  - Parameters:
+    - fullName the full name of the user editing the profile.
+    - username the username of the user editing the profile.
+    - email the email of the user editing the profile.
+    - location the location of the user editing the profile.
+    - bio the biography of the user editing the profile.
+    - interests the interests of the user editing the profile.
+- presetFields()
+  - Pre-fills all the text fields with existing information about the user.
+  - Parameters:
+    - name the full name of the user editing the profile.
+    - username the username of the user editing the profile.
+    - email the email of the user editing the profile.
+    - location the location of the user editing the profile.
+    - bio the biography of the user editing the profile.
+    - interests the interests of the user editing the profile.
 
-Testing:
+Testing:  
+- EditProfileFrame()
+  - Verify that window has correct title Social | Edit Profile
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that Frame contains correct text and all buttons/text fields.
+  - Verify actionListeners in dependant classes exist for buttons.
+  - Verify that all text fields take input and have correct text next to them
+- presetFields()
+  - Verify that fields are preset with information from User when testing overall project.
 
-### ErrorFrame CLass
-Description:
+### ErrorFrame Class
+Description:  
+Home frame for the application.
 
-Authors:
+Authors:  
+Henrik Berg
 
-Methods:
+Methods:  
+- ErrorFrame()
+  - Constructor that creates an error frame, letting the user know an error occurred.
+  - Parameters:
+    - message the error message that is displayed on the frame.
 
-Testing:
+Testing:  
+- ErrorFrame()
+  - Verify that window has correct title Social | Error
+  - Verify that a Frame is created that contains correct layout.
+  - Verify that Frame contains Error Icon, Label, and the correct message when testing overall project.
+  - Verify that close button is present and in correct location.
+  - Verify actionListeners in dependant classes exist for buttons.
 
 ### FriendsListFrame Class
-Description:
+Description:  
+Friends list frame for the application.
 
-Authors:
+Authors:  
+Henrik Berg
 
-Methods:
+Methods:  
+- FriendListFrame()
+  - Constructor that creates a frame that allows the user to see all their friends.
+  - Parameters:
+    - names String[] the names of all the user's friends.
+    - usernames String[] the usernames of all the user's friends.
 
-Testing:
+Testing:  
+- FriendListFrame()
+  - Verify that window has correct title Social | Friends List
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that view profile button is present for users.
+  - Verify that for friends, correct Names, Usernames, and Profile Icon is present.
+  - Verify that Correct title and description are present at top of content area.
+  - Verify actionListeners in dependant classes exist for buttons.
 
-### ManageFriendRequestsFrame Class
-Description:
+### HomeFrame Class
+Description:  
+Home frame for the application.
 
-Authors:
+Authors:  
+Henrik Berg
 
-Methods:
+Methods:  
+HomeFrame()
+- Constructor that creates the home frame.
 
-Testing:
+Testing:  
+- HomeFrame()
+  - Verify that window has correct title Social | Welcome
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with exit button.
+  - Verify that content area has Sign In and Sign Up titles with divider and descriptions
+  - Verify that Username and Password fields take input, are present, and have correct text next to them.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### IncomingFriendRequestsFrame Class
+Description:  
+Constructor that creates a frame for each incoming friend request.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- IncomingFriendRequestsFrame()
+  - Constructor that creates a frame for each incoming friend request.
+  - Parameters:
+    - fullName String the full name of the user that requested you as a friend.
+    - username String the username of the user that requested you as a friend.
+
+Testing:  
+- IncomingFriendRequestsFrame()
+  - Verify that window has correct title Social | Incoming Friend Requests
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that Incoming Friend Requests title and text is present in content area.
+  - Verify that Friend Request is present with profile icon, Name and user name
+  - Verify that Accept and Deny Request buttons are present with correct text.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### OutgoingFriendRequestsFrame Class
+Description:  
+Outgoing friend requests frame for the application.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- OutgoingFriendRequestsFrame()
+  - Constructor that creates a frame for each outgoing friend request.
+  - Parameters:
+    - fullName String the full name of the user that you requested as a friend.
+    - username String the username of the user that you requested as a friend.
+
+Testing:  
+- OutgoingFriendRequestsFrame()
+  - Verify that window has correct title Social | Outgoing Friend Requests
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that Outgoing Friend Requests title and text is present in content area.
+  - Verify that Friend Request is present with profile icon, Name and user name
+  - Verify that Cancel Request button is present with correct text.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### ProfileFrame Class
+Description:  
+Profile frame for the application.
+
+Authors: 
+Henrik Berg
+
+Methods:  
+- ProfileFrame()
+  - Constructor that creates a frame for a user's profile.
+  - Parameters:
+    - fullName String the full name of the user.
+    - username String the username of the user.
+    - location String the location of the user.
+    - bio String the biography of the user.
+    - interests String the interests of the user.
+
+Testing:  
+- ProfileFrame()
+  - Verify that window has correct title Social | Profile
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with sign out button.
+  - Verify that profile name, username, Profile Icon, and edit profile button are present with correct text.
+  - Verify that below profile information is area for Location/Bio/Interests with correct text for the User.
+  - Verify that in bottom of content area View Friends, Add Friend and View Request buttons exist with correct text.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### ProfileFrameRestricted CLass
+Description:  
+Profile frame (restricted, can't edit) for the application.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- ProfileFrameRestricted()
+  - Constructor that creates a frame for a user's profile (restricted).
+  - Parameters:
+    - fullName String the full name of the user.
+    - username String the username of the user.
+    - location String the location of the user.
+    - bio String the biography of the user.
+    - interests String the interests of the user.
+
+Testing:  
+- ProfileFrameRestricted()
+  - Verify that window has correct title Social | Profile
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that profile name, username, and Profile Icon are present with correct text.
+  - Verify that below profile information is area for Location/Bio/Interests with correct text for the User.
+  - Verify that in bottom of content area View Friends button exists with correct text.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### SendFriendRequestFrame Class
+Description:  
+Send friend request frame for the application.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- SendFriendRequestFrame()
+  - Constructor that creates a frame to select users to add as friends.
+  - Parameters:
+    - users String[] the list of all available users to send friend requests to.
+
+Testing:  
+- SendFriendRequestFrame()
+  - Verify that window has correct title Social | Send Friend Request
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that Send Friend Request title is centered, in Content area, and with correct text and description underneath.
+  - Verify that Drop down box is present and functional with correct options when testing overall project.
+  - Verify that Send Request button is present with correct text in correct location in content area.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### SignUpFrame Class
+Description:  
+Sign up frame for the application.
+
+Authors:  
+Henrik berg
+
+Methods:  
+- SignUpFrame()
+  - Constructor that creates a frame for a user to sign up.
+
+Testing:  
+- SignUpFrame()
+  - Verify that window has correct title Social | Sign Up
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that Sign Up title with correct description are present with correct text, centered in top of content area.
+  - Verify that Text fields are all present with correct text next to them, and take input for Name/Username/Email/Password
+  - Verify Password field hides text.
+  - Verify Sign Up button is present below text fields.
+  - Verify actionListeners in dependant classes exist for buttons.
+
+### SuccessFrame Class
+Description:  
+Success frame for the application.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- SuccessFrame()
+  - Constructor that creates a success frame, letting the user know their action succeeded.
+  - Parameters:
+    - message String the error message that is displayed on the frame.
+
+Testing:  
+- SuccessFrame()
+  - Verify that window has correct title Social | Success
+  - Verify that a Frame is created that contains a title and content panel.
+  - Verify that correct Icon, message and Title are present for Success message.
+  - Verify that close button is present.
+  - Verify actionListeners in dependant classes exist for button.
+
+### ViewRequestsFrame Class
+Description:  
+View requests frame for the application.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- ViewRequestsFrame()
+  - Constructor that creates a frame to select incoming or outgoing friend requests.
+
+Testing:  
+- ViewRequestsFrame()
+  - Verify that window has correct title Social | View Requests
+  - Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+  - Verify that View Friend Requests title is present and centered at top of content area, with correct description
+  - Verify that Incoming Requests and Outgoing Requests buttons are present below description, centered, and with correct text.
+  - Verify actionListeners in dependant classes exist for buttons.

@@ -44,6 +44,7 @@ public class ClientHandler extends Thread {
                 Profile newProfile = null;
 
                 String message = reader.readLine();   //determining login or sign-up
+                System.out.println(message);
 
                 //if sign-up, creates a new user account
 
@@ -112,6 +113,7 @@ public class ClientHandler extends Thread {
                     if (invalidUsername == false) {         //if the user entered the correct login details
 
                         messageToClient("Success");
+                        System.out.println("sent success");
 
                     } else {                                //if the user didn't enter the correct login details
 
@@ -192,6 +194,7 @@ public class ClientHandler extends Thread {
 
                             messageToClient(String.format("%s\n%s\n%s\n%s\n%s\n%s",nameOfUser, currentUsername,
                                                 userEmail, userLocation, userBio, userInterests));
+                            System.out.println("Sent info");
                         }
                     }
                 }
@@ -363,6 +366,8 @@ public class ClientHandler extends Thread {
         writer.write(message);
         writer.println();
         writer.flush();
+
+        System.out.println(message);
     }
 
     /**

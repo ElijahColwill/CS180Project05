@@ -4871,5 +4871,1079 @@ public class MainTests {
 
         }
 
+        @Test(timeout = 1_000)
+        public void sendFriendRequestFrameClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = SendFriendRequestFrame.class;
+            className = "SendFriendRequestFrame";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void sendFriendRequestFrameClassSetupTest() {
+            Field[] fields = SendFriendRequestFrame.class.getDeclaredFields();
+            if (fields.length < 11) {
+                fail("SendFriendRequestFrame class requires eleven fields.");
+                return;
+            }
+
+            try {
+                Field frameContainer = SendFriendRequestFrame.class.getDeclaredField("frameContainer");
+                if (frameContainer.getType() != Container.class) {
+                    fail("Ensure that frameContainer in class SendFriendRequestFrame is of type Container.");
+                    return;
+                }
+                if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that frameContainer in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field frameContainer in class SendFriendRequestFrame " +
+                        "that is of type Container and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerPanel = SendFriendRequestFrame.class.getDeclaredField("headerPanel");
+                if (headerPanel.getType() != JPanel.class) {
+                    fail("Ensure that headerPanel in class SendFriendRequestFrame is of type JPanel.");
+                    return;
+                }
+                if (headerPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerPanel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerPanel in class SendFriendRequestFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field contentPanel = SendFriendRequestFrame.class.getDeclaredField("contentPanel");
+                if (contentPanel.getType() != JPanel.class) {
+                    fail("Ensure that contentPanel in class SendFriendRequestFrame is of type JPanel.");
+                    return;
+                }
+                if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that contentPanel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field contentPanel in class SendFriendRequestFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field navigationPanel = SendFriendRequestFrame.class.getDeclaredField("navigationPanel");
+                if (navigationPanel.getType() != JPanel.class) {
+                    fail("Ensure that navigationPanel in class SendFriendRequestFrame is of type JPanel.");
+                    return;
+                }
+                if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that navigationPanel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field navigationPanel in class SendFriendRequestFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field logoLabel = SendFriendRequestFrame.class.getDeclaredField("logoLabel");
+                if (logoLabel.getType() != JLabel.class) {
+                    fail("Ensure that logoLabel in class SendFriendRequestFrame is of type JLabel.");
+                    return;
+                }
+                if (logoLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that logoLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field logoLabel in class SendFriendRequestFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerLabel = SendFriendRequestFrame.class.getDeclaredField("headerLabel");
+                if (headerLabel.getType() != JLabel.class) {
+                    fail("Ensure that headerLabel in class SendFriendRequestFrame is of type JLabel.");
+                    return;
+                }
+                if (headerLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerLabel in class SendFriendRequestFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field sendFriendRequestLabel = SendFriendRequestFrame.class.getDeclaredField("sendFriendRequestLabel");
+                if (sendFriendRequestLabel.getType() != JLabel.class) {
+                    fail("Ensure that sendFriendRequestLabel in class SendFriendRequestFrame is of type JLabel.");
+                    return;
+                }
+                if (sendFriendRequestLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that sendFriendRequestLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field sendFriendRequestLabel in class SendFriendRequestFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field sendFriendRequestDescriptionLabel = SendFriendRequestFrame.class.getDeclaredField("sendFriendRequestDescriptionLabel");
+                if (sendFriendRequestDescriptionLabel.getType() != JLabel.class) {
+                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame is of type JLabel.");
+                    return;
+                }
+                if (sendFriendRequestDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field sendFriendRequestDescriptionLabel in class SendFriendRequestFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+
+            try {
+                Field sendRequestButton = SendFriendRequestFrame.class.getDeclaredField("sendRequestButton");
+                if (sendRequestButton.getType() != JButton.class) {
+                    fail("Ensure that sendRequestButton in class SendFriendRequestFrame is of type JButton.");
+                    return;
+                }
+                if (sendRequestButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that sendRequestButton in class SendFriendRequestFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field sendRequestButton in class SendFriendRequestFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field backButton = SendFriendRequestFrame.class.getDeclaredField("backButton");
+                if (backButton.getType() != JButton.class) {
+                    fail("Ensure that backButton in class SendFriendRequestFrame is of type JButton.");
+                    return;
+                }
+                if (backButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that backButton in class SendFriendRequestFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field backButton in class SendFriendRequestFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field userComboBox = SendFriendRequestFrame.class.getDeclaredField("userComboBox");
+                if (userComboBox.getType() != JComboBox.class) {
+                    fail("Ensure that userComboBox in class SendFriendRequestFrame is of type JComboBox.");
+                    return;
+                }
+                if (userComboBox.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that userComboBox in class SendFriendRequestFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field userComboBox in class SendFriendRequestFrame " +
+                        "that is of type JComboBox and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<SendFriendRequestFrame> constructor = SendFriendRequestFrame.class.getDeclaredConstructor(String[].class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class SendFriendRequestFrame is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes 1 parameter and is public in class SendFriendRequestFrame.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1_000)
+        public void signUpFrameClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = SignUpFrame.class;
+            className = "SignUpFrame";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void signUpFrameClassSetupTest() {
+            Field[] fields = SignUpFrame.class.getDeclaredFields();
+            if (fields.length < 23) {
+                fail("SignUpFrame class requires twenty three fields.");
+                return;
+            }
+
+            try {
+                Field frameContainer = SignUpFrame.class.getDeclaredField("frameContainer");
+                if (frameContainer.getType() != Container.class) {
+                    fail("Ensure that frameContainer in class SignUpFrame is of type Container.");
+                    return;
+                }
+                if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that frameContainer in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field frameContainer in class SignUpFrame " +
+                        "that is of type Container and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerPanel = SignUpFrame.class.getDeclaredField("headerPanel");
+                if (headerPanel.getType() != JPanel.class) {
+                    fail("Ensure that headerPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (headerPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field contentPanel = SignUpFrame.class.getDeclaredField("contentPanel");
+                if (contentPanel.getType() != JPanel.class) {
+                    fail("Ensure that contentPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that contentPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field contentPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field signUpPanel = SignUpFrame.class.getDeclaredField("signUpPanel");
+                if (signUpPanel.getType() != JPanel.class) {
+                    fail("Ensure that signUpPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (signUpPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that signUpPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field signUpPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field namePanel = SignUpFrame.class.getDeclaredField("namePanel");
+                if (namePanel.getType() != JPanel.class) {
+                    fail("Ensure that namePanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (namePanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that namePanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field namePanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field usernamePanel = SignUpFrame.class.getDeclaredField("usernamePanel");
+                if (usernamePanel.getType() != JPanel.class) {
+                    fail("Ensure that usernamePanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (usernamePanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that usernamePanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field usernamePanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field emailPanel = SignUpFrame.class.getDeclaredField("emailPanel");
+                if (emailPanel.getType() != JPanel.class) {
+                    fail("Ensure that emailPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (emailPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that emailPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field emailPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field passwordPanel = SignUpFrame.class.getDeclaredField("passwordPanel");
+                if (passwordPanel.getType() != JPanel.class) {
+                    fail("Ensure that passwordPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (passwordPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that passwordPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field passwordPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field navigationPanel = SignUpFrame.class.getDeclaredField("navigationPanel");
+                if (navigationPanel.getType() != JPanel.class) {
+                    fail("Ensure that navigationPanel in class SignUpFrame is of type JPanel.");
+                    return;
+                }
+                if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that navigationPanel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field navigationPanel in class SignUpFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field logoLabel = SignUpFrame.class.getDeclaredField("logoLabel");
+                if (logoLabel.getType() != JLabel.class) {
+                    fail("Ensure that logoLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (logoLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that logoLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field logoLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerLabel = SignUpFrame.class.getDeclaredField("headerLabel");
+                if (headerLabel.getType() != JLabel.class) {
+                    fail("Ensure that headerLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (headerLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field signUpLabel = SignUpFrame.class.getDeclaredField("signUpLabel");
+                if (signUpLabel.getType() != JLabel.class) {
+                    fail("Ensure that signUpLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (signUpLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that signUpLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field signUpLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field signUpDescriptionLabel = SignUpFrame.class.getDeclaredField("signUpDescriptionLabel");
+                if (signUpDescriptionLabel.getType() != JLabel.class) {
+                    fail("Ensure that signUpDescriptionLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (signUpDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that signUpDescriptionLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field signUpDescriptionLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field nameLabel = SignUpFrame.class.getDeclaredField("nameLabel");
+                if (nameLabel.getType() != JLabel.class) {
+                    fail("Ensure that nameLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (nameLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that nameLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field nameLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field usernameLabel = SignUpFrame.class.getDeclaredField("usernameLabel");
+                if (usernameLabel.getType() != JLabel.class) {
+                    fail("Ensure that usernameLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (usernameLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that usernameLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field usernameLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field emailLabel = SignUpFrame.class.getDeclaredField("emailLabel");
+                if (emailLabel.getType() != JLabel.class) {
+                    fail("Ensure that emailLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (emailLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that emailLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field emailLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field passwordLabel = SignUpFrame.class.getDeclaredField("passwordLabel");
+                if (passwordLabel.getType() != JLabel.class) {
+                    fail("Ensure that passwordLabel in class SignUpFrame is of type JLabel.");
+                    return;
+                }
+                if (passwordLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that passwordLabel in class SignUpFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field passwordLabel in class SignUpFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field signUpButton = SignUpFrame.class.getDeclaredField("signUpButton");
+                if (signUpButton.getType() != JButton.class) {
+                    fail("Ensure that signUpButton in class SignUpFrame is of type JButton.");
+                    return;
+                }
+                if (signUpButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that signUpButton in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field signUpButton in class SignUpFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field backButton = SignUpFrame.class.getDeclaredField("backButton");
+                if (backButton.getType() != JButton.class) {
+                    fail("Ensure that backButton in class SignUpFrame is of type JButton.");
+                    return;
+                }
+                if (backButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that backButton in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field backButton in class SignUpFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field nameField = SignUpFrame.class.getDeclaredField("nameField");
+                if (nameField.getType() != JTextField.class) {
+                    fail("Ensure that nameField in class SignUpFrame is of type JTextField.");
+                    return;
+                }
+                if (nameField.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that nameField in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field nameField in class SignUpFrame " +
+                        "that is of type JTextField and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field usernameField = SignUpFrame.class.getDeclaredField("usernameField");
+                if (usernameField.getType() != JTextField.class) {
+                    fail("Ensure that usernameField in class SignUpFrame is of type JTextField.");
+                    return;
+                }
+                if (usernameField.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that usernameField in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field usernameField in class SignUpFrame " +
+                        "that is of type JTextField and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field emailField = SignUpFrame.class.getDeclaredField("emailField");
+                if (emailField.getType() != JTextField.class) {
+                    fail("Ensure that emailField in class SignUpFrame is of type JTextField.");
+                    return;
+                }
+                if (emailField.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that emailField in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field emailField in class SignUpFrame " +
+                        "that is of type JTextField and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field passwordField = SignUpFrame.class.getDeclaredField("passwordField");
+                if (passwordField.getType() != JPasswordField.class) {
+                    fail("Ensure that passwordField in class SignUpFrame is of type JPasswordField.");
+                    return;
+                }
+                if (passwordField.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that passwordField in class SignUpFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field passwordField in class SignUpFrame " +
+                        "that is of type JPasswordField and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<SignUpFrame> constructor = SignUpFrame.class.getDeclaredConstructor();
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class SignUpFrame is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes no parameters and is public in class SignUpFrame.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1_000)
+        public void successFrameClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = SuccessFrame.class;
+            className = "SuccessFrame";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void successFrameClassSetupTest() {
+            Field[] fields = SuccessFrame.class.getDeclaredFields();
+            if (fields.length < 7) {
+                fail("SuccessFrame class requires seven fields.");
+                return;
+            }
+
+            try {
+                Field frameContainer = SuccessFrame.class.getDeclaredField("frameContainer");
+                if (frameContainer.getType() != Container.class) {
+                    fail("Ensure that frameContainer in class SuccessFrame is of type Container.");
+                    return;
+                }
+                if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that frameContainer in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field frameContainer in class SuccessFrame " +
+                        "that is of type Container and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field titlePanel = SuccessFrame.class.getDeclaredField("titlePanel");
+                if (titlePanel.getType() != JPanel.class) {
+                    fail("Ensure that titlePanel in class SuccessFrame is of type JPanel.");
+                    return;
+                }
+                if (titlePanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that titlePanel in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field titlePanel in class SuccessFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field contentPanel = SuccessFrame.class.getDeclaredField("contentPanel");
+                if (contentPanel.getType() != JPanel.class) {
+                    fail("Ensure that contentPanel in class SuccessFrame is of type JPanel.");
+                    return;
+                }
+                if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that contentPanel in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field contentPanel in class SuccessFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field successIconLabel = SuccessFrame.class.getDeclaredField("successIconLabel");
+                if (successIconLabel.getType() != JLabel.class) {
+                    fail("Ensure that successIconLabel in class SuccessFrame is of type JLabel.");
+                    return;
+                }
+                if (successIconLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that successIconLabel in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field successIconLabel in class SuccessFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field successTitleLabel = SuccessFrame.class.getDeclaredField("successTitleLabel");
+                if (successTitleLabel.getType() != JLabel.class) {
+                    fail("Ensure that successTitleLabel in class SuccessFrame is of type JLabel.");
+                    return;
+                }
+                if (successTitleLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that successTitleLabel in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field successTitleLabel in class SuccessFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field successMessageLabel = SuccessFrame.class.getDeclaredField("successMessageLabel");
+                if (successMessageLabel.getType() != JLabel.class) {
+                    fail("Ensure that successMessageLabel in class SuccessFrame is of type JLabel.");
+                    return;
+                }
+                if (successMessageLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that successMessageLabel in class SuccessFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field successMessageLabel in class SuccessFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field closeButton = SuccessFrame.class.getDeclaredField("closeButton");
+                if (closeButton.getType() != JButton.class) {
+                    fail("Ensure that closeButton in class SuccessFrame is of type JButton.");
+                    return;
+                }
+                if (closeButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that closeButton in class SuccessFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field closeButton in class SuccessFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<SuccessFrame> constructor = SuccessFrame.class.getDeclaredConstructor(String.class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class SuccessFrame is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes 1 parameter and is public in class SuccessFrame.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1_000)
+        public void viewRequestsFrameClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = ViewRequestsFrame.class;
+            className = "ViewRequestsFrame";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void viewRequestsFrameClassSetupTest() {
+            Field[] fields = ViewRequestsFrame.class.getDeclaredFields();
+            if (fields.length < 12) {
+                fail("ViewRequestsFrame class requires twelve fields.");
+                return;
+            }
+
+            try {
+                Field frameContainer = ViewRequestsFrame.class.getDeclaredField("frameContainer");
+                if (frameContainer.getType() != Container.class) {
+                    fail("Ensure that frameContainer in class ViewRequestsFrame is of type Container.");
+                    return;
+                }
+                if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that frameContainer in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field frameContainer in class ViewRequestsFrame " +
+                        "that is of type Container and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerPanel = ViewRequestsFrame.class.getDeclaredField("headerPanel");
+                if (headerPanel.getType() != JPanel.class) {
+                    fail("Ensure that headerPanel in class ViewRequestsFrame is of type JPanel.");
+                    return;
+                }
+                if (headerPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerPanel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerPanel in class ViewRequestsFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field contentPanel = ViewRequestsFrame.class.getDeclaredField("contentPanel");
+                if (contentPanel.getType() != JPanel.class) {
+                    fail("Ensure that contentPanel in class ViewRequestsFrame is of type JPanel.");
+                    return;
+                }
+                if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that contentPanel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field contentPanel in class ViewRequestsFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field buttonPanel = ViewRequestsFrame.class.getDeclaredField("buttonPanel");
+                if (buttonPanel.getType() != JPanel.class) {
+                    fail("Ensure that buttonPanel in class ViewRequestsFrame is of type JPanel.");
+                    return;
+                }
+                if (buttonPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that buttonPanel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field buttonPanel in class ViewRequestsFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field navigationPanel = ViewRequestsFrame.class.getDeclaredField("navigationPanel");
+                if (navigationPanel.getType() != JPanel.class) {
+                    fail("Ensure that navigationPanel in class ViewRequestsFrame is of type JPanel.");
+                    return;
+                }
+                if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that navigationPanel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field navigationPanel in class ViewRequestsFrame " +
+                        "that is of type JPanel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field logoLabel = ViewRequestsFrame.class.getDeclaredField("logoLabel");
+                if (logoLabel.getType() != JLabel.class) {
+                    fail("Ensure that logoLabel in class ViewRequestsFrame is of type JLabel.");
+                    return;
+                }
+                if (logoLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that logoLabel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field logoLabel in class ViewRequestsFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field headerLabel = ViewRequestsFrame.class.getDeclaredField("headerLabel");
+                if (headerLabel.getType() != JLabel.class) {
+                    fail("Ensure that headerLabel in class ViewRequestsFrame is of type JLabel.");
+                    return;
+                }
+                if (headerLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that headerLabel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field headerLabel in class ViewRequestsFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field viewRequestsLabel = ViewRequestsFrame.class.getDeclaredField("viewRequestsLabel");
+                if (viewRequestsLabel.getType() != JLabel.class) {
+                    fail("Ensure that viewRequestsLabel in class ViewRequestsFrame is of type JLabel.");
+                    return;
+                }
+                if (viewRequestsLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that viewRequestsLabel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field viewRequestsLabel in class ViewRequestsFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field viewRequestsDescriptionLabel = ViewRequestsFrame.class.getDeclaredField("viewRequestsDescriptionLabel");
+                if (viewRequestsDescriptionLabel.getType() != JLabel.class) {
+                    fail("Ensure that viewRequestsDescriptionLabel in class ViewRequestsFrame is of type JLabel.");
+                    return;
+                }
+                if (viewRequestsDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
+                    fail("Ensure that viewRequestsDescriptionLabel in class ViewRequestsFrame has modifiers private and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field viewRequestsDescriptionLabel in class ViewRequestsFrame " +
+                        "that is of type JLabel and is private and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field incomingRequestsButton = ViewRequestsFrame.class.getDeclaredField("incomingRequestsButton");
+                if (incomingRequestsButton.getType() != JButton.class) {
+                    fail("Ensure that incomingRequestsButton in class ViewRequestsFrame is of type JButton.");
+                    return;
+                }
+                if (incomingRequestsButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that incomingRequestsButton in class ViewRequestsFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field incomingRequestsButton in class ViewRequestsFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field outgoingRequestsButton = ViewRequestsFrame.class.getDeclaredField("outgoingRequestsButton");
+                if (outgoingRequestsButton.getType() != JButton.class) {
+                    fail("Ensure that outgoingRequestsButton in class ViewRequestsFrame is of type JButton.");
+                    return;
+                }
+                if (outgoingRequestsButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that outgoingRequestsButton in class ViewRequestsFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field outgoingRequestsButton in class ViewRequestsFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field backButton = ViewRequestsFrame.class.getDeclaredField("backButton");
+                if (backButton.getType() != JButton.class) {
+                    fail("Ensure that backButton in class ViewRequestsFrame is of type JButton.");
+                    return;
+                }
+                if (backButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
+                    fail("Ensure that backButton in class ViewRequestsFrame has modifiers public and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field backButton in class ViewRequestsFrame " +
+                        "that is of type JButton and is public and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<ViewRequestsFrame> constructor = ViewRequestsFrame.class.getDeclaredConstructor();
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class ViewRequestsFrame is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes no parameters and is public in class ViewRequestsFrame.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
     }
 }

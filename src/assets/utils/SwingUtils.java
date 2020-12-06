@@ -13,7 +13,19 @@ import java.awt.*;
  * @version November 19, 2020
  */
 public final class SwingUtils {
-    public static void addComponent(JPanel panel, JComponent component, int x, int y, int width, int height, int align) {
+    /**
+     * Method to add components in a GridBagLayout
+     *
+     * @param panel the panel to add the component to.
+     * @param component the component to add.
+     * @param x the x coordinate of the component.
+     * @param y the y coordinate of the component.
+     * @param width the desired width of the component.
+     * @param height the desired height of the component.
+     * @param align the desired alignemnt of the component.
+     */
+    public static void addComponent(JPanel panel, JComponent component, int x,
+                                    int y, int width, int height, int align) {
         GridBagConstraints c = new GridBagConstraints();
 
         c.gridx = x;

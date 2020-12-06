@@ -44,6 +44,9 @@ public final class SignUpFrame extends JFrame {
     public final JTextField emailField;
     public final JPasswordField passwordField;
 
+    /**
+     * Constructor that creates a frame for a user to sign up.
+     */
     public SignUpFrame() {
         super("Social | Sign Up");
 

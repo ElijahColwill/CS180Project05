@@ -54,7 +54,18 @@ public final class EditProfileFrame extends JFrame {
     public final JTextField bioField;
     public final JTextField interestsField;
 
-    public EditProfileFrame(String fullName, String username, String email, String location, String bio, String interests) {
+    /**
+     * Constructor that creates a frame that allows the user to edit their profile.
+     *
+     * @param fullName the full name of the user editing the profile.
+     * @param username the username of the user editing the profile.
+     * @param email the email of the user editing the profile.
+     * @param location the location of the user editing the profile.
+     * @param bio the biography of the user editing the profile.
+     * @param interests the interests of the user editing the profile.
+     */
+    public EditProfileFrame(String fullName, String username, String email,
+                            String location, String bio, String interests) {
         super("Social | Edit Profile");
 
         frameContainer = this.getContentPane();
@@ -163,7 +174,8 @@ public final class EditProfileFrame extends JFrame {
         SwingUtils.addComponent(interestsPanel, interestsField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
 
         SwingUtils.addComponent(editProfilePanel, editProfileLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
-        SwingUtils.addComponent(editProfilePanel, editProfileDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(editProfilePanel, editProfileDescriptionLabel, 0, 1,
+                1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(editProfilePanel, namePanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(editProfilePanel, usernamePanel, 0, 3, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(editProfilePanel, emailPanel, 0, 4, 1, 1, GridBagConstraints.CENTER);
@@ -185,7 +197,18 @@ public final class EditProfileFrame extends JFrame {
         this.setVisible(true);
     }
 
-    public void presetFields(String name, String username, String email, String location, String bio, String interests) {
+    /**
+     * Pre-fills all the text fields with existing information about the user.
+     *
+     * @param name the full name of the user editing the profile.
+     * @param username the username of the user editing the profile.
+     * @param email the email of the user editing the profile.
+     * @param location the location of the user editing the profile.
+     * @param bio the biography of the user editing the profile.
+     * @param interests the interests of the user editing the profile.
+     */
+    public void presetFields(String name, String username, String email,
+                             String location, String bio, String interests) {
         nameField.setText(name);
         usernameField.setText(username);
         emailField.setText(email);

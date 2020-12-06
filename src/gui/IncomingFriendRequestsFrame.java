@@ -38,6 +38,12 @@ public final class IncomingFriendRequestsFrame extends JFrame {
     public final JButton denyRequestButton;
     public final JButton backButton;
 
+    /**
+     * Constructor that creates a frame for each incoming friend request.
+     *
+     * @param fullName the full name of the user that requested you as a friend.
+     * @param username the username of the user that requested you as a friend.
+     */
     public IncomingFriendRequestsFrame(String fullName, String username) {
         super("Social | Incoming Friend Requests");
 
@@ -54,7 +60,8 @@ public final class IncomingFriendRequestsFrame extends JFrame {
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
         incomingFriendRequestsLabel = new JLabel("Incoming Friend Requests");
-        incomingFriendRequestsDescriptionLabel = new JLabel("Below are your incoming friend requests. You can either accept or deny requests.");
+        incomingFriendRequestsDescriptionLabel = new JLabel("Below are your incoming friend requests." +
+                " You can either accept or deny requests.");
         imageLabel = new JLabel();
         nameLabel = new JLabel(fullName);
         usernameLabel = new JLabel("@" + username);

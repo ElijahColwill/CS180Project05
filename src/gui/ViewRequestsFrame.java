@@ -32,6 +32,9 @@ public final class ViewRequestsFrame extends JFrame {
     public final JButton outgoingRequestsButton;
     public final JButton backButton;
 
+    /**
+     * Constructor that creates a frame to select incoming or outgoing friend requests.
+     */
     public ViewRequestsFrame() {
         super("Social | View Requests");
 

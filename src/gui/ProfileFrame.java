@@ -46,6 +46,15 @@ public final class ProfileFrame extends JFrame {
     public final JButton viewRequestsButton;
     public final JButton signOutButton;
 
+    /**
+     * Constructor that creates a frame for a user's profile.
+     *
+     * @param fullName the full name of the user.
+     * @param username the username of the user.
+     * @param location the location of the user.
+     * @param bio the biography of the user.
+     * @param interests the interests of the user.
+     */
     public ProfileFrame(String fullName, String username, String location, String bio, String interests) {
         super("Social | Profile");
 
@@ -135,11 +144,13 @@ public final class ProfileFrame extends JFrame {
         SwingUtils.addComponent(profilePanel, namePanel, 1, 0, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(profilePanel, buttonPanel, 2, 0, 1, 1, GridBagConstraints.LAST_LINE_END);
 
-        SwingUtils.addComponent(informationPanel, locationHeaderLabel, 0, 0, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, locationHeaderLabel, 0, 0,
+                1, 1, GridBagConstraints.FIRST_LINE_START);
         SwingUtils.addComponent(informationPanel, locationLabel, 0, 1, 1, 1, GridBagConstraints.FIRST_LINE_START);
         SwingUtils.addComponent(informationPanel, bioHeaderLabel, 0, 2, 1, 1, GridBagConstraints.FIRST_LINE_START);
         SwingUtils.addComponent(informationPanel, bioLabel, 0, 3, 1, 1, GridBagConstraints.FIRST_LINE_START);
-        SwingUtils.addComponent(informationPanel, interestsHeaderLabel, 0, 4, 1, 1, GridBagConstraints.FIRST_LINE_START);
+        SwingUtils.addComponent(informationPanel, interestsHeaderLabel, 0, 4,
+                1, 1, GridBagConstraints.FIRST_LINE_START);
         SwingUtils.addComponent(informationPanel, interestsLabel, 0, 5, 1, 1, GridBagConstraints.FIRST_LINE_START);
 
         SwingUtils.addComponent(friendButtonPanel, viewFriendsButton, 0, 0, 1, 1, GridBagConstraints.LINE_END);

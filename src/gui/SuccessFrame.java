@@ -27,6 +27,11 @@ public final class SuccessFrame extends JFrame {
 
     public final JButton closeButton;
 
+    /**
+     * Constructor that creates a success frame, letting the user know their action succeeded.
+     *
+     * @param message the error message that is displayed on the frame.
+     */
     public SuccessFrame(String message) {
         super("Social | Success");
 

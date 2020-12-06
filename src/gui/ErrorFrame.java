@@ -27,6 +27,11 @@ public final class ErrorFrame extends JFrame {
 
     public final JButton closeButton;
 
+    /**
+     * Constructor that creates an error frame, letting the user know an error occurred.
+     *
+     * @param message the error message that is displayed on the frame.
+     */
     public ErrorFrame(String message) {
         super("Social | Error");
 

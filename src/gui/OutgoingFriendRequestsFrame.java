@@ -38,6 +38,12 @@ public final class OutgoingFriendRequestsFrame extends JFrame {
     public final JButton backButton;
     public final JButton nextButton;
 
+    /**
+     * Constructor that creates a frame for each outgoing friend request.
+     *
+     * @param fullName the full name of the user that you requested as a friend.
+     * @param username the username of the user that you requested as a friend.
+     */
     public OutgoingFriendRequestsFrame(String fullName, String username) {
         super("Social | Outgoing Friend Requests");
 
@@ -54,7 +60,8 @@ public final class OutgoingFriendRequestsFrame extends JFrame {
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
         outgoingFriendRequestsLabel = new JLabel("Outgoing Friend Requests");
-        outgoingFriendRequestsDescriptionLabel = new JLabel("Below are your outgoing friend requests. You are able to cancel your requests.");
+        outgoingFriendRequestsDescriptionLabel = new JLabel("Below are your outgoing friend requests." +
+                " You are able to cancel your requests.");
         imageLabel = new JLabel();
         nameLabel = new JLabel(fullName);
         usernameLabel = new JLabel("@" + username);

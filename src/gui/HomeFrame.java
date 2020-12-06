@@ -42,6 +42,9 @@ public final class HomeFrame extends JFrame {
     public final JTextField usernameField;
     public final JPasswordField passwordField;
 
+    /**
+     * Constructor that creates the home frame.
+     */
     public HomeFrame() {
         super("Social | Welcome");
 

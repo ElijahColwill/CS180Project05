@@ -31,6 +31,12 @@ public final class FriendsListFrame extends JFrame {
     public JButton viewProfileButton;
     public final JButton backButton;
 
+    /**
+     * Constructor that creates a frame that allows the user to see all their friends.
+     *
+     * @param names the names of all the user's friends.
+     * @param usernames the usernames of all the user's friends.
+     */
     public FriendsListFrame(String[] names, String[] usernames) {
         super("Social | Friends List");
 
@@ -43,7 +49,8 @@ public final class FriendsListFrame extends JFrame {
         logoLabel = new JLabel();
         headerLabel = new JLabel("Social");
         friendsListLabel = new JLabel("Your Friend's List");
-        friendsListDescriptionLabel = new JLabel("Below is a list of your current friends. Click \"View Profile\" to visit their profile.");
+        friendsListDescriptionLabel = new JLabel("Below is a list of your current friends." +
+                " Click \"View Profile\" to visit their profile.");
 
         backButton = new JButton("Back");
 

@@ -32,6 +32,11 @@ public final class SendFriendRequestFrame extends JFrame {
 
     public final JComboBox<String> userComboBox;
 
+    /**
+     * Constructor that creates a frame to select users to add as friends.
+     *
+     * @param users the list of all available users to send friend requests to.
+     */
     public SendFriendRequestFrame(String[] users) {
         super("Social | Send Friend Request");
 

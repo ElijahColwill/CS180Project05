@@ -3,6 +3,7 @@ package tests;
 import main.*;
 import client.*;
 import gui.*;
+import assets.*;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
@@ -6217,6 +6219,461 @@ public class MainTests {
             }
 
         }
+
+        @Test(timeout = 1000)
+        public void clientHandlerClassImplementationTest() {
+            try {
+                ClientHandler testClientHandler = new ClientHandler(new Socket(), new BufferedReader(new FileReader("testFileClient.txt")), new PrintWriter("testFileClientOutput.txt"));
+
+                testClientHandler.readUsersList();
+
+            } catch (Exception e) {
+                fail("Error in creating ClientHandler Class: Some fields or methods not functional or present.");
+                return;
+            }
+        }
+
+        @Test(timeout = 1_000)
+        public void constantsClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Constants.class;
+            className = "Constants";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertTrue("Ensure that `"+ className +"` is final.", Modifier.isFinal(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void constantsClassSetupTest() {
+            Field[] fields = Constants.class.getDeclaredFields();
+            if (fields.length < 23) {
+                fail("Constants class requires twenty three fields.");
+                return;
+            }
+
+            try {
+                Field LOGO_64 = Constants.class.getDeclaredField("LOGO_64");
+                if (LOGO_64.getType() != ImageIcon.class) {
+                    fail("Ensure that LOGO_64 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (LOGO_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that LOGO_64 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field LOGO_64 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field LOGO_128 = Constants.class.getDeclaredField("LOGO_128");
+                if (LOGO_128.getType() != ImageIcon.class) {
+                    fail("Ensure that LOGO_128 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (LOGO_128.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that LOGO_128 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field LOGO_128 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field LOGO_256 = Constants.class.getDeclaredField("LOGO_256");
+                if (LOGO_256.getType() != ImageIcon.class) {
+                    fail("Ensure that LOGO_256 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (LOGO_256.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that LOGO_256 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field LOGO_256 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field LOGO_512 = Constants.class.getDeclaredField("LOGO_512");
+                if (LOGO_512.getType() != ImageIcon.class) {
+                    fail("Ensure that LOGO_512 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (LOGO_512.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that LOGO_512 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field LOGO_512 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field ERROR_64 = Constants.class.getDeclaredField("ERROR_64");
+                if (ERROR_64.getType() != ImageIcon.class) {
+                    fail("Ensure that ERROR_64 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (ERROR_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that ERROR_64 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field ERROR_64 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field USER_100 = Constants.class.getDeclaredField("USER_100");
+                if (USER_100.getType() != ImageIcon.class) {
+                    fail("Ensure that USER_100 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (USER_100.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that USER_100 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field USER_100 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field SUCCESS_64 = Constants.class.getDeclaredField("SUCCESS_64");
+                if (SUCCESS_64.getType() != ImageIcon.class) {
+                    fail("Ensure that SUCCESS_64 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (SUCCESS_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that SUCCESS_64 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field SUCCESS_64 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field SETTINGS_48 = Constants.class.getDeclaredField("SETTINGS_48");
+                if (SETTINGS_48.getType() != ImageIcon.class) {
+                    fail("Ensure that SETTINGS_48 in class Constants is of type ImageIcon.");
+                    return;
+                }
+                if (SETTINGS_48.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that SETTINGS_48 in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field SETTINGS_48 in class Constants " +
+                        "that is of type ImageIcon and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field HEADER_BACKGROUND_COLOR = Constants.class.getDeclaredField("HEADER_BACKGROUND_COLOR");
+                if (HEADER_BACKGROUND_COLOR.getType() != Color.class) {
+                    fail("Ensure that HEADER_BACKGROUND_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (HEADER_BACKGROUND_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BACKGROUND_COLOR in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field HEADER_BACKGROUND_COLOR in class Constants " +
+                        "that is of type Color and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field HEADER_BORDER_COLOR = Constants.class.getDeclaredField("HEADER_BORDER_COLOR");
+                if (HEADER_BORDER_COLOR.getType() != Color.class) {
+                    fail("Ensure that HEADER_BORDER_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (HEADER_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field HEADER_BORDER_COLOR in class Constants " +
+                        "that is of type Color and is private, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field BACKGROUND_COLOR = Constants.class.getDeclaredField("BACKGROUND_COLOR");
+                if (BACKGROUND_COLOR.getType() != Color.class) {
+                    fail("Ensure that BACKGROUND_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (BACKGROUND_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that BACKGROUND_COLOR in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field BACKGROUND_COLOR in class Constants " +
+                        "that is of type Color and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field BUTTON_BORDER_COLOR = Constants.class.getDeclaredField("BUTTON_BORDER_COLOR");
+                if (BUTTON_BORDER_COLOR.getType() != Color.class) {
+                    fail("Ensure that BUTTON_BORDER_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (BUTTON_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that BUTTON_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field BUTTON_BORDER_COLOR in class Constants " +
+                        "that is of type Color and is private, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field NAVIGATION_BORDER_COLOR = Constants.class.getDeclaredField("NAVIGATION_BORDER_COLOR");
+                if (NAVIGATION_BORDER_COLOR.getType() != Color.class) {
+                    fail("Ensure that NAVIGATION_BORDER_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (NAVIGATION_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that NAVIGATION_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field NAVIGATION_BORDER_COLOR in class Constants " +
+                        "that is of type Color and is private, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field GRAY_COLOR = Constants.class.getDeclaredField("GRAY_COLOR");
+                if (GRAY_COLOR.getType() != Color.class) {
+                    fail("Ensure that GRAY_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (GRAY_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that GRAY_COLOR in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field GRAY_COLOR in class Constants " +
+                        "that is of type Color and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field YELLOW_COLOR = Constants.class.getDeclaredField("YELLOW_COLOR");
+                if (YELLOW_COLOR.getType() != Color.class) {
+                    fail("Ensure that YELLOW_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (YELLOW_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that YELLOW_COLOR in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field YELLOW_COLOR in class Constants " +
+                        "that is of type Color and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field ERROR_COLOR = Constants.class.getDeclaredField("ERROR_COLOR");
+                if (ERROR_COLOR.getType() != Color.class) {
+                    fail("Ensure that ERROR_COLOR in class Constants is of type Color.");
+                    return;
+                }
+                if (ERROR_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that ERROR_COLOR in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field ERROR_COLOR in class Constants " +
+                        "that is of type Color and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field HEADER_BORDER = Constants.class.getDeclaredField("HEADER_BORDER");
+                if (HEADER_BORDER.getType() != Border.class) {
+                    fail("Ensure that HEADER_BORDER in class Constants is of type Border.");
+                    return;
+                }
+                if (HEADER_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BORDER in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field HEADER_BORDER in class Constants " +
+                        "that is of type Border and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field HEADER_BORDER = Constants.class.getDeclaredField("HEADER_BORDER");
+                if (HEADER_BORDER.getType() != Border.class) {
+                    fail("Ensure that HEADER_BORDER in class Constants is of type Border.");
+                    return;
+                }
+                if (HEADER_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BORDER in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field HEADER_BORDER in class Constants " +
+                        "that is of type Border and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field BUTTON_BORDER = Constants.class.getDeclaredField("BUTTON_BORDER");
+                if (BUTTON_BORDER.getType() != Border.class) {
+                    fail("Ensure that BUTTON_BORDER in class Constants is of type Border.");
+                    return;
+                }
+                if (BUTTON_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that BUTTON_BORDER in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field BUTTON_BORDER in class Constants " +
+                        "that is of type Border and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field NAVIGATION_BORDER = Constants.class.getDeclaredField("NAVIGATION_BORDER");
+                if (NAVIGATION_BORDER.getType() != Border.class) {
+                    fail("Ensure that NAVIGATION_BORDER in class Constants is of type Border.");
+                    return;
+                }
+                if (NAVIGATION_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that NAVIGATION_BORDER in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field NAVIGATION_BORDER in class Constants " +
+                        "that is of type Border and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field HEADER_FONT = Constants.class.getDeclaredField("HEADER_FONT");
+                if (HEADER_FONT.getType() != Font.class) {
+                    fail("Ensure that HEADER_FONT in class Constants is of type Font.");
+                    return;
+                }
+                if (HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_FONT in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field HEADER_FONT in class Constants " +
+                        "that is of type Font and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field SUB_HEADER_FONT = Constants.class.getDeclaredField("SUB_HEADER_FONT");
+                if (SUB_HEADER_FONT.getType() != Font.class) {
+                    fail("Ensure that SUB_HEADER_FONT in class Constants is of type Font.");
+                    return;
+                }
+                if (SUB_HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that SUB_HEADER_FONT in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field SUB_HEADER_FONT in class Constants " +
+                        "that is of type Font and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field SUB_SUB_HEADER_FONT = Constants.class.getDeclaredField("SUB_SUB_HEADER_FONT");
+                if (SUB_SUB_HEADER_FONT.getType() != Font.class) {
+                    fail("Ensure that SUB_SUB_HEADER_FONT in class Constants is of type Font.");
+                    return;
+                }
+                if (SUB_SUB_HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that SUB_SUB_HEADER_FONT in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field SUB_SUB_HEADER_FONT in class Constants " +
+                        "that is of type Font and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field MAIN_FONT = Constants.class.getDeclaredField("MAIN_FONT");
+                if (MAIN_FONT.getType() != Font.class) {
+                    fail("Ensure that MAIN_FONT in class Constants is of type Font.");
+                    return;
+                }
+                if (MAIN_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that MAIN_FONT in class Constants has modifiers public, static, and final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field MAIN_FONT in class Constants " +
+                        "that is of type Font and is public, static and final.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+
 
     }
 }

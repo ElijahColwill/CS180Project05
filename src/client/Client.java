@@ -324,14 +324,11 @@ public class Client extends JComponent implements Runnable, ActionListener {
     }
 
     /**
-     * Method that sets up and displays homeFrame with actionListeners.
+     * Method that displays homeFrame.
      * Testing:
-     * Verify that homeFrame is initialized with correct actionListeners.
+     * Verify that homeFrame is displayed properly.
      */
     private void showHomeFrame() {
-        //homeFrame = new gui.HomeFrame();
-        //homeFrame.signInButton.addActionListener(this);
-        //homeFrame.signUpButton.addActionListener(this);
         homeFrame.setVisible(true);
     }
 
@@ -341,9 +338,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
      * Verify that signUpFrame is initialized with correct actionListeners.
      */
     private void showSignUpFrame() {
-        //signUpFrame = new gui.SignUpFrame();
-        //signUpFrame.signUpButton.addActionListener(this);
-        //signUpFrame.backButton.addActionListener(this);
+        signUpFrame = new gui.SignUpFrame();
+        signUpFrame.signUpButton.addActionListener(this);
+        signUpFrame.backButton.addActionListener(this);
         signUpFrame.setVisible(true);
     }
 

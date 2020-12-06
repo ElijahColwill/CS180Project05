@@ -1442,8 +1442,8 @@ public class MainTests {
         @Test(timeout = 1000)
         public void clientClassSetupTest() {
             Field[] fields = Client.class.getDeclaredFields();
-            if (fields.length < 15) {
-                fail("Client class requires fifteen fields.");
+            if (fields.length < 17) {
+                fail("Client class requires seventeen fields.");
                 return;
             }
 
@@ -1640,6 +1640,42 @@ public class MainTests {
                 }
             } catch (NoSuchFieldException e) {
                 fail("Ensure that you have a field profileFrameRestricted in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field profileFrameRestricted = Client.class.getDeclaredField("profileFrameRestricted");
+                if (profileFrameRestricted.getType() != gui.ProfileFrameRestricted.class) {
+                    fail("Ensure that profileFrameRestricted in class Client is of type gui.ProfileFrameRestricted.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field profileFrameRestricted in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field errorFrame = Client.class.getDeclaredField("errorFrame");
+                if (errorFrame.getType() != gui.ErrorFrame.class) {
+                    fail("Ensure that errorFrame in class Client is of type gui.ErrorFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field errorFrame in class Client.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field successFrame = Client.class.getDeclaredField("successFrame");
+                if (successFrame.getType() != gui.SuccessFrame.class) {
+                    fail("Ensure that successFrame in class Client is of type gui.SuccessFrame.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field successFrame in class Client.");
                 e.printStackTrace();
                 return;
             }

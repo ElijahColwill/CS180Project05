@@ -24,21 +24,14 @@ public class Server {
 
             Socket socket = null;
 
-            try {
+            socket = serverSocket.accept();
 
-                socket = serverSocket.accept();
+            PrintWriter writer = new PrintWriter(socket.getOutputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-                PrintWriter writer = new PrintWriter(socket.getOutputStream());
-                BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            Thread t = new ClientHandler(socket, reader, writer);
 
-                Thread t = new ClientHandler(socket, reader, writer);
-
-                t.start();
-
-            } catch (Exception e) {
-                socket.close();
-                e.printStackTrace();
-            }
+            t.start();
 
         }
 

@@ -216,7 +216,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             if (signUpResponse.equals("Error")) {
                 showErrorFrame("Error");
             } else if (signUpResponse.equals("Success")) {
-
+                showSuccessFrame("Changed Successfully");
             }
         }
         if (buttonPressed == editProfileFrame.deleteAccountButton) {
@@ -226,6 +226,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
                 showErrorFrame("Error");
             } else if (deleteAccountResponse.equals("Success")) {
                 showHomeFrame();
+                showSuccessFrame("Account Deleted");
                 editProfileFrame.dispose();
             }
         }
@@ -253,6 +254,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             sendMessage(String.format("Accept request\n%s\n%s", currentUsername, temp));
             String response = receiveMessage();
             if (response.equals("Success")) {
+                showSuccessFrame("Accepted Successfully");
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {
@@ -263,6 +265,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             sendMessage(String.format("Deny request\n%s\n%s", currentUsername, temp));
             String response = receiveMessage();
             if (response.equals("Success")) {
+                showSuccessFrame("Denied Successfully");
                 incomingFriendRequestsFrame.dispose();
                 showIncomingFriendRequestFrame(currentUsername);
             } else {

@@ -44,6 +44,12 @@ public final class HomeFrame extends JFrame {
 
     /**
      * Constructor that creates the home frame.
+     * Testing:
+     * Verify that window has correct title Social | Welcome
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with exit button.
+     * Verify that content area has Sign In and Sign Up titles with divider and descriptions
+     * Verify that Username and Password fields take input, are present, and have correct text next to them.
+     * Verify actionListeners in dependant classes exist for buttons.
      */
     public HomeFrame() {
         super("Social | Welcome");

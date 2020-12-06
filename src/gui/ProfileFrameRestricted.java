@@ -45,7 +45,13 @@ public final class ProfileFrameRestricted extends JFrame {
 
     /**
      * Constructor that creates a frame for a user's profile (restricted).
-     *
+     * Testing:
+     * Verify that window has correct title Social | Profile
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that profile name, username, and Profile Icon are present with correct text.
+     * Verify that below profile information is area for Location/Bio/Interests with correct text for the User.
+     * Verify that in bottom of content area View Friends button exists with correct text.
+     * Verify actionListeners in dependant classes exist for buttons.
      * @param fullName the full name of the user.
      * @param username the username of the user.
      * @param location the location of the user.

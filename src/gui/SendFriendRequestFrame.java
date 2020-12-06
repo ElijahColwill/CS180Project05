@@ -34,7 +34,13 @@ public final class SendFriendRequestFrame extends JFrame {
 
     /**
      * Constructor that creates a frame to select users to add as friends.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Send Friend Request
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that Send Friend Request title is centered, in Content area, and with correct text and description underneath.
+     * Verify that Drop down box is present and functional with correct options when testing overall project.
+     * Verify that Send Request button is present with correct text in correct location in content area.
+     * Verify actionListeners in dependant classes exist for buttons.
      * @param users the list of all available users to send friend requests to.
      */
     public SendFriendRequestFrame(String[] users) {

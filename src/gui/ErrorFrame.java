@@ -29,7 +29,12 @@ public final class ErrorFrame extends JFrame {
 
     /**
      * Constructor that creates an error frame, letting the user know an error occurred.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Error
+     * Verify that a Frame is created that contains correct layout.
+     * Verify that Frame contains Error Icon, Label, and the correct message when testing overall project.
+     * Verify that close button is present and in correct location.
+     * Verify actionListeners in dependant classes exist for buttons.
      * @param message the error message that is displayed on the frame.
      */
     public ErrorFrame(String message) {

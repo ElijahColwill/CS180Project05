@@ -29,7 +29,12 @@ public final class SuccessFrame extends JFrame {
 
     /**
      * Constructor that creates a success frame, letting the user know their action succeeded.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Success
+     * Verify that a Frame is created that contains a title and content panel.
+     * Verify that correct Icon, message and Title are present for Success message.
+     * Verify that close button is present.
+     * Verify actionListeners in dependant classes exist for button.
      * @param message the error message that is displayed on the frame.
      */
     public SuccessFrame(String message) {

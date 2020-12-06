@@ -40,7 +40,13 @@ public final class IncomingFriendRequestsFrame extends JFrame {
 
     /**
      * Constructor that creates a frame for each incoming friend request.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Incoming Friend Requests
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that Incoming Friend Requests title and text is present in content area.
+     * Verify that Friend Request is present with profile icon, Name and user name
+     * Verify that Accept and Deny Request buttons are present with correct text.
+     * Verify actionListeners in dependant classes exist for buttons.
      * @param fullName the full name of the user that requested you as a friend.
      * @param username the username of the user that requested you as a friend.
      */

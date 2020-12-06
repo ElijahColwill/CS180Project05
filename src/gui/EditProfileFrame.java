@@ -56,7 +56,12 @@ public final class EditProfileFrame extends JFrame {
 
     /**
      * Constructor that creates a frame that allows the user to edit their profile.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Edit Profile
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that Frame contains correct text and all buttons/text fields.
+     * Verify actionListeners in dependant classes exist for buttons.
+     * Verify that all text fields take input and have correct text next to them
      * @param fullName the full name of the user editing the profile.
      * @param username the username of the user editing the profile.
      * @param email the email of the user editing the profile.
@@ -174,8 +179,7 @@ public final class EditProfileFrame extends JFrame {
         SwingUtils.addComponent(interestsPanel, interestsField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
 
         SwingUtils.addComponent(editProfilePanel, editProfileLabel, 0, 0, 1, 1, GridBagConstraints.PAGE_END);
-        SwingUtils.addComponent(editProfilePanel, editProfileDescriptionLabel, 0, 1,
-                1, 1, GridBagConstraints.PAGE_START);
+        SwingUtils.addComponent(editProfilePanel, editProfileDescriptionLabel, 0, 1, 1, 1, GridBagConstraints.PAGE_START);
         SwingUtils.addComponent(editProfilePanel, namePanel, 0, 2, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(editProfilePanel, usernamePanel, 0, 3, 1, 1, GridBagConstraints.CENTER);
         SwingUtils.addComponent(editProfilePanel, emailPanel, 0, 4, 1, 1, GridBagConstraints.CENTER);
@@ -199,7 +203,8 @@ public final class EditProfileFrame extends JFrame {
 
     /**
      * Pre-fills all the text fields with existing information about the user.
-     *
+     * Testing:
+     * Verify that fields are preset with information from User when testing overall project.
      * @param name the full name of the user editing the profile.
      * @param username the username of the user editing the profile.
      * @param email the email of the user editing the profile.

@@ -6220,10 +6220,10 @@ public class MainTests {
 
         }
 
-        @Test(timeout = 1000)
+        @Test
         public void clientHandlerClassImplementationTest() {
             try {
-                ClientHandler testClientHandler = new ClientHandler(new Socket(), new BufferedReader(new FileReader("testFileClient.txt")), new PrintWriter("testFileClientOutput.txt"));
+                ClientHandler testClientHandler = new ClientHandler(new Socket("localhost", 2400), new BufferedReader(new FileReader("testFileClient.txt")), new PrintWriter("testFileClientOutput.txt"));
 
                 testClientHandler.readUsersList();
 

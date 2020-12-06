@@ -33,7 +33,13 @@ public final class FriendsListFrame extends JFrame {
 
     /**
      * Constructor that creates a frame that allows the user to see all their friends.
-     *
+     * Testing:
+     * Verify that window has correct title Social | Friends List
+     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that view profile button is present for users.
+     * Verify that for friends, correct Names, Usernames, and Profile Icon is present.
+     * Verify that Correct title and description are present at top of content area.
+     * Verify actionListeners in dependant classes exist for buttons.
      * @param names the names of all the user's friends.
      * @param usernames the usernames of all the user's friends.
      */

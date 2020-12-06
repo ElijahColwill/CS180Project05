@@ -31,6 +31,7 @@ public final class Constants {
     public static final Color GRAY_COLOR = new Color(51, 51, 51);
     public static final Color YELLOW_COLOR = new Color(248, 207, 55);
     public static final Color ERROR_COLOR = new Color(202, 56, 57);
+    public static final Color SUCCESS_COLOR = new Color(80, 184, 72);
 
     public static final Border HEADER_BORDER = BorderFactory.createMatteBorder(0, 0, 1, 0, HEADER_BORDER_COLOR);
     public static final Border BUTTON_BORDER = BorderFactory.createMatteBorder(1, 0, 0, 0, BUTTON_BORDER_COLOR);

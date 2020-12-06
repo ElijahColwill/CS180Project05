@@ -65,8 +65,8 @@ public final class SuccessFrame extends JFrame {
 
         successIconLabel.setIcon(Constants.SUCCESS_64);
 
-        successTitleLabel.setForeground(Constants.ERROR_COLOR);
-        successMessageLabel.setForeground(Constants.ERROR_COLOR);
+        successTitleLabel.setForeground(Constants.SUCCESS_COLOR);
+        successMessageLabel.setForeground(Constants.SUCCESS_COLOR);
 
         SwingUtils.addComponent(titlePanel, successIconLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(titlePanel, successTitleLabel, 1, 0, 1, 1, GridBagConstraints.LINE_START);

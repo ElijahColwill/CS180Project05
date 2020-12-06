@@ -26,7 +26,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-
+/**
+ * Main testing class for entire project, implements JUnit tests to test
+ * Class declarations, Field and Method declarations, access modifiers, and
+ * return types/parameters when applicable.
+ *
+ * <p>Purdue University -- CS18000 -- Fall 2020 -- Project 05</p>
+ *
+ * @author Elijah Colwill
+ * @version December 06, 2020
+ */
 public class MainTests {
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(TestCase.class);
@@ -44,8 +53,8 @@ public class MainTests {
      *
      * <p>Purdue University -- CS18000 -- Fall 2020</p>
      *
-     * @author ecolwill
-     * @version December 01, 2020
+     * @author Elijah Colwill
+     * @version December 06, 2020
      */
 
     public static class TestCase {

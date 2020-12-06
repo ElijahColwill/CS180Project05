@@ -47,8 +47,8 @@ public final class IncomingFriendRequestsFrame extends JFrame {
      * Verify that Friend Request is present with profile icon, Name and user name
      * Verify that Accept and Deny Request buttons are present with correct text.
      * Verify actionListeners in dependant classes exist for buttons.
-     * @param fullName the full name of the user that requested you as a friend.
-     * @param username the username of the user that requested you as a friend.
+     * @param fullName String the full name of the user that requested you as a friend.
+     * @param username String the username of the user that requested you as a friend.
      */
     public IncomingFriendRequestsFrame(String fullName, String username) {
         super("Social | Incoming Friend Requests");

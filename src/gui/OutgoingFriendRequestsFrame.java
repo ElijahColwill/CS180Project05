@@ -41,14 +41,14 @@ public final class OutgoingFriendRequestsFrame extends JFrame {
     /**
      * Constructor that creates a frame for each outgoing friend request.
      * Testing:
-     * Verify that window has correct title Social | Incoming Friend Requests
+     * Verify that window has correct title Social | Outgoing Friend Requests
      * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
      * Verify that Outgoing Friend Requests title and text is present in content area.
      * Verify that Friend Request is present with profile icon, Name and user name
      * Verify that Cancel Request button is present with correct text.
      * Verify actionListeners in dependant classes exist for buttons.
-     * @param fullName the full name of the user that you requested as a friend.
-     * @param username the username of the user that you requested as a friend.
+     * @param fullName String the full name of the user that you requested as a friend.
+     * @param username String the username of the user that you requested as a friend.
      */
     public OutgoingFriendRequestsFrame(String fullName, String username) {
         super("Social | Outgoing Friend Requests");

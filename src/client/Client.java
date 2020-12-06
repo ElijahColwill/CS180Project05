@@ -377,7 +377,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
      * Method that sets up and displays editProfileFrame with actionListeners.
      * Testing:
      * Verify that editProfileFrame is initialized with correct actionListeners.
-     * Verify that correst user is being edited.
+     * Verify that correct user is being edited.
      * @param username String name of user being edited.
      */
     private void showEditProfileFrame(String username) {

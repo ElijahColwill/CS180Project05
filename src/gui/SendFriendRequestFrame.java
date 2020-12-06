@@ -41,7 +41,7 @@ public final class SendFriendRequestFrame extends JFrame {
      * Verify that Drop down box is present and functional with correct options when testing overall project.
      * Verify that Send Request button is present with correct text in correct location in content area.
      * Verify actionListeners in dependant classes exist for buttons.
-     * @param users the list of all available users to send friend requests to.
+     * @param users String[] the list of all available users to send friend requests to.
      */
     public SendFriendRequestFrame(String[] users) {
         super("Social | Send Friend Request");

@@ -55,11 +55,11 @@ public final class ProfileFrame extends JFrame {
      * Verify that below profile information is area for Location/Bio/Interests with correct text for the User.
      * Verify that in bottom of content area View Friends, Add Friend and View Request buttons exist with correct text.
      * Verify actionListeners in dependant classes exist for buttons.
-     * @param fullName the full name of the user.
-     * @param username the username of the user.
-     * @param location the location of the user.
-     * @param bio the biography of the user.
-     * @param interests the interests of the user.
+     * @param fullName String the full name of the user.
+     * @param username String the username of the user.
+     * @param location String the location of the user.
+     * @param bio String the biography of the user.
+     * @param interests String the interests of the user.
      */
     public ProfileFrame(String fullName, String username, String location, String bio, String interests) {
         super("Social | Profile");

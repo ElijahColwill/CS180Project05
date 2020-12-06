@@ -35,7 +35,7 @@ public final class SuccessFrame extends JFrame {
      * Verify that correct Icon, message and Title are present for Success message.
      * Verify that close button is present.
      * Verify actionListeners in dependant classes exist for button.
-     * @param message the error message that is displayed on the frame.
+     * @param message String the error message that is displayed on the frame.
      */
     public SuccessFrame(String message) {
         super("Social | Success");

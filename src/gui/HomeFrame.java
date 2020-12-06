@@ -40,7 +40,7 @@ public final class HomeFrame extends JFrame {
     public final JButton enterButton;
 
     public final JTextField usernameField;
-    public final JTextField passwordField;
+    public final JPasswordField passwordField;
 
     public HomeFrame() {
         super("Social | Welcome");
@@ -69,7 +69,7 @@ public final class HomeFrame extends JFrame {
         enterButton = new JButton("Enter");
 
         usernameField = new JTextField(20);
-        passwordField = new JTextField(20);
+        passwordField = new JPasswordField(20);
 
         this.setSize(450, 475);
         this.setLocationRelativeTo(null);

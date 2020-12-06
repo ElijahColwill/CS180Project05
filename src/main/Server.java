@@ -16,6 +16,12 @@ import java.net.*;
 
 public class Server {
 
+    /**
+     * Method that created all fields and initialized a ClientHandler thread for each user.
+     * Testing:
+     * Verify that when testing overall project, Server creates a thread for ClientHandler operations.
+     * @param args String[] Default parameter for main method.
+     */
     public static void main(String[] args) throws IOException {
 
         ServerSocket serverSocket = new ServerSocket(2400);

@@ -76,7 +76,5 @@ public final class SuccessFrame extends JFrame {
 
         frameContainer.add(titlePanel, BorderLayout.NORTH);
         frameContainer.add(contentPanel, BorderLayout.CENTER);
-
-        this.setVisible(true);
     }
 }

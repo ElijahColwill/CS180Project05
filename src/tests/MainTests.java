@@ -20,6 +20,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -5939,6 +5940,278 @@ public class MainTests {
                 }
             } catch (NoSuchMethodException e) {
                 fail("Ensure that you have a constructor that takes no parameters and is public in class ViewRequestsFrame.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1_000)
+        public void serverClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = Server.class;
+            className = "Server";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void serverClassSetupTest() {
+            Field[] fields = Server.class.getDeclaredFields();
+            if (fields.length > 0) {
+                fail("Server class should have no fields.");
+                return;
+            }
+
+            try {
+                Method main = Server.class.getDeclaredMethod("main", String[].class);
+                if (main.getModifiers() != Modifier.PUBLIC + Modifier.STATIC) {
+                    fail("Ensure that your method main in class Server is public and static.");
+                    return;
+                }
+                if (!main.getReturnType().equals(void.class)) {
+                    fail("Ensure that your main method in class Server returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the main method that is public and static and returns void in Server.");
+                e.printStackTrace();
+                return;
+            }
+
+        }
+
+        @Test(timeout = 1_000)
+        public void clientHandlerClassDeclarationTest() {
+            Class<?> clazz;
+            String className;
+            int modifiers;
+            Class<?> superclass;
+            Class<?>[] superinterfaces;
+
+            clazz = ClientHandler.class;
+            className = "ClientHandler";
+
+            modifiers = clazz.getModifiers();
+            superclass = clazz.getSuperclass();
+            superinterfaces = clazz.getInterfaces();
+
+            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `"+ className +"` extends Thread.", Thread.class, superclass);
+            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+        }
+
+        @Test(timeout = 1000)
+        public void clientHandlerClassSetupTest() {
+            Field[] fields = ClientHandler.class.getDeclaredFields();
+            if (fields.length < 5) {
+                fail("ClientHandler class requires five fields.");
+                return;
+            }
+
+            try {
+                Field s = ClientHandler.class.getDeclaredField("s");
+                if (s.getType() != Socket.class) {
+                    fail("Ensure that s in class ClientHandler is of type Socket.");
+                    return;
+                }
+                if (s.getModifiers() != (Modifier.FINAL)) {
+                    fail("Ensure that s in class ClientHandler has modifier final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field s in class Socket " +
+                        "that is of type Socket and is final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field reader = ClientHandler.class.getDeclaredField("reader");
+                if (reader.getType() != BufferedReader.class) {
+                    fail("Ensure that reader in class ClientHandler is of type BufferedReader.");
+                    return;
+                }
+                if (reader.getModifiers() != (Modifier.FINAL)) {
+                    fail("Ensure that reader in class ClientHandler has modifier final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field reader in class ClientHandler " +
+                        "that is of type BufferedReader and is final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field writer = ClientHandler.class.getDeclaredField("writer");
+                if (writer.getType() != PrintWriter.class) {
+                    fail("Ensure that writer in class ClientHandler is of type PrintWriter.");
+                    return;
+                }
+                if (writer.getModifiers() != (Modifier.FINAL)) {
+                    fail("Ensure that writer in class ClientHandler has modifier final.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field writer in class ClientHandler " +
+                        "that is of type PrintWriter and is final.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field userList = ClientHandler.class.getDeclaredField("userList");
+                if (userList.getType() != ArrayList.class) {
+                    fail("Ensure that userList in class ClientHandler is of type ArrayList.");
+                    return;
+                }
+                if (userList.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC)) {
+                    fail("Ensure that userList in class ClientHandler has modifier private and static.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field userList in class ClientHandler " +
+                        "that is of type ArrayList and is private and static.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field profilesList = ClientHandler.class.getDeclaredField("profilesList");
+                if (profilesList.getType() != ArrayList.class) {
+                    fail("Ensure that profilesList in class ClientHandler is of type ArrayList.");
+                    return;
+                }
+                if (profilesList.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC)) {
+                    fail("Ensure that profilesList in class ClientHandler has modifier private and static.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field profilesList in class ClientHandler " +
+                        "that is of type ArrayList and is private and static.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Constructor<ClientHandler> constructor = ClientHandler.class.getDeclaredConstructor(Socket.class,
+                        BufferedReader.class, PrintWriter.class);
+                if (constructor.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your constructor in class ClientHandler is public.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have a constructor that takes 3 parameters and is public in class ClientHandler.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method run = ClientHandler.class.getDeclaredMethod("run");
+                if (run.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method run in class ClientHandler is public.");
+                    return;
+                }
+                if (!run.getReturnType().equals(void.class)) {
+                    fail("Ensure that your run method in class ClientHandler returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the run method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method readUsersList = ClientHandler.class.getDeclaredMethod("readUsersList");
+                if (readUsersList.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method readUsersList in class ClientHandler is public.");
+                    return;
+                }
+                if (!readUsersList.getReturnType().equals(ArrayList.class)) {
+                    fail("Ensure that your readUsersList method in class ClientHandler returns ArrayList.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the readUsersList method that is public and returns ArrayList.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method messageToClient = ClientHandler.class.getDeclaredMethod("messageToClient", String.class);
+                if (messageToClient.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method messageToClient in class ClientHandler is public.");
+                    return;
+                }
+                if (!messageToClient.getReturnType().equals(void.class)) {
+                    fail("Ensure that your messageToClient method in class ClientHandler returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the messageToClient method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method readFromProfileFile = ClientHandler.class.getDeclaredMethod("readFromProfileFile", String.class);
+                if (readFromProfileFile.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method readFromProfileFile in class ClientHandler is public.");
+                    return;
+                }
+                if (!readFromProfileFile.getReturnType().equals(Profile.class)) {
+                    fail("Ensure that your readFromProfileFile method in class ClientHandler returns Profile.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the readFromProfileFile method that is public and returns Profile.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method writeProfileToFile = ClientHandler.class.getDeclaredMethod("writeProfileToFile", String.class, Profile.class);
+                if (writeProfileToFile.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method writeProfileToFile in class ClientHandler is public.");
+                    return;
+                }
+                if (!writeProfileToFile.getReturnType().equals(void.class)) {
+                    fail("Ensure that your writeProfileToFile method in class ClientHandler returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the writeProfileToFile method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method initialiseFriendsList = ClientHandler.class.getDeclaredMethod("initialiseFriendsList", String[].class);
+                if (initialiseFriendsList.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method initialiseFriendsList in class ClientHandler is public.");
+                    return;
+                }
+                if (!initialiseFriendsList.getReturnType().equals(ArrayList.class)) {
+                    fail("Ensure that your initialiseFriendsList method in class ClientHandler returns ArrayList.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the initialiseFriendsList method that is public and returns ArrayList.");
                 e.printStackTrace();
                 return;
             }

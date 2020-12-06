@@ -136,6 +136,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
      * Verify that viewRequestsFrame.incomingRequestsButton sends correct message and initializes/disposes correct Frames.
      * Verify that viewRequestsFrame.outgoingRequestsButton sends correct message and initializes/disposes correct Frames.
      * Verify that viewRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+     * Verify that successFrame.closeButton disposes correct Frames.
+     * Verify that errorFrame.closeButton disposes correct Frames.
      * @param e ActionEvent from button pressed/drop down menu/etc.
      */
     @Override
@@ -503,12 +505,22 @@ public class Client extends JComponent implements Runnable, ActionListener {
         viewRequestsFrame.setVisible(true);
     }
 
+    /**
+     * Method that sets up and displays successFrame with actionListeners.
+     * Testing:
+     * Verify that successFrame is initialized with correct actionListeners.
+     */
     private void showSuccessFrame(String message) {
         successFrame = new gui.SuccessFrame(message);
         successFrame.closeButton.addActionListener(this);
         successFrame.setVisible(true);
     }
 
+    /**
+     * Method that sets up and displays errorFrame with actionListeners.
+     * Testing:
+     * Verify that errorFrame is initialized with correct actionListeners.
+     */
     private void showErrorFrame(String message) {
         errorFrame = new gui.ErrorFrame(message);
         errorFrame.closeButton.addActionListener(this);

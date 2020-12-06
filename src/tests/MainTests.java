@@ -3224,8 +3224,8 @@ public class MainTests {
 
             try {
                 Field passwordField = HomeFrame.class.getDeclaredField("passwordField");
-                if (passwordField.getType() != JTextField.class) {
-                    fail("Ensure that passwordField in class HomeFrame is of type JTextField.");
+                if (passwordField.getType() != JPasswordField.class) {
+                    fail("Ensure that passwordField in class HomeFrame is of type JPasswordField.");
                     return;
                 }
                 if (passwordField.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {

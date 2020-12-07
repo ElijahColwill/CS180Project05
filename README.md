@@ -379,6 +379,7 @@ The program was run with a TestServer initially and later the actual server to t
   - Verify that method connects to Server and GUI and is triggered when action is performed.
   - Verify that homeFrame.signInButton sends correct message and initializes/disposes correct Frames.
   - Verify that homeFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+  - Verify that homeFrame.exitButton disposes correct Frames.
   - Verify that signUpFrame.signUpButton sends correct message and initializes/disposes correct Frames.
   - Verify that signUpFrame.backButton sends correct message and initializes/disposes correct Frames.
   - Verify that profileFrame.editProfileButton sends correct message and initializes/disposes correct Frames.
@@ -404,6 +405,8 @@ The program was run with a TestServer initially and later the actual server to t
   - Verify that viewRequestsFrame.incomingRequestsButton sends correct message and initializes/disposes correct Frames.
   - Verify that viewRequestsFrame.outgoingRequestsButton sends correct message and initializes/disposes correct Frames.
   - Verify that viewRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
+  - Verify that successFrame.closeButton disposes correct Frames.
+  - Verify that errorFrame.closeButton disposes correct Frames.
 - showHomeFrame()
   - Verify that homeFrame is initialized with correct actionListeners.
 - showSignUpFrame()

@@ -218,6 +218,7 @@ public class User {
                     }
                 }
                 friendList.add(user);
+                receivedRequests.get(i).getSender().getFriendList().add(receivedRequests.get(i).getRecipient());
                 receivedRequests.get(i).getSender().removeFriendRequest(receivedRequests.get(i).getRecipient());
                 return;
             }

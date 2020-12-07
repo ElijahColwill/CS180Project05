@@ -38,7 +38,7 @@ public class ClientHandler extends Thread {
 
             try {
 
-                userList = readUsersList();        //initialises the userList array using data from a file.
+                //userList = readUsersList();        //initialises the userList array using data from a file.
 
                 User newUser = null;
                 Profile newProfile = null;
@@ -224,28 +224,28 @@ public class ClientHandler extends Thread {
                     }
 
                     //incoming or outgoing friend request
-                    if (message.equalsIgnoreCase("Incoming friend request for user") ||
-                            message.equalsIgnoreCase("Outgoing friend request for user")) {
-
-                        String currentUsername = reader.readLine();
-                        boolean userExists = false;
-
-                        for (int i = 0; i < userList.size(); i++) {
-
-                            if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
-
-                                userExists = true;
-                                String userFullName = userList.get(i).getFullName();
-
-                                messageToClient(String.format("User exists\n%s\n%s", userFullName, currentUsername));
-                            }
-                        }
-
-                        if (!userExists) {          //if the user doesn't exist
-
-                            messageToClient("User does not exist");
-                        }
-                    }
+//                    if (message.equalsIgnoreCase("Incoming friend request for user") ||
+//                            message.equalsIgnoreCase("Outgoing friend request for user")) {
+//
+//                        String currentUsername = reader.readLine();
+//                        boolean userExists = false;
+//
+//                        for (int i = 0; i < userList.size(); i++) {
+//
+//                            if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
+//
+//                                userExists = true;
+//                                String userFullName = userList.get(i).getFullName();
+//
+//                                messageToClient(String.format("User exists\n%s\n%s", userFullName, currentUsername));
+//                            }
+//                        }
+//
+//                        if (!userExists) {          //if the user doesn't exist
+//
+//                            messageToClient("User does not exist");
+//                        }
+//                    }
 
                     //displaying all users
                     if (message.equalsIgnoreCase("Get all users")) {
@@ -301,6 +301,60 @@ public class ClientHandler extends Thread {
 
                     message = reader.readLine();
 
+                    if (message.equals("Send request")) {
+
+                        String sender = reader.readLine();
+                        String receiver = reader.readLine();
+
+                        System.out.println(sender);
+                        System.out.println(receiver);
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (sender.equals(userList.get(i).getUserName())) {
+                                for (int j = 0; j < userList.size(); j++) {
+                                    userList.get(i).sendFriendRequest(userList.get(j));
+                                    for (int k = 0; k < userList.get(i).getSentRequests().size(); k++) {
+                                        if (userList.get(i).getSentRequests().get(k).getRecipient().getUserName().equals(userList.get(j).getUserName())) {
+                                            userList.get(j).addReceivedRequest(userList.get(i).getSentRequests().get(k));
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (message.equals("Incoming friend request for user")) {
+
+                        String user = reader.readLine();
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (userList.get(i).getUserName().equals(user)) {
+                                ArrayList<FriendRequest> incomingRequests = userList.get(i).getReceivedRequests();
+                                messageToClient(incomingRequests.get(0).getSender().getUserName());
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (message.equals("Outgoing friend request for user")) {
+
+                        String user = reader.readLine();
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (userList.get(i).getUserName().equals(user)) {
+                                ArrayList<FriendRequest> outgoingRequests = userList.get(i).getSentRequests();
+                                messageToClient(outgoingRequests.get(0).getRecipient().getUserName());
+                                break;
+                            }
+                        }
+
+                    }
+
 
                 }
 
@@ -310,6 +364,8 @@ public class ClientHandler extends Thread {
 
             } catch (NumberFormatException nfe) {
                 nfe.getMessage();
+            } catch (FriendNotFoundException fnf) {
+                fnf.getMessage();
             }
         }
     }

@@ -84,7 +84,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         writer.println();
         writer.flush();
 
-        System.out.println("Sent: " + message);
+        //System.out.println("Sent: " + message);
     }
 
     /**
@@ -98,7 +98,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
     private String receiveMessage() {
         try {
             String message = reader.readLine();
-            System.out.println("Recieved: " + message);
+            //System.out.println("Recieved: " + message);
             return message;
         } catch (IOException ex) {
 
@@ -258,7 +258,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             friendsListFrame.dispose();
         }
         if (buttonPressed == friendsListFrame.viewProfileButton) {
-            System.out.println(getTemp());
+            //System.out.println(getTemp());
             showProfileFrame(getTemp(), true);
             friendsListFrame.dispose();
         }

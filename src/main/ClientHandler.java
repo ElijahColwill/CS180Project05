@@ -385,15 +385,15 @@ public class ClientHandler extends Thread {
                         String sender = reader.readLine();
                         String receiver = reader.readLine();
 
-                        System.out.println(sender);
-                        System.out.println(receiver);
+                        //System.out.println(sender);
+                        //System.out.println(receiver);
 
                         for (int i = 0; i < userList.size(); i++) {
                             if (sender.equals(userList.get(i).getUserName())) {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
-                                        System.out.println(userList.get(i));
-                                        System.out.println(userList.get(j));
+                                        //System.out.println(userList.get(i));
+                                        //System.out.println(userList.get(j));
                                         userList.get(i).removeFriendRequest(userList.get(j));
                                         outgoingCounter = 0;
                                         break;
@@ -448,13 +448,11 @@ public class ClientHandler extends Thread {
 
                     if (message.equals("Get temp")) {
 
-                        System.out.println("sad");
                         String user = reader.readLine();
-                        System.out.println(user);
 
                         for (int i = 0; i < userList.size(); i++) {
                             if (userList.get(i).getUserName().equals(user)) {
-                                System.out.println("sent: " + userList.get(i).getTemp());
+                                //System.out.println("sent: " + userList.get(i).getTemp());
                                 messageToClient(userList.get(i).getTemp());
                                 break;
                             }

@@ -111,6 +111,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
      * Verify that method connects to Server and GUI and is triggered when action is performed.
      * Verify that homeFrame.signInButton sends correct message and initializes/disposes correct Frames.
      * Verify that homeFrame.signUpButton sends correct message and initializes/disposes correct Frames.
+     * Verify that homeFrame.exitButton disposes correct Frames.
      * Verify that signUpFrame.signUpButton sends correct message and initializes/disposes correct Frames.
      * Verify that signUpFrame.backButton sends correct message and initializes/disposes correct Frames.
      * Verify that profileFrame.editProfileButton sends correct message and initializes/disposes correct Frames.

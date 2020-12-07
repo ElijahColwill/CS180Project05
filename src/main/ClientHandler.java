@@ -475,7 +475,7 @@ public class ClientHandler extends Thread {
                     }
 
                     message = reader.readLine();
-                    System.out.println(message);
+                    //System.out.println(message);
 
                 }
 

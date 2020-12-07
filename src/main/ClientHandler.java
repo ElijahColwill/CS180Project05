@@ -428,9 +428,7 @@ public class ClientHandler extends Thread {
                             if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
-                                        System.out.println("1");
                                         userList.get(i).acceptFriend(userList.get(j));
-                                        System.out.println("2");
                                         messageToClient("Success");
                                         break;
                                     }

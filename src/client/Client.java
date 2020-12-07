@@ -257,9 +257,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             incomingFriendRequestsFrame.dispose();
         }
         if (buttonPressed == incomingFriendRequestsFrame.acceptRequestButton) {
-            System.out.println(temp);
             sendMessage(String.format("Accept request\n%s\n%s", currentUsername, temp));
-            System.out.println(String.format("Accept request\n%s\n%s", currentUsername, temp));
             String response = receiveMessage();
             if (response.equals("Success")) {
                 showSuccessFrame("Accepted Successfully");

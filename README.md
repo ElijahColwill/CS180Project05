@@ -871,3 +871,45 @@ Testing:
   - Verify that View Friend Requests title is present and centered at top of content area, with correct description
   - Verify that Incoming Requests and Outgoing Requests buttons are present below description, centered, and with correct text.
   - Verify actionListeners in dependant classes exist for buttons.
+  
+### SwingUtils Class
+Description:  
+Utilities for Swing classes.
+
+Authors:  
+Henrik Berg
+
+Methods:  
+- addComponent()
+  - Method to add components in a GridBagLayout
+  - Parameters:
+    - panel the panel to add the component to.
+    - component the component to add.
+    - x the x coordinate of the component.
+    - y the y coordinate of the component.
+    - width the desired width of the component.
+    - height the desired height of the component.
+    - align the desired alignemnt of the component.
+
+Testing:  
+N/A (Asset class, addComponent was tested through GUI testing throughout project, testing would be redundant)
+
+### ImageUtils Class
+Description:  
+Utilities for images in Swing.
+
+Authors:  
+Henrik Berk 
+
+Methods:  
+- resizeImageIcon()
+  - Method to resize ImageIcons()
+  - Parameters:
+    - imageIcon the image icon to resize.
+    - width the desired width after resizing.
+    - height the desired height after resizing.
+  - Return:
+    - ImageIcon of resized image.
+
+Testing:  
+N/A (Asset class, resizeImageIcon was tested through GUI testing throughout project, testing would be redundant)

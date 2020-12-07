@@ -38,7 +38,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
     gui.ProfileFrame profileFrame = new gui.ProfileFrame("", "", "", "", "");
     gui.EditProfileFrame editProfileFrame = new gui.EditProfileFrame("", "", "", "", "", "");
 
-    gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted("", "", "", "","");
+    gui.ProfileFrameRestricted profileFrameRestricted = new gui.ProfileFrameRestricted("", "", "", "", "");
 
     gui.ErrorFrame errorFrame = new gui.ErrorFrame("");
     gui.SuccessFrame successFrame = new gui.SuccessFrame("");
@@ -101,7 +101,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             //System.out.println("Recieved: " + message);
             return message;
         } catch (IOException ex) {
-
+            ex.getMessage();
         }
         return "";
     }
@@ -148,17 +148,24 @@ public class Client extends JComponent implements Runnable, ActionListener {
      * Verify that friendsListFrame.backButton sends correct message and initializes/disposes correct Frames.
      * Verify that friendsListFrame.viewProfileButton sends correct message and initializes/disposes correct Frames.
      * Verify that incomingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
-     * Verify that incomingFriendRequestsFrame.acceptRequestButton sends correct message and initializes/disposes correct Frames.
-     * Verify that incomingFriendRequestsFrame.denyRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that incomingFriendRequestsFrame.acceptRequestButton sends correct message
+     * and initializes/disposes correct Frames.
+     * Verify that incomingFriendRequestsFrame.denyRequestButton sends correct message
+     * and initializes/disposes correct Frames.
      * Verify that outgoingFriendRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
      * Verify that outgoingFriendRequestsFrame.nextButton sends correct message and initializes/disposes correct Frames.
-     * Verify that outgoingFriendRequestsFrame.cancelRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that outgoingFriendRequestsFrame.cancelRequestButton sends correct message
+     * and initializes/disposes correct Frames.
      * Verify that sendFriendRequestFrame.backButton sends correct message and initializes/disposes correct Frames.
-     * Verify that sendFriendRequestFrame.sendRequestButton sends correct message and initializes/disposes correct Frames.
+     * Verify that sendFriendRequestFrame.sendRequestButton sends correct message
+     * and initializes/disposes correct Frames.
      * Verify that profileFrameRestricted.backButton sends correct message and initializes/disposes correct Frames.
-     * Verify that profileFrameRestricted.viewFriendsButton sends correct message and initializes/disposes correct Frames.
-     * Verify that viewRequestsFrame.incomingRequestsButton sends correct message and initializes/disposes correct Frames.
-     * Verify that viewRequestsFrame.outgoingRequestsButton sends correct message and initializes/disposes correct Frames.
+     * Verify that profileFrameRestricted.viewFriendsButton sends correct message
+     * and initializes/disposes correct Frames.
+     * Verify that viewRequestsFrame.incomingRequestsButton sends correct message
+     * and initializes/disposes correct Frames.
+     * Verify that viewRequestsFrame.outgoingRequestsButton sends correct message
+     * and initializes/disposes correct Frames.
      * Verify that viewRequestsFrame.backButton sends correct message and initializes/disposes correct Frames.
      * Verify that successFrame.closeButton disposes correct Frames.
      * Verify that errorFrame.closeButton disposes correct Frames.
@@ -411,7 +418,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
             profileFrame.signOutButton.addActionListener(this);
             profileFrame.setVisible(true);
         } else {
-            profileFrameRestricted = new gui.ProfileFrameRestricted(userName, userUsername, userLocation, userBio, userInterests);
+            profileFrameRestricted = new gui.ProfileFrameRestricted(userName, userUsername,
+                    userLocation, userBio, userInterests);
             profileFrameRestricted.backButton.addActionListener(this);
             profileFrameRestricted.viewFriendsButton.addActionListener(this);
             profileFrameRestricted.setVisible(true);
@@ -427,13 +435,14 @@ public class Client extends JComponent implements Runnable, ActionListener {
      */
     private void showEditProfileFrame(String username) {
         sendMessage(String.format("Information for user\n%s", username));
-        String userName= receiveMessage();
+        String userName = receiveMessage();
         String userUsername = receiveMessage();
         String userEmail = receiveMessage();
         String userLocation = receiveMessage();
         String userBio = receiveMessage();
         String userInterests = receiveMessage();
-        editProfileFrame = new gui.EditProfileFrame(userName, userUsername, userEmail, userLocation, userBio, userInterests);
+        editProfileFrame = new gui.EditProfileFrame(userName, userUsername, userEmail,
+                userLocation, userBio, userInterests);
         editProfileFrame.updateProfileButton.addActionListener(this);
         editProfileFrame.deleteAccountButton.addActionListener(this);
         editProfileFrame.backButton.addActionListener(this);
@@ -569,7 +578,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
     /**
      * Method that runs instance of Client and sets up all necessary GUI components and actionListeners.
      * Testing:
-     * Verify that when testing overall project for a variety of functions, the correct Frame is always called depending on user action.
+     * Verify that when testing overall project for a variety of functions,
+     * the correct Frame is always called depending on user action.
      * Verify all actionListeners are added to correct buttons and are working.
      */
     public void run() {

@@ -379,25 +379,6 @@ public class ClientHandler extends Thread {
                         }
 
                     }
-                    
-                    if (message.equals("Outgoing friend request for user")) {
-
-                        String user = reader.readLine();
-
-                        for (int i = 0; i < userList.size(); i++) {
-                            if (userList.get(i).getUserName().equals(user)) {
-                                ArrayList<FriendRequest> outgoingRequests = userList.get(i).getSentRequests();
-
-                                if (outgoingRequests.size() != 0) {
-                                    messageToClient(outgoingRequests.get(0).getRecipient().getUserName());
-                                    break;
-                                } else {
-                                    messageToClient("No friends");
-                                    break;
-                                }
-                            }
-                        }
-                    }
 
                     if (message.equals("Cancel request")) {
 

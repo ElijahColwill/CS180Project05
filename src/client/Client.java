@@ -161,6 +161,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
             showSignUpFrame();
             homeFrame.dispose();
         }
+        if (buttonPressed == homeFrame.exitButton) {
+            homeFrame.dispose();
+        }
 
         //Sign up
         if (buttonPressed == signUpFrame.signUpButton) {
@@ -542,6 +545,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         homeFrame.signInButton.addActionListener(this);
         homeFrame.signUpButton.addActionListener(this);
+        homeFrame.exitButton.addActionListener(this);
 
         profileFrame.editProfileButton.addActionListener(this);
         profileFrame.viewFriendsButton.addActionListener(this);

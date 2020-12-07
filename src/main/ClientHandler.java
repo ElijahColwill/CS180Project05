@@ -411,6 +411,7 @@ public class ClientHandler extends Thread {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
                                         userList.get(i).removeFriendRequest(userList.get(j));
+                                        outgoingCounter = 0;
                                         break;
                                     }
                                 }

@@ -113,7 +113,7 @@ public final class EditProfileFrame extends JFrame {
 
         this.setSize(450, 650);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
 
         presetFields(fullName, username, email, location, bio, interests);

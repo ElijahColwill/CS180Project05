@@ -78,7 +78,7 @@ public final class IncomingFriendRequestsFrame extends JFrame {
 
         this.setSize(600, 350);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
 
         headerLabel.setFont(Constants.HEADER_FONT);

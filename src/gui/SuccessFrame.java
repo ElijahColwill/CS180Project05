@@ -53,7 +53,7 @@ public final class SuccessFrame extends JFrame {
 
         this.setSize(300, 200);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
 
         successTitleLabel.setFont(Constants.HEADER_FONT);

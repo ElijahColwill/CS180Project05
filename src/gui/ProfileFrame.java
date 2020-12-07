@@ -96,7 +96,7 @@ public final class ProfileFrame extends JFrame {
 
         this.setSize(550, 550);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setResizable(false);
 
         headerLabel.setFont(Constants.HEADER_FONT);

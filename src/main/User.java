@@ -1,9 +1,6 @@
 package main;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 /**
  * A User class that creates a user based on sign up parameters and allows the creation and deletion

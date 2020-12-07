@@ -18,8 +18,8 @@ public class User {
 
     Profile profile = null;
 
-    private ArrayList<FriendRequest> sentRequests = new ArrayList<FriendRequest>();
-    private ArrayList<FriendRequest> receivedRequests = new ArrayList<FriendRequest>();
+    public ArrayList<FriendRequest> sentRequests = new ArrayList<FriendRequest>();
+    public ArrayList<FriendRequest> receivedRequests = new ArrayList<FriendRequest>();
 
     private ArrayList<User> friendList = new ArrayList<User>();
 

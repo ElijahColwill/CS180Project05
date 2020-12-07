@@ -38,7 +38,7 @@ public class ClientHandler extends Thread {
 
             try {
 
-                //userList = readUsersList();        //initialises the userList array using data from a file.
+                userList = readUsersList();        //initialises the userList array using data from a file.
 
                 User newUser = null;
                 Profile newProfile = null;
@@ -108,6 +108,8 @@ public class ClientHandler extends Thread {
                                     password.equalsIgnoreCase(userList.get(i).getPassword())) {
 
                                 invalidUsername = false;
+
+                                newUser = userList.get(i);
                             }
                         }
 
@@ -234,29 +236,56 @@ public class ClientHandler extends Thread {
                         messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));
                     }
 
-                    //incoming or outgoing friend request
-//                    if (message.equalsIgnoreCase("Incoming friend request for user") ||
-//                            message.equalsIgnoreCase("Outgoing friend request for user")) {
-//
-//                        String currentUsername = reader.readLine();
-//                        boolean userExists = false;
-//
-//                        for (int i = 0; i < userList.size(); i++) {
-//
-//                            if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
-//
-//                                userExists = true;
-//                                String userFullName = userList.get(i).getFullName();
-//
-//                                messageToClient(String.format("User exists\n%s\n%s", userFullName, currentUsername));
-//                            }
-//                        }
-//
-//                        if (!userExists) {          //if the user doesn't exist
-//
-//                            messageToClient("User does not exist");
-//                        }
-//                    }
+                    //sending friend requests
+
+                    if (message.equalsIgnoreCase("Send request")) {
+
+                        String currentUsername = reader.readLine();         //current username
+                        String otherUser = reader.readLine();               //user to which the request is being sent
+
+                        User recipient = null;
+
+                        for (int i = 0; i < userList.size(); i++) {
+
+                            if (otherUser.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                                recipient = userList.get(i);
+                            }
+                        }
+
+                        FriendRequest friendRequest = new FriendRequest(newUser, recipient);    //creating a friend request
+
+                        writeRequestToFile(friendRequest);      //writes the friend request to a file
+
+                    }
+
+                    //incoming friend request
+                    if (message.equalsIgnoreCase("Incoming friend request for user")) {
+
+                        String currentUsername = reader.readLine();         //current username
+
+                        newUser.receivedRequests = readReceivedRequestsFromFile(currentUsername);    //gets an array list of friend requests
+
+                        String senderFullName = newUser.receivedRequests.get(0).getSender().getFullName();
+                        String senderUsername = newUser.receivedRequests.get(0).getSender().getUserName();
+
+                        messageToClient(String.format("User exists\n%s\n%s", senderFullName, senderUsername));
+
+                    }
+
+                    //outgoing friend request
+
+                    if (message.equalsIgnoreCase("Outgoing friend request for user")) {
+
+                        String currentUsername = reader.readLine();     //current username
+
+                        newUser.sentRequests = readSentRequestsFromFile(currentUsername);   //gets an arraylist of sent requests
+
+                        String senderFullName = newUser.sentRequests.get(0).getSender().getFullName();
+                        String senderUsername = newUser.sentRequests.get(0).getSender().getUserName();
+
+                        messageToClient(String.format("User exists\n%s\n%s", senderFullName, senderUsername));
+                    }
 
                     //displaying all users
                     if (message.equalsIgnoreCase("Get all users")) {
@@ -280,12 +309,12 @@ public class ClientHandler extends Thread {
 
                         User currentFriend = null;
 
-                        for (int i = 0; i < userList.size(); i++) {
+                        for (int i = 0; i < newUser.receivedRequests.size(); i++) {
 
-                            if (temp.equalsIgnoreCase(userList.get(i).getUserName())) {
+                            if (temp.equalsIgnoreCase(newUser.receivedRequests.get(i).getSender().getUserName())) {
 
                                 userExists = true;
-                                currentFriend = userList.get(i);        //gets the friend user object
+                                currentFriend = newUser.receivedRequests.get(i).getSender();    //gets the friend user object
                             }
                         }
 
@@ -312,7 +341,6 @@ public class ClientHandler extends Thread {
 
                     message = reader.readLine();
 
-                    if (message.equals("Send request")) {
 
                         String sender = reader.readLine();
                         String receiver = reader.readLine();
@@ -387,8 +415,6 @@ public class ClientHandler extends Thread {
 
             } catch (NumberFormatException nfe) {
                 nfe.getMessage();
-            } catch (FriendNotFoundException fnf) {
-                fnf.getMessage();
             }
         }
     }
@@ -625,5 +651,156 @@ public class ClientHandler extends Thread {
         }
 
         return listOfFriends;
+    }
+
+    /**
+     * his method reads the outgoing requests sent by a user.
+     * @param username
+     * @return an array list of type FriendRequest
+     */
+    public ArrayList<FriendRequest> readSentRequestsFromFile(String username) {
+
+        ArrayList<FriendRequest> sentRequests = new ArrayList<FriendRequest>();
+
+        String home = System.getProperty("user.home");
+
+        try {
+
+            File outgoingRequestsFile = new File(home + File.separator + username + ".OutgoingRequests.txt");
+            FileReader fileReader = new FileReader(outgoingRequestsFile);
+            BufferedReader reader = new BufferedReader(fileReader);
+
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                String recipientString = line;       //gets recipient's username
+                User sender = null;                 //sender object
+                User recipient = null;
+
+                for (int i = 0; i < userList.size(); i++) {
+
+                    if (recipientString.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                        recipient = userList.get(i);       //assigning a user to recipient
+
+                    }
+
+                    if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                        sender = userList.get(i);     //assigning a user to sender
+                    }
+                }
+
+                FriendRequest friendRequest = new FriendRequest(sender, recipient);
+                sentRequests.add(friendRequest);        //adding the friend request to the array
+
+                line = reader.readLine();       //reads the next line
+            }
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
+        }
+
+        return sentRequests;
+    }
+
+    /**
+     * This method reads the incoming friend requests for a user.
+     * @param username
+     */
+    public ArrayList<FriendRequest> readReceivedRequestsFromFile(String username) {
+
+        ArrayList<FriendRequest> requestsReceived = new ArrayList<FriendRequest>();
+
+        String home = System.getProperty("user.home");
+
+        try {
+
+            File incomingRequestsFile = new File(home + File.separator + username + ".IncomingRequests.txt");
+            FileReader fileReader = new FileReader(incomingRequestsFile);
+            BufferedReader reader = new BufferedReader(fileReader);
+
+
+            String line = reader.readLine();
+
+            while (line != null) {
+
+                String senderString = line;       //gets sender's username
+                User sender = null;                 //sender object
+                User recipient = null;
+
+                for (int i = 0; i < userList.size(); i++) {
+
+                    if (senderString.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                        sender = userList.get(i);       //assigning a user to sender
+
+                    }
+
+                    if (username.equalsIgnoreCase(userList.get(i).getUserName())) {
+
+                        recipient = userList.get(i);     //assigning a user to recipient
+                    }
+                }
+
+                FriendRequest friendRequest = new FriendRequest(sender, recipient);
+                requestsReceived.add(friendRequest);        //adding the friend request to the array
+
+                line = reader.readLine();       //reads the next line
+            }
+
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        } catch (IOException ioe) {
+
+            ioe.getMessage();
+        }
+
+        return requestsReceived;
+
+    }
+
+    /**
+     * This method writes the friend requests to files.
+     * @param friendRequest
+     */
+    public void writeRequestToFile(FriendRequest friendRequest) {
+
+        User sender = friendRequest.getSender();
+        User recipient = friendRequest.getRecipient();
+
+        String home = System.getProperty("user.home");
+
+        try {
+
+            File outgoingRequestsFile = new File(home + File.separator + sender.getUserName() + ".OutgoingRequests.txt");
+            File incomingRequestsFile = new File(home + File.separator + recipient.getUserName() + ".IncomingRequests.txt");
+
+            FileOutputStream outgoingRequests = new FileOutputStream(outgoingRequestsFile, true);
+            FileOutputStream incomingRequests = new FileOutputStream(incomingRequestsFile, true);
+
+            PrintWriter outgoingWriter = new PrintWriter(outgoingRequests);
+            PrintWriter incomingWriter = new PrintWriter(incomingRequests);
+
+            outgoingWriter.println(recipient.getUserName());
+            outgoingWriter.flush();
+
+            incomingWriter.println(sender.getUserName());
+            incomingWriter.flush();
+
+        } catch (FileNotFoundException fne) {
+
+            fne.getMessage();
+
+        }
     }
 }

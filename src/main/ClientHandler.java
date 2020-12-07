@@ -378,6 +378,81 @@ public class ClientHandler extends Thread {
                         }
 
                     }
+                    
+                    if (message.equals("Outgoing friend request for user")) {
+
+                        String user = reader.readLine();
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (userList.get(i).getUserName().equals(user)) {
+                                ArrayList<FriendRequest> outgoingRequests = userList.get(i).getSentRequests();
+
+                                if (outgoingRequests.size() != 0) {
+                                    messageToClient(outgoingRequests.get(0).getRecipient().getUserName());
+                                    break;
+                                } else {
+                                    messageToClient("No friends");
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (message.equals("Cancel request")) {
+
+                            String sender = reader.readLine();
+                            String receiver = reader.readLine();
+
+                            for (int i = 0; i < userList.size(); i++) {
+                                if (sender.equals(userList.get(i).getUserName())) {
+                                    for (int j = 0; j < userList.size(); j++) {
+                                        if (receiver.equals(userList.get(j).getUserName())) {
+                                            userList.get(i).removeFriendRequest(userList.get(j));
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+
+                        }
+
+                        if (message.equalsIgnoreCase("Accept request")) {
+
+                            String sender = reader.readLine();
+                            String receiver = reader.readLine();        //temp is the other user
+
+                            for (int i = 0; i < userList.size(); i++) {
+                                if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
+                                    for (int j = 0; j < userList.size(); j++) {
+                                        if (receiver.equals(userList.get(j).getUserName())) {
+                                            userList.get(i).acceptFriend(userList.get(j));
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+
+                        }
+
+                        if (message.equalsIgnoreCase("Deny request")) {
+
+                            String sender = reader.readLine();
+                            String receiver = reader.readLine();        //temp is the other user
+
+                            for (int i = 0; i < userList.size(); i++) {
+                                if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
+                                    for (int j = 0; j < userList.size(); j++) {
+                                        if (receiver.equals(userList.get(j).getUserName())) {
+                                            userList.get(i).denyFriend(userList.get(j));
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+
+                        }
 
 
                 }

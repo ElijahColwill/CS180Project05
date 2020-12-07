@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+
 /**
  * A Client class that handles the User connecting to the network and interacting
  * with the Server.
@@ -490,7 +492,17 @@ public class Client extends JComponent implements Runnable, ActionListener {
     private void showSendFriendRequestFrame(String username) {
         sendMessage(String.format("Get all users\n%s", username));
         String[] allUsers = receiveMessage().split(",");
-        sendFriendRequestFrame = new gui.SendFriendRequestFrame(allUsers);
+        ArrayList<String> users = new ArrayList<>();
+        for (int i = 0; i < allUsers.length; i++) {
+            if (!allUsers[i].equals(username)) {
+                users.add(allUsers[i]);
+            }
+        }
+        String[] finalUsers = new String[users.size()];
+        for (int i = 0; i < users.size(); i++) {
+            finalUsers[i] = users.get(i);
+        }
+        sendFriendRequestFrame = new gui.SendFriendRequestFrame(finalUsers);
         sendFriendRequestFrame.backButton.addActionListener(this);
         sendFriendRequestFrame.sendRequestButton.addActionListener(this);
         sendFriendRequestFrame.setVisible(true);

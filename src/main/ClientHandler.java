@@ -414,6 +414,7 @@ public class ClientHandler extends Thread {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
                                         userList.get(i).acceptFriend(userList.get(j));
+                                        userList.get(j).setTemp(userList.get(i).getUserName());
                                         messageToClient("Success");
                                         break;
                                     }
@@ -434,10 +435,41 @@ public class ClientHandler extends Thread {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
                                         userList.get(i).denyFriend(userList.get(j));
+                                        //userList.get(i).setTemp(userList.get(j).getUserName());
                                         messageToClient("Success");
                                         break;
                                     }
                                 }
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (message.equals("Get temp")) {
+
+                        System.out.println("sad");
+                        String user = reader.readLine();
+                        System.out.println(user);
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (userList.get(i).getUserName().equals(user)) {
+                                System.out.println("sent: " + userList.get(i).getTemp());
+                                messageToClient(userList.get(i).getTemp());
+                                break;
+                            }
+                        }
+
+                    }
+
+                    if (message.equals("Set temp")) {
+
+                        String user = reader.readLine();
+                        String temp = reader.readLine();
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (userList.get(i).getUserName().equals(user)) {
+                                userList.get(i).setTemp(temp);
                                 break;
                             }
                         }

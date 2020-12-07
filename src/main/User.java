@@ -16,6 +16,8 @@ public class User {
     private String userName;
     private String password;
 
+    private String temp;
+
     Profile profile = null;
 
     private ArrayList<FriendRequest> sentRequests = new ArrayList<FriendRequest>();
@@ -33,6 +35,14 @@ public class User {
         this.fullName = fullName;
         this.userName = userName;
         this.password = password;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp;
+    }
+
+    public String getTemp() {
+        return temp;
     }
 
     /**

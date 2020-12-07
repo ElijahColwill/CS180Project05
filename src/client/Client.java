@@ -24,7 +24,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
     BufferedReader reader;
 
     String currentUsername;
-    String temp;
+    //String temp;
 
     gui.HomeFrame homeFrame = new gui.HomeFrame();
     gui.SignUpFrame signUpFrame = new gui.SignUpFrame();
@@ -98,12 +98,21 @@ public class Client extends JComponent implements Runnable, ActionListener {
     private String receiveMessage() {
         try {
             String message = reader.readLine();
-            //System.out.println("Recieved: " + message);
+            System.out.println("Recieved: " + message);
             return message;
         } catch (IOException ex) {
 
         }
         return "";
+    }
+
+    private void setTemp(String temp) {
+        sendMessage(String.format("Set temp\n%s\n%s", currentUsername, temp));
+    }
+
+    private String getTemp() {
+        sendMessage(String.format("Get temp\n%s", currentUsername));
+        return receiveMessage();
     }
 
     /**
@@ -249,7 +258,8 @@ public class Client extends JComponent implements Runnable, ActionListener {
             friendsListFrame.dispose();
         }
         if (buttonPressed == friendsListFrame.viewProfileButton) {
-            showProfileFrame(temp, true);
+            System.out.println(getTemp());
+            showProfileFrame(getTemp(), true);
             friendsListFrame.dispose();
         }
 
@@ -259,6 +269,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             incomingFriendRequestsFrame.dispose();
         }
         if (buttonPressed == incomingFriendRequestsFrame.acceptRequestButton) {
+            String temp = getTemp();
             sendMessage(String.format("Accept request\n%s\n%s", currentUsername, temp));
             String response = receiveMessage();
             if (response.equals("Success")) {
@@ -270,7 +281,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             }
         }
         if (buttonPressed == incomingFriendRequestsFrame.denyRequestButton) {
-            sendMessage(String.format("Deny request\n%s\n%s", currentUsername, temp));
+            sendMessage(String.format("Deny request\n%s\n%s", currentUsername, getTemp()));
             String response = receiveMessage();
             if (response.equals("Success")) {
                 showSuccessFrame("Denied Successfully");
@@ -292,7 +303,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             showOutgoingFriendRequestFrame(currentUsername);
         }
         if (buttonPressed == outgoingFriendRequestsFrame.cancelRequestButton) {
-            sendMessage(String.format("Cancel request\n%s\n%s", currentUsername, temp));
+            sendMessage(String.format("Cancel request\n%s\n%s", currentUsername, getTemp()));
             outgoingFriendRequestsFrame.dispose();
             showViewRequestsFrame();
         }
@@ -313,7 +324,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             profileFrameRestricted.dispose();
         }
         if (buttonPressed == profileFrameRestricted.viewFriendsButton) {
-            showFriendsListFrame(currentUsername);
+            showFriendsListFrame(getTemp());
             profileFrameRestricted.dispose();
         }
 
@@ -449,7 +460,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         else {
             viewRequestsFrame.dispose();
             String incomingUsername = receiveMessage();
-            temp = incomingUsername;
+            setTemp(incomingUsername);
             incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(message, incomingUsername);
             incomingFriendRequestsFrame.backButton.addActionListener(this);
             incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
@@ -473,7 +484,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         else {
             viewRequestsFrame.dispose();
             String outgoingUsername = receiveMessage();
-            temp = outgoingUsername;
+            setTemp(outgoingUsername);
             outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(message, outgoingUsername);
             outgoingFriendRequestsFrame.backButton.addActionListener(this);
             outgoingFriendRequestsFrame.nextButton.addActionListener(this);

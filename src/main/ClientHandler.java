@@ -406,9 +406,11 @@ public class ClientHandler extends Thread {
 
                 //location, interests, phoneNum
 
-                if (reader.readLine() != null) {
+                String otherData = reader.readLine();
 
-                    String[] otherUserData = reader.readLine().split(",");
+                if (otherData != null) {
+
+                    String[] otherUserData = otherData.split(",");
 
                     if (otherUserData.length == 1) {
 
@@ -416,7 +418,7 @@ public class ClientHandler extends Thread {
 
                         profile = new Profile(owner, bio, email, listOfFriends, location);
 
-                    } else if (otherUserData.length == 2) {
+                    } else if (otherUserData.length == 2 && !otherUserData[1].equalsIgnoreCase("")) {
 
                         String location = otherUserData[0];
                         String interests = otherUserData[1];
@@ -425,11 +427,21 @@ public class ClientHandler extends Thread {
 
                     } else if (otherUserData.length == 3) {
 
-                        String location = otherUserData[0];
-                        String interests = otherUserData[1];
-                        int phoneNum = Integer.parseInt(otherUserData[2]);
+                        if (otherUserData[2].equalsIgnoreCase("")) {
 
-                        profile = new Profile(owner, bio, email, listOfFriends, location, interests, phoneNum);
+                            String location = otherUserData[0];
+                            String interests = otherUserData[1];
+                            profile = new Profile(owner, bio, email, listOfFriends, location, interests);
+
+                        } else {
+
+                            String location = otherUserData[0];
+                            String interests = otherUserData[1];
+                            int phoneNum = Integer.parseInt(otherUserData[2]);
+
+                            profile = new Profile(owner, bio, email, listOfFriends, location, interests, phoneNum);
+                        }
+
                     }
 
                 } else {
@@ -485,15 +497,15 @@ public class ClientHandler extends Thread {
 
             if (profile.getLocation() != null) {
 
-                printWriter.write(profile.getLocation() + ",");
+                printWriter.write(profile.getLocation());
 
                 if (profile.getInterests() != null) {
 
-                    printWriter.write(profile.getInterests() + ",");
+                    printWriter.write("," + profile.getInterests());
 
                     if (String.valueOf(profile.getPhoneNum()) != null) {
 
-                        printWriter.write(profile.getPhoneNum());
+                        printWriter.write("," + profile.getPhoneNum());
                     }
                 }
             }

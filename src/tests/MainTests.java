@@ -104,10 +104,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -385,7 +385,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the setFullName method that is public, takes 1 parameter of type String and returns void.");
+                fail("Ensure that you have the setFullName method that is public, takes 1 parameter " +
+                        "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -401,7 +402,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the setUserName method that is public, takes 1 parameter of type String and returns void.");
+                fail("Ensure that you have the setUserName method that is public, takes 1 parameter "
+                        + "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -417,7 +419,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the setPassword method that is public, takes 1 parameter of type String and returns void.");
+                fail("Ensure that you have the setPassword method that is public, takes 1 parameter "
+                        + "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -465,7 +468,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the writeUserToFile method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the writeUserToFile method that is public, takes 1 parameter " +
+                        "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -481,7 +485,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the sendFriendRequest method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the sendFriendRequest method that is public, takes 1 parameter " +
+                        "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -497,7 +502,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeFriendRequest method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the removeFriendRequest method that is public, takes 1 parameter "
+                        + "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -513,13 +519,15 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the addReceivedRequest method that is public, takes 1 parameter of type FriendRequest and returns void.");
+                fail("Ensure that you have the addReceivedRequest method that is public, takes 1 parameter " +
+                        "of type FriendRequest and returns void.");
                 e.printStackTrace();
                 return;
             }
 
             try {
-                Method removeReceivedRequest = User.class.getDeclaredMethod("removeReceivedRequest", FriendRequest.class);
+                Method removeReceivedRequest =
+                        User.class.getDeclaredMethod("removeReceivedRequest", FriendRequest.class);
                 if (removeReceivedRequest.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your method removeReceivedRequest in class User is public.");
                     return;
@@ -529,7 +537,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeReceivedRequest method that is public, takes 1 parameter of type FriendRequest and returns void.");
+                fail("Ensure that you have the removeReceivedRequest method that is public, takes 1 parameter " +
+                        "of type FriendRequest and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -545,7 +554,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the acceptFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the acceptFriend method that is public, takes 1 parameter " +
+                        "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -561,7 +571,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the denyFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the denyFriend method that is public, takes 1 parameter "
+                        + "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -577,7 +588,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the removeFriend method that is public, takes 1 parameter of type User and returns void.");
+                fail("Ensure that you have the removeFriend method that is public, takes 1 parameter " +
+                        "of type User and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -593,7 +605,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the createProfile method that is public, takes 2 parameters of type String and returns void.");
+                fail("Ensure that you have the createProfile method that is public, takes 2 parameters " +
+                        "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -610,7 +623,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the createProfile method that is public, takes 3 parameters of type String and returns void.");
+                fail("Ensure that you have the createProfile method that is public, takes 3 parameters " +
+                        "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -627,7 +641,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the createProfile method that is public, takes 4 parameters of type String and returns void.");
+                fail("Ensure that you have the createProfile method that is public, takes 4 parameters " +
+                        "of type String and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -643,7 +658,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the createProfile method that is public, takes 4 parameters of type String, " +
+                fail("Ensure that you have the createProfile method that is public, " +
+                        "takes 4 parameters of type String, " +
                         "1 parameter of type int and returns void.");
                 e.printStackTrace();
                 return;
@@ -672,21 +688,31 @@ public class MainTests {
             try {
                 User testUser = new User("fullName", "userName", "password");
                 ArrayList<FriendRequest> testEmpty = new ArrayList<FriendRequest>();
-                assertEquals("Make sure getFullName() returns the correct field.","fullName",testUser.getFullName());
-                assertEquals("Make sure getUserName() returns the correct field.","userName",testUser.getUserName());
-                assertEquals("Make sure getPassword() returns the correct field.","password",testUser.getPassword());
-                assertEquals("Make sure getProfile() returns the correct field.",null,testUser.getProfile());
-                assertEquals("Make sure getFriendList() returns the correct field.",testEmpty,testUser.getFriendList());
-                assertEquals("Make sure getSentRequests() returns the correct field.",testEmpty,testUser.getSentRequests());
-                assertEquals("Make sure getReceivedRequests() returns the correct field.",testEmpty,testUser.getReceivedRequests());
+                assertEquals("Make sure getFullName() returns the correct field.",
+                        "fullName", testUser.getFullName());
+                assertEquals("Make sure getUserName() returns the correct field.",
+                        "userName", testUser.getUserName());
+                assertEquals("Make sure getPassword() returns the correct field.",
+                        "password", testUser.getPassword());
+                assertEquals("Make sure getProfile() returns the correct field.",
+                        null, testUser.getProfile());
+                assertEquals("Make sure getFriendList() returns the correct field.",
+                        testEmpty, testUser.getFriendList());
+                assertEquals("Make sure getSentRequests() returns the correct field.",
+                        testEmpty, testUser.getSentRequests());
+                assertEquals("Make sure getReceivedRequests() returns the correct field.",
+                        testEmpty, testUser.getReceivedRequests());
 
                 testUser.setFullName("fullNameReset");
                 testUser.setUserName("userNameReset");
                 testUser.setPassword("passwordReset");
 
-                assertEquals("Make sure setFullName() sets the fullName variable.","fullNameReset",testUser.getFullName());
-                assertEquals("Make sure setUserName() sets the userName variable.","userNameReset",testUser.getUserName());
-                assertEquals("Make sure setPassword() sets the password variable.","passwordReset",testUser.getPassword());
+                assertEquals("Make sure setFullName() sets the fullName variable.",
+                        "fullNameReset", testUser.getFullName());
+                assertEquals("Make sure setUserName() sets the userName variable.",
+                        "userNameReset", testUser.getUserName());
+                assertEquals("Make sure setPassword() sets the password variable.",
+                        "passwordReset", testUser.getPassword());
 
                 testUser.writeUserToFile(testUser);
 
@@ -697,82 +723,97 @@ public class MainTests {
                 writer.close();
                 BufferedReader reader1 = new BufferedReader(new FileReader("testFile.txt"));
                 BufferedReader reader2 = new BufferedReader(new FileReader("userListFile.txt"));
-                assertEquals("Ensure file outputs correct information in writeUserToFile()", reader1.readLine(), reader2.readLine());
+                assertEquals("Ensure file outputs correct information in writeUserToFile()",
+                        reader1.readLine(), reader2.readLine());
 
                 User testFriendUser = new User("fullName2", "userName2", "password2");
                 testUser.sendFriendRequest(testFriendUser);
-                assertTrue("Ensure sent friend request is added to sender's sentRequests list.", testUser.getSentRequests().size() > 0);
-                boolean SFRthrown = false;
+                assertTrue("Ensure sent friend request is added to sender's sentRequests list.",
+                        testUser.getSentRequests().size() > 0);
+                boolean sFRthrown = false;
                 try {
                     testUser.sendFriendRequest(testFriendUser);
                 } catch (FriendNotFoundException e) {
-                    SFRthrown = true;
+                    sFRthrown = true;
                 }
-                assertTrue("Ensure sendFriendRequest() in User throws FriendNotFoundException if already sent.", SFRthrown);
+                assertTrue("Ensure sendFriendRequest() in User throws FriendNotFoundException if already sent.",
+                        sFRthrown);
 
                 testUser.removeFriendRequest(testFriendUser);
-                assertTrue("Ensure friend request is removed from sender's sentRequests list.", testUser.getSentRequests().size() == 0);
-                boolean RFRthrown = false;
+                assertTrue("Ensure friend request is removed from sender's sentRequests list.",
+                        testUser.getSentRequests().size() == 0);
+                boolean rFRthrown = false;
                 try {
                     testUser.removeFriendRequest(testFriendUser);
                 } catch (FriendNotFoundException e) {
-                    RFRthrown = true;
+                    rFRthrown = true;
                 }
-                assertTrue("Ensure removeFriendRequest() in User throws FriendNotFoundException if friend not found sent.", RFRthrown);
+                assertTrue("Ensure removeFriendRequest() in User throws FriendNotFoundException " +
+                        "if friend not found sent.", rFRthrown);
 
                 FriendRequest testFR = new FriendRequest(testUser, testFriendUser);
 
                 testUser.addReceivedRequest(testFR);
-                assertTrue("Ensure friend request is added to receivedRequests list.", testUser.getReceivedRequests().size() > 0);
-                boolean ARRthrown = false;
+                assertTrue("Ensure friend request is added to receivedRequests list.",
+                        testUser.getReceivedRequests().size() > 0);
+                boolean aRRthrown = false;
                 try {
                     testUser.addReceivedRequest(testFR);
                 } catch (FriendNotFoundException e) {
-                    ARRthrown = true;
+                    aRRthrown = true;
                 }
-                assertTrue("Ensure addReceivedRequest() in User throws FriendNotFoundException if request already received.", ARRthrown);
+                assertTrue("Ensure addReceivedRequest() in User throws FriendNotFoundException " +
+                        "if request already received.", aRRthrown);
 
                 testUser.removeReceivedRequest(testFR);
-                assertTrue("Ensure friend request is removed from receivedRequests list.", testUser.getReceivedRequests().size() == 0);
-                boolean RRRthrown = false;
+                assertTrue("Ensure friend request is removed from receivedRequests list.",
+                        testUser.getReceivedRequests().size() == 0);
+                boolean rRRthrown = false;
                 try {
                     testUser.removeReceivedRequest(testFR);
                 } catch (FriendNotFoundException e) {
-                    RRRthrown = true;
+                    rRRthrown = true;
                 }
-                assertTrue("Ensure removeReceivedRequest() in User throws FriendNotFoundException if request not found.", RRRthrown);
+                assertTrue("Ensure removeReceivedRequest() in User throws FriendNotFoundException "
+                        + "if request not found.", rRRthrown);
 
                 testFriendUser.sendFriendRequest(testUser);
                 testUser.acceptFriend(testFriendUser);
-                assertTrue("Ensure friend request is removed from receivedRequests list.", testUser.getFriendList().size() > 0);
-                boolean ARthrown = false;
+                assertTrue("Ensure friend request is removed from receivedRequests list.",
+                        testUser.getFriendList().size() > 0);
+                boolean aRthrown = false;
                 try {
                     testUser.acceptFriend(testUser);
                 } catch (FriendNotFoundException e) {
-                    ARthrown = true;
+                    aRthrown = true;
                 }
-                assertTrue("Ensure acceptFriend() in User throws FriendNotFoundException if request not found.", ARthrown);
+                assertTrue("Ensure acceptFriend() in User throws FriendNotFoundException if request not found.",
+                        aRthrown);
 
                 testFriendUser.sendFriendRequest(testUser);
                 testUser.denyFriend(testFriendUser);
-                assertTrue("Ensure friend request is removed from receivedRequests list when denied.", testUser.getReceivedRequests().size() == 0);
-                boolean DRthrown = false;
+                assertTrue("Ensure friend request is removed from receivedRequests list when denied.",
+                        testUser.getReceivedRequests().size() == 0);
+                boolean dRthrown = false;
                 try {
                     testUser.denyFriend(testUser);
                 } catch (FriendNotFoundException e) {
-                    DRthrown = true;
+                    dRthrown = true;
                 }
-                assertTrue("Ensure denyFriend() in User throws FriendNotFoundException if request not found.", DRthrown);
+                assertTrue("Ensure denyFriend() in User throws FriendNotFoundException if request not found.",
+                        dRthrown);
 
                 testUser.removeFriend(testFriendUser);
-                assertTrue("Ensure friend is removed from friendList list when removed.", testUser.getFriendList().size() == 0);
-                boolean RFthrown = false;
+                assertTrue("Ensure friend is removed from friendList list when removed.",
+                        testUser.getFriendList().size() == 0);
+                boolean rFthrown = false;
                 try {
                     testUser.removeFriend(testUser);
                 } catch (FriendNotFoundException e) {
-                    RFthrown = true;
+                    rFthrown = true;
                 }
-                assertTrue("Ensure removeFriend() in User throws FriendNotFoundException if request not found.", RFthrown);
+                assertTrue("Ensure removeFriend() in User throws FriendNotFoundException if request not found.",
+                        rFthrown);
 
                 testUser.createProfile("bio", "email");
                 int counter = 0;
@@ -832,10 +873,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -1262,15 +1303,23 @@ public class MainTests {
         @Test(timeout = 1000)
         public void profileClassImplementationTest() {
             try {
-                Profile testProfile = new Profile("owner", "bio", "email", new ArrayList<User>(), "location", "interests", 999);
+                Profile testProfile =
+                        new Profile("owner", "bio", "email", new ArrayList<User>(), "location", "interests", 999);
                 ArrayList<User> testEmpty = new ArrayList<User>();
-                assertEquals("Make sure getBio() returns the correct field.","bio",testProfile.getBio());
-                assertEquals("Make sure getLocation() returns the correct field.","location",testProfile.getLocation());
-                assertEquals("Make sure getInterests() returns the correct field.","interests",testProfile.getInterests());
-                assertEquals("Make sure getPhoneNum() returns the correct field.",999,testProfile.getPhoneNum());
-                assertEquals("Make sure getEmail() returns the correct field.","email",testProfile.getEmail());
-                assertEquals("Make sure getOwner() returns the correct field.","owner",testProfile.getOwner());
-                assertEquals("Make sure getFriendList() returns the correct field.",testEmpty,testProfile.getFriendList());
+                assertEquals("Make sure getBio() returns the correct field.",
+                        "bio", testProfile.getBio());
+                assertEquals("Make sure getLocation() returns the correct field.",
+                        "location", testProfile.getLocation());
+                assertEquals("Make sure getInterests() returns the correct field.",
+                        "interests", testProfile.getInterests());
+                assertEquals("Make sure getPhoneNum() returns the correct field.",
+                        999, testProfile.getPhoneNum());
+                assertEquals("Make sure getEmail() returns the correct field.",
+                        "email", testProfile.getEmail());
+                assertEquals("Make sure getOwner() returns the correct field.",
+                        "owner", testProfile.getOwner());
+                assertEquals("Make sure getFriendList() returns the correct field.",
+                        testEmpty, testProfile.getFriendList());
 
                 testProfile.setBio("bioReset");
                 testProfile.setLocation("locationReset");
@@ -1281,11 +1330,16 @@ public class MainTests {
                 testProfile.setFriendList(testEmpty);
 
                 assertEquals("Make sure setBio() sets the bio variable in Profile.", "bioReset", testProfile.getBio());
-                assertEquals("Make sure setLocation() sets the location variable in Profile.", "locationReset", testProfile.getLocation());
-                assertEquals("Make sure setInterests() sets the interests variable in Profile.", "interestsReset", testProfile.getInterests());
-                assertEquals("Make sure setPhoneNum() sets the phoneNum variable in Profile.", 888, testProfile.getPhoneNum());
-                assertEquals("Make sure setEmail() sets the email variable in Profile.", "emailReset", testProfile.getEmail());
-                assertEquals("Make sure setFriendList() sets the friendList variable in Profile.", testEmpty, testProfile.getFriendList());
+                assertEquals("Make sure setLocation() sets the location variable in Profile.",
+                        "locationReset", testProfile.getLocation());
+                assertEquals("Make sure setInterests() sets the interests variable in Profile.",
+                        "interestsReset", testProfile.getInterests());
+                assertEquals("Make sure setPhoneNum() sets the phoneNum variable in Profile.",
+                        888, testProfile.getPhoneNum());
+                assertEquals("Make sure setEmail() sets the email variable in Profile.",
+                        "emailReset", testProfile.getEmail());
+                assertEquals("Make sure setFriendList() sets the friendList variable in Profile.",
+                        testEmpty, testProfile.getFriendList());
 
                 assertEquals("Owner: owner Bio: bioReset Email: emailReset", testProfile.profileString());
 
@@ -1310,10 +1364,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -1359,13 +1413,15 @@ public class MainTests {
             }
 
             try {
-                Constructor<FriendRequest> constructor = FriendRequest.class.getDeclaredConstructor(User.class, User.class);
+                Constructor<FriendRequest> constructor =
+                        FriendRequest.class.getDeclaredConstructor(User.class, User.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class FriendRequest is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 2 parameters and is public in class FriendRequest.");
+                fail("Ensure that you have a constructor that takes 2 parameters " +
+                        "and is public in class FriendRequest.");
                 e.printStackTrace();
                 return;
             }
@@ -1407,10 +1463,13 @@ public class MainTests {
         @Test(timeout = 1000)
         public void friendRequestClassImplementationTest() {
             try {
-                FriendRequest testFriendRequest = new FriendRequest(new User("user1", "user1", "user1"), new User("user2", "user2", "user2"));
+                FriendRequest testFriendRequest = new FriendRequest(new User("user1", "user1", "user1"),
+                        new User("user2", "user2", "user2"));
                 ArrayList<User> testEmpty = new ArrayList<User>();
-                assertEquals("Make sure getSender() returns the correct field.","user1",testFriendRequest.getSender().getUserName());
-                assertEquals("Make sure getRecipient() returns the correct field.","user2",testFriendRequest.getRecipient().getUserName());
+                assertEquals("Make sure getSender() returns the correct field.",
+                        "user1", testFriendRequest.getSender().getUserName());
+                assertEquals("Make sure getRecipient() returns the correct field.", "user2",
+                        testFriendRequest.getRecipient().getUserName());
 
 
             } catch (Exception e) {
@@ -1434,34 +1493,38 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Exception.", Exception.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Exception.", Exception.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
         public void friendNotFoundExceptionClassSetupTest() {
             try {
-                Constructor<FriendNotFoundException> constructor = FriendNotFoundException.class.getDeclaredConstructor();
+                Constructor<FriendNotFoundException> constructor =
+                        FriendNotFoundException.class.getDeclaredConstructor();
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class FriendNotFoundException is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes no parameters and is public in class FriendNotFoundException.");
+                fail("Ensure that you have a constructor that takes no parameters " +
+                        "and is public in class FriendNotFoundException.");
                 e.printStackTrace();
                 return;
             }
 
             try {
-                Constructor<FriendNotFoundException> constructor = FriendNotFoundException.class.getDeclaredConstructor(String.class);
+                Constructor<FriendNotFoundException> constructor =
+                        FriendNotFoundException.class.getDeclaredConstructor(String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class FriendNotFoundException is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes a message parameter and is public in class FriendNotFoundException.");
+                fail("Ensure that you have a constructor that takes a message parameter " +
+                        "and is public in class FriendNotFoundException.");
                 e.printStackTrace();
                 return;
             }
@@ -1482,10 +1545,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JComponent.", JComponent.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements 2 interfaces.", 2, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JComponent.", JComponent.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements 2 interfaces.", 2, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -1600,7 +1663,8 @@ public class MainTests {
             try {
                 Field incomingFriendRequestsFrame = Client.class.getDeclaredField("incomingFriendRequestsFrame");
                 if (incomingFriendRequestsFrame.getType() != gui.IncomingFriendRequestsFrame.class) {
-                    fail("Ensure that incomingFriendRequestsFrame in class Client is of type gui.IncomingFriendRequestsFrame.");
+                    fail("Ensure that incomingFriendRequestsFrame in class " +
+                            "Client is of type gui.IncomingFriendRequestsFrame.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -1612,7 +1676,8 @@ public class MainTests {
             try {
                 Field outgoingFriendRequestsFrame = Client.class.getDeclaredField("outgoingFriendRequestsFrame");
                 if (outgoingFriendRequestsFrame.getType() != gui.OutgoingFriendRequestsFrame.class) {
-                    fail("Ensure that outgoingFriendRequestsFrame in class Client is of type gui.OutgoingFriendRequestsFrame.");
+                    fail("Ensure that outgoingFriendRequestsFrame in class " +
+                            "Client is of type gui.OutgoingFriendRequestsFrame.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -1826,7 +1891,8 @@ public class MainTests {
             }
 
             try {
-                Method showProfileFrame = Client.class.getDeclaredMethod("showProfileFrame", String.class, boolean.class);
+                Method showProfileFrame =
+                        Client.class.getDeclaredMethod("showProfileFrame", String.class, boolean.class);
                 if (showProfileFrame.getModifiers() != Modifier.PRIVATE) {
                     fail("Ensure that your method showProfileFrame in class Client is private.");
                     return;
@@ -1874,7 +1940,8 @@ public class MainTests {
             }
 
             try {
-                Method showIncomingFriendRequestFrame = Client.class.getDeclaredMethod("showIncomingFriendRequestFrame", String.class);
+                Method showIncomingFriendRequestFrame =
+                        Client.class.getDeclaredMethod("showIncomingFriendRequestFrame", String.class);
                 if (showIncomingFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
                     fail("Ensure that your method showIncomingFriendRequestFrame in class Client is private.");
                     return;
@@ -1884,13 +1951,15 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the showIncomingFriendRequestFrame method that is private and returns void.");
+                fail("Ensure that you have the showIncomingFriendRequestFrame method " +
+                        "that is private and returns void.");
                 e.printStackTrace();
                 return;
             }
 
             try {
-                Method showOutgoingFriendRequestFrame = Client.class.getDeclaredMethod("showOutgoingFriendRequestFrame", String.class);
+                Method showOutgoingFriendRequestFrame =
+                        Client.class.getDeclaredMethod("showOutgoingFriendRequestFrame", String.class);
                 if (showOutgoingFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
                     fail("Ensure that your method showOutgoingFriendRequestFrame in class Client is private.");
                     return;
@@ -1900,13 +1969,15 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have the showOutgoingFriendRequestFrame method that is private and returns void.");
+                fail("Ensure that you have the showOutgoingFriendRequestFrame method " +
+                        "that is private and returns void.");
                 e.printStackTrace();
                 return;
             }
 
             try {
-                Method showSendFriendRequestFrame = Client.class.getDeclaredMethod("showSendFriendRequestFrame", String.class);
+                Method showSendFriendRequestFrame =
+                        Client.class.getDeclaredMethod("showSendFriendRequestFrame", String.class);
                 if (showSendFriendRequestFrame.getModifiers() != Modifier.PRIVATE) {
                     fail("Ensure that your method showSendFriendRequestFrame in class Client is private.");
                     return;
@@ -2002,10 +2073,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -2272,13 +2343,15 @@ public class MainTests {
             }
 
             try {
-                Field editProfileDescriptionLabel = EditProfileFrame.class.getDeclaredField("editProfileDescriptionLabel");
+                Field editProfileDescriptionLabel =
+                        EditProfileFrame.class.getDeclaredField("editProfileDescriptionLabel");
                 if (editProfileDescriptionLabel.getType() != JLabel.class) {
                     fail("Ensure that editProfileDescriptionLabel in class EditProfileFrame is of type JLabel.");
                     return;
                 }
                 if (editProfileDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that editProfileDescriptionLabel in class EditProfileFrame has modifiers private and final.");
+                    fail("Ensure that editProfileDescriptionLabel in class EditProfileFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -2585,7 +2658,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 6 parameters and is public in class EditProfileFrame.");
+                fail("Ensure that you have a constructor that takes 6 parameters " +
+                        "and is public in class EditProfileFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -2624,10 +2698,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -2786,10 +2860,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -2920,13 +2994,15 @@ public class MainTests {
             }
 
             try {
-                Field friendsListDescriptionLabel = FriendsListFrame.class.getDeclaredField("friendsListDescriptionLabel");
+                Field friendsListDescriptionLabel =
+                        FriendsListFrame.class.getDeclaredField("friendsListDescriptionLabel");
                 if (friendsListDescriptionLabel.getType() != JLabel.class) {
                     fail("Ensure that friendsListDescriptionLabel in class FriendsListFrame is of type JLabel.");
                     return;
                 }
                 if (friendsListDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that friendsListDescriptionLabel in class FriendsListFrame has modifiers private and final.");
+                    fail("Ensure that friendsListDescriptionLabel in class FriendsListFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -2971,13 +3047,15 @@ public class MainTests {
             }
 
             try {
-                Constructor<FriendsListFrame> constructor = FriendsListFrame.class.getDeclaredConstructor(String[].class, String[].class);
+                Constructor<FriendsListFrame> constructor =
+                        FriendsListFrame.class.getDeclaredConstructor(String[].class, String[].class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class FriendsListFrame is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 2 parameters and is public in class FriendsListFrame.");
+                fail("Ensure that you have a constructor that takes 2 parameters " +
+                        "and is public in class FriendsListFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -2999,10 +3077,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -3382,10 +3460,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -3403,7 +3481,8 @@ public class MainTests {
                     return;
                 }
                 if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that frameContainer in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that frameContainer in class IncomingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3420,7 +3499,8 @@ public class MainTests {
                     return;
                 }
                 if (headerPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that headerPanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that headerPanel in class IncomingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3437,7 +3517,8 @@ public class MainTests {
                     return;
                 }
                 if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that contentPanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that contentPanel in class IncomingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3454,7 +3535,8 @@ public class MainTests {
                     return;
                 }
                 if (requestPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that requestPanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that requestPanel in class IncomingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3471,7 +3553,8 @@ public class MainTests {
                     return;
                 }
                 if (imagePanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that imagePanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that imagePanel in class IncomingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3505,7 +3588,8 @@ public class MainTests {
                     return;
                 }
                 if (buttonPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that buttonPanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that buttonPanel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3522,7 +3606,8 @@ public class MainTests {
                     return;
                 }
                 if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that navigationPanel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that navigationPanel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3556,7 +3641,8 @@ public class MainTests {
                     return;
                 }
                 if (headerLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that headerLabel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that headerLabel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3567,13 +3653,16 @@ public class MainTests {
             }
 
             try {
-                Field incomingFriendRequestsLabel = IncomingFriendRequestsFrame.class.getDeclaredField("incomingFriendRequestsLabel");
+                Field incomingFriendRequestsLabel =
+                        IncomingFriendRequestsFrame.class.getDeclaredField("incomingFriendRequestsLabel");
                 if (incomingFriendRequestsLabel.getType() != JLabel.class) {
-                    fail("Ensure that incomingFriendRequestsLabel in class IncomingFriendRequestsFrame is of type JLabel.");
+                    fail("Ensure that incomingFriendRequestsLabel in class IncomingFriendRequestsFrame "
+                            + "is of type JLabel.");
                     return;
                 }
                 if (incomingFriendRequestsLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that incomingFriendRequestsLabel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that incomingFriendRequestsLabel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3584,17 +3673,21 @@ public class MainTests {
             }
 
             try {
-                Field incomingFriendRequestsDescriptionLabel = IncomingFriendRequestsFrame.class.getDeclaredField("incomingFriendRequestsDescriptionLabel");
+                Field incomingFriendRequestsDescriptionLabel =
+                        IncomingFriendRequestsFrame.class.getDeclaredField("incomingFriendRequestsDescriptionLabel");
                 if (incomingFriendRequestsDescriptionLabel.getType() != JLabel.class) {
-                    fail("Ensure that incomingFriendRequestsDescriptionLabel in class IncomingFriendRequestsFrame is of type JLabel.");
+                    fail("Ensure that incomingFriendRequestsDescriptionLabel in class "
+                            + "IncomingFriendRequestsFrame is of type JLabel.");
                     return;
                 }
                 if (incomingFriendRequestsDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that incomingFriendRequestsDescriptionLabel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that incomingFriendRequestsDescriptionLabel "
+                            + "in class IncomingFriendRequestsFrame has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field incomingFriendRequestsDescriptionLabel in class IncomingFriendRequestsFrame " +
+                fail("Ensure that you have a field incomingFriendRequestsDescriptionLabel "
+                        + "in class IncomingFriendRequestsFrame " +
                         "that is of type JLabel and is private and final.");
                 e.printStackTrace();
                 return;
@@ -3607,7 +3700,8 @@ public class MainTests {
                     return;
                 }
                 if (imageLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that imageLabel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that imageLabel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3641,7 +3735,8 @@ public class MainTests {
                     return;
                 }
                 if (usernameLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that usernameLabel in class IncomingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that usernameLabel in class IncomingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3658,7 +3753,8 @@ public class MainTests {
                     return;
                 }
                 if (acceptRequestButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that acceptRequestButton in class IncomingFriendRequestsFrame has modifiers public and final.");
+                    fail("Ensure that acceptRequestButton in class IncomingFriendRequestsFrame "
+                            + "has modifiers public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3675,7 +3771,8 @@ public class MainTests {
                     return;
                 }
                 if (denyRequestButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that denyRequestButton in class IncomingFriendRequestsFrame has modifiers public and final.");
+                    fail("Ensure that denyRequestButton in class IncomingFriendRequestsFrame "
+                            + "has modifiers public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3703,13 +3800,15 @@ public class MainTests {
             }
 
             try {
-                Constructor<IncomingFriendRequestsFrame> constructor = IncomingFriendRequestsFrame.class.getDeclaredConstructor(String.class, String.class);
+                Constructor<IncomingFriendRequestsFrame> constructor =
+                        IncomingFriendRequestsFrame.class.getDeclaredConstructor(String.class, String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class IncomingFriendRequestsFrame is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 2 parameters and is public in class IncomingFriendRequestsFrame.");
+                fail("Ensure that you have a constructor that takes 2 parameters and is public "
+                        + "in class IncomingFriendRequestsFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -3731,10 +3830,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -3752,7 +3851,8 @@ public class MainTests {
                     return;
                 }
                 if (frameContainer.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that frameContainer in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that frameContainer in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3769,7 +3869,8 @@ public class MainTests {
                     return;
                 }
                 if (headerPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that headerPanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that headerPanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3786,7 +3887,8 @@ public class MainTests {
                     return;
                 }
                 if (contentPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that contentPanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that contentPanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3803,7 +3905,8 @@ public class MainTests {
                     return;
                 }
                 if (requestPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that requestPanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that requestPanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3820,7 +3923,8 @@ public class MainTests {
                     return;
                 }
                 if (imagePanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that imagePanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that imagePanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3854,7 +3958,8 @@ public class MainTests {
                     return;
                 }
                 if (buttonPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that buttonPanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that buttonPanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3871,7 +3976,8 @@ public class MainTests {
                     return;
                 }
                 if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that navigationPanel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that navigationPanel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3905,7 +4011,8 @@ public class MainTests {
                     return;
                 }
                 if (headerLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that headerLabel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that headerLabel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3916,13 +4023,16 @@ public class MainTests {
             }
 
             try {
-                Field outgoingFriendRequestsLabel = OutgoingFriendRequestsFrame.class.getDeclaredField("outgoingFriendRequestsLabel");
+                Field outgoingFriendRequestsLabel =
+                        OutgoingFriendRequestsFrame.class.getDeclaredField("outgoingFriendRequestsLabel");
                 if (outgoingFriendRequestsLabel.getType() != JLabel.class) {
-                    fail("Ensure that outgoingFriendRequestsLabel in class OutgoingFriendRequestsFrame is of type JLabel.");
+                    fail("Ensure that outgoingFriendRequestsLabel in class OutgoingFriendRequestsFrame "
+                            + "is of type JLabel.");
                     return;
                 }
                 if (outgoingFriendRequestsLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that outgoingFriendRequestsLabel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that outgoingFriendRequestsLabel in class OutgoingFriendRequestsFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3933,18 +4043,21 @@ public class MainTests {
             }
 
             try {
-                Field outgoingFriendRequestsDescriptionLabel = OutgoingFriendRequestsFrame.class.getDeclaredField("outgoingFriendRequestsDescriptionLabel");
+                Field outgoingFriendRequestsDescriptionLabel =
+                        OutgoingFriendRequestsFrame.class.getDeclaredField("outgoingFriendRequestsDescriptionLabel");
                 if (outgoingFriendRequestsDescriptionLabel.getType() != JLabel.class) {
-                    fail("Ensure that outgoingFriendRequestsDescriptionLabel in class OutgoingFriendRequestsFrame is of type JLabel.");
+                    fail("Ensure that outgoingFriendRequestsDescriptionLabel in class " +
+                            "OutgoingFriendRequestsFrame is of type JLabel.");
                     return;
                 }
                 if (outgoingFriendRequestsDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that outgoingFriendRequestsDescriptionLabel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that outgoingFriendRequestsDescriptionLabel in class OutgoingFriendRequestsFrame "
+                            + "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field outgoingFriendRequestsDescriptionLabel in class OutgoingFriendRequestsFrame " +
-                        "that is of type JLabel and is private and final.");
+                fail("Ensure that you have a field outgoingFriendRequestsDescriptionLabel in class " +
+                        "OutgoingFriendRequestsFrame that is of type JLabel and is private and final.");
                 e.printStackTrace();
                 return;
             }
@@ -3956,7 +4069,8 @@ public class MainTests {
                     return;
                 }
                 if (imageLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that imageLabel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that imageLabel in class OutgoingFriendRequestsFrame has modifiers "
+                            + "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -3990,7 +4104,8 @@ public class MainTests {
                     return;
                 }
                 if (usernameLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that usernameLabel in class OutgoingFriendRequestsFrame has modifiers private and final.");
+                    fail("Ensure that usernameLabel in class OutgoingFriendRequestsFrame has modifiers " +
+                            "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4007,7 +4122,8 @@ public class MainTests {
                     return;
                 }
                 if (cancelRequestButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that cancelRequestButton in class OutgoingFriendRequestsFrame has modifiers public and final.");
+                    fail("Ensure that cancelRequestButton in class OutgoingFriendRequestsFrame has modifiers "
+                            + "public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4052,13 +4168,15 @@ public class MainTests {
             }
 
             try {
-                Constructor<OutgoingFriendRequestsFrame> constructor = OutgoingFriendRequestsFrame.class.getDeclaredConstructor(String.class, String.class);
+                Constructor<OutgoingFriendRequestsFrame> constructor =
+                        OutgoingFriendRequestsFrame.class.getDeclaredConstructor(String.class, String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class OutgoingFriendRequestsFrame is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 2 parameters and is public in class OutgoingFriendRequestsFrame.");
+                fail("Ensure that you have a constructor that takes 2 parameters and is public " +
+                        "in class OutgoingFriendRequestsFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -4080,10 +4198,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -4538,8 +4656,8 @@ public class MainTests {
             }
 
             try {
-                Constructor<ProfileFrame> constructor = ProfileFrame.class.getDeclaredConstructor(String.class, String.class, String.class,
-                        String.class, String.class);
+                Constructor<ProfileFrame> constructor = ProfileFrame.class.getDeclaredConstructor(String.class,
+                        String.class, String.class, String.class, String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class ProfileFrame is public.");
                     return;
@@ -4567,10 +4685,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -4707,7 +4825,8 @@ public class MainTests {
                     return;
                 }
                 if (friendButtonPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that friendButtonPanel in class ProfileFrameRestricted has modifiers private and final.");
+                    fail("Ensure that friendButtonPanel in class ProfileFrameRestricted has modifiers " +
+                            "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4724,7 +4843,8 @@ public class MainTests {
                     return;
                 }
                 if (informationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that informationPanel in class ProfileFrameRestricted has modifiers private and final.");
+                    fail("Ensure that informationPanel in class ProfileFrameRestricted has modifiers private "
+                            + "and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4741,7 +4861,8 @@ public class MainTests {
                     return;
                 }
                 if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that navigationPanel in class ProfileFrameRestricted has modifiers private and final.");
+                    fail("Ensure that navigationPanel in class ProfileFrameRestricted has modifiers private "
+                            + "and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4844,7 +4965,8 @@ public class MainTests {
                     return;
                 }
                 if (locationHeaderLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that locationHeaderLabel in class ProfileFrameRestricted has modifiers private and final.");
+                    fail("Ensure that locationHeaderLabel in class ProfileFrameRestricted has modifiers "
+                            + "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4912,7 +5034,8 @@ public class MainTests {
                     return;
                 }
                 if (interestsHeaderLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that interestsHeaderLabel in class ProfileFrameRestricted has modifiers private and final.");
+                    fail("Ensure that interestsHeaderLabel in class ProfileFrameRestricted has modifiers "
+                            + "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4946,7 +5069,8 @@ public class MainTests {
                     return;
                 }
                 if (viewFriendsButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that viewFriendsButton in class ProfileFrameRestricted has modifiers public and final.");
+                    fail("Ensure that viewFriendsButton in class ProfileFrameRestricted has modifiers " +
+                            "public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -4974,14 +5098,16 @@ public class MainTests {
             }
 
             try {
-                Constructor<ProfileFrameRestricted> constructor = ProfileFrameRestricted.class.getDeclaredConstructor(String.class, String.class, String.class,
-                        String.class, String.class);
+                Constructor<ProfileFrameRestricted> constructor =
+                        ProfileFrameRestricted.class.getDeclaredConstructor(String.class, String.class, String.class,
+                                String.class, String.class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class ProfileFrameRestricted is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 5 parameters and is public in class ProfileFrameRestricted.");
+                fail("Ensure that you have a constructor that takes 5 parameters and is public " +
+                        "in class ProfileFrameRestricted.");
                 e.printStackTrace();
                 return;
             }
@@ -5003,10 +5129,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -5075,7 +5201,8 @@ public class MainTests {
                     return;
                 }
                 if (navigationPanel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that navigationPanel in class SendFriendRequestFrame has modifiers private and final.");
+                    fail("Ensure that navigationPanel in class SendFriendRequestFrame has modifiers " +
+                            "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -5126,7 +5253,8 @@ public class MainTests {
                     return;
                 }
                 if (sendFriendRequestLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that sendFriendRequestLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    fail("Ensure that sendFriendRequestLabel in class SendFriendRequestFrame has modifiers "
+                            + "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -5137,13 +5265,16 @@ public class MainTests {
             }
 
             try {
-                Field sendFriendRequestDescriptionLabel = SendFriendRequestFrame.class.getDeclaredField("sendFriendRequestDescriptionLabel");
+                Field sendFriendRequestDescriptionLabel =
+                        SendFriendRequestFrame.class.getDeclaredField("sendFriendRequestDescriptionLabel");
                 if (sendFriendRequestDescriptionLabel.getType() != JLabel.class) {
-                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame is of type JLabel.");
+                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame " +
+                            "is of type JLabel.");
                     return;
                 }
                 if (sendFriendRequestDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame has modifiers private and final.");
+                    fail("Ensure that sendFriendRequestDescriptionLabel in class SendFriendRequestFrame " +
+                            "has modifiers private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -5161,7 +5292,8 @@ public class MainTests {
                     return;
                 }
                 if (sendRequestButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that sendRequestButton in class SendFriendRequestFrame has modifiers public and final.");
+                    fail("Ensure that sendRequestButton in class SendFriendRequestFrame has modifiers " +
+                            "public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -5206,13 +5338,15 @@ public class MainTests {
             }
 
             try {
-                Constructor<SendFriendRequestFrame> constructor = SendFriendRequestFrame.class.getDeclaredConstructor(String[].class);
+                Constructor<SendFriendRequestFrame> constructor =
+                        SendFriendRequestFrame.class.getDeclaredConstructor(String[].class);
                 if (constructor.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your constructor in class SendFriendRequestFrame is public.");
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 1 parameter and is public in class SendFriendRequestFrame.");
+                fail("Ensure that you have a constructor that takes 1 parameter and is public " +
+                        "in class SendFriendRequestFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -5234,10 +5368,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -5668,10 +5802,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -5830,10 +5964,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends JFrame.", JFrame.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends JFrame.", JFrame.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -5981,13 +6115,15 @@ public class MainTests {
             }
 
             try {
-                Field viewRequestsDescriptionLabel = ViewRequestsFrame.class.getDeclaredField("viewRequestsDescriptionLabel");
+                Field viewRequestsDescriptionLabel =
+                        ViewRequestsFrame.class.getDeclaredField("viewRequestsDescriptionLabel");
                 if (viewRequestsDescriptionLabel.getType() != JLabel.class) {
                     fail("Ensure that viewRequestsDescriptionLabel in class ViewRequestsFrame is of type JLabel.");
                     return;
                 }
                 if (viewRequestsDescriptionLabel.getModifiers() != (Modifier.PRIVATE + Modifier.FINAL)) {
-                    fail("Ensure that viewRequestsDescriptionLabel in class ViewRequestsFrame has modifiers private and final.");
+                    fail("Ensure that viewRequestsDescriptionLabel in class ViewRequestsFrame has modifiers " +
+                            "private and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6004,7 +6140,8 @@ public class MainTests {
                     return;
                 }
                 if (incomingRequestsButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that incomingRequestsButton in class ViewRequestsFrame has modifiers public and final.");
+                    fail("Ensure that incomingRequestsButton in class ViewRequestsFrame has modifiers " +
+                            "public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6021,7 +6158,8 @@ public class MainTests {
                     return;
                 }
                 if (outgoingRequestsButton.getModifiers() != (Modifier.PUBLIC + Modifier.FINAL)) {
-                    fail("Ensure that outgoingRequestsButton in class ViewRequestsFrame has modifiers public and final.");
+                    fail("Ensure that outgoingRequestsButton in class ViewRequestsFrame has modifiers " +
+                            "public and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6055,7 +6193,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes no parameters and is public in class ViewRequestsFrame.");
+                fail("Ensure that you have a constructor that takes no parameters and is public " +
+                        "in class ViewRequestsFrame.");
                 e.printStackTrace();
                 return;
             }
@@ -6077,10 +6216,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -6124,10 +6263,10 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Thread.", Thread.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Thread.", Thread.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -6231,7 +6370,8 @@ public class MainTests {
                     return;
                 }
             } catch (NoSuchMethodException e) {
-                fail("Ensure that you have a constructor that takes 3 parameters and is public in class ClientHandler.");
+                fail("Ensure that you have a constructor that takes 3 parameters and is public " +
+                        "in class ClientHandler.");
                 e.printStackTrace();
                 return;
             }
@@ -6301,7 +6441,8 @@ public class MainTests {
             }
 
             try {
-                Method writeProfileToFile = ClientHandler.class.getDeclaredMethod("writeProfileToFile", String.class, Profile.class);
+                Method writeProfileToFile = ClientHandler.class.getDeclaredMethod("writeProfileToFile",
+                        String.class, Profile.class);
                 if (writeProfileToFile.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your method writeProfileToFile in class ClientHandler is public.");
                     return;
@@ -6317,7 +6458,8 @@ public class MainTests {
             }
 
             try {
-                Method initialiseFriendsList = ClientHandler.class.getDeclaredMethod("initialiseFriendsList", String[].class);
+                Method initialiseFriendsList = ClientHandler.class.getDeclaredMethod("initialiseFriendsList",
+                        String[].class);
                 if (initialiseFriendsList.getModifiers() != Modifier.PUBLIC) {
                     fail("Ensure that your method initialiseFriendsList in class ClientHandler is public.");
                     return;
@@ -6349,11 +6491,11 @@ public class MainTests {
             superclass = clazz.getSuperclass();
             superinterfaces = clazz.getInterfaces();
 
-            Assert.assertTrue("Ensure that `"+ className +"` is public.", Modifier.isPublic(modifiers));
-            Assert.assertTrue("Ensure that `"+ className +"` is final.", Modifier.isFinal(modifiers));
-            Assert.assertFalse("Ensure that `"+ className +"` is not abstract.", Modifier.isAbstract(modifiers));
-            Assert.assertEquals("Ensure that `"+ className +"` extends Object.", Object.class, superclass);
-            Assert.assertEquals("Ensure that `"+ className +"` implements no interfaces.", 0, superinterfaces.length);
+            Assert.assertTrue("Ensure that `" + className + "` is public.", Modifier.isPublic(modifiers));
+            Assert.assertTrue("Ensure that `" + className + "` is final.", Modifier.isFinal(modifiers));
+            Assert.assertFalse("Ensure that `" + className + "` is not abstract.", Modifier.isAbstract(modifiers));
+            Assert.assertEquals("Ensure that `" + className + "` extends Object.", Object.class, superclass);
+            Assert.assertEquals("Ensure that `" + className + "` implements no interfaces.", 0, superinterfaces.length);
         }
 
         @Test(timeout = 1000)
@@ -6365,12 +6507,12 @@ public class MainTests {
             }
 
             try {
-                Field LOGO_64 = Constants.class.getDeclaredField("LOGO_64");
-                if (LOGO_64.getType() != ImageIcon.class) {
+                Field logo64 = Constants.class.getDeclaredField("LOGO_64");
+                if (logo64.getType() != ImageIcon.class) {
                     fail("Ensure that LOGO_64 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (LOGO_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (logo64.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that LOGO_64 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6382,12 +6524,12 @@ public class MainTests {
             }
 
             try {
-                Field LOGO_128 = Constants.class.getDeclaredField("LOGO_128");
-                if (LOGO_128.getType() != ImageIcon.class) {
+                Field logo128 = Constants.class.getDeclaredField("LOGO_128");
+                if (logo128.getType() != ImageIcon.class) {
                     fail("Ensure that LOGO_128 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (LOGO_128.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (logo128.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that LOGO_128 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6399,12 +6541,12 @@ public class MainTests {
             }
 
             try {
-                Field LOGO_256 = Constants.class.getDeclaredField("LOGO_256");
-                if (LOGO_256.getType() != ImageIcon.class) {
+                Field logo256 = Constants.class.getDeclaredField("LOGO_256");
+                if (logo256.getType() != ImageIcon.class) {
                     fail("Ensure that LOGO_256 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (LOGO_256.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (logo256.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that LOGO_256 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6416,12 +6558,12 @@ public class MainTests {
             }
 
             try {
-                Field LOGO_512 = Constants.class.getDeclaredField("LOGO_512");
-                if (LOGO_512.getType() != ImageIcon.class) {
+                Field logo512 = Constants.class.getDeclaredField("LOGO_512");
+                if (logo512.getType() != ImageIcon.class) {
                     fail("Ensure that LOGO_512 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (LOGO_512.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (logo512.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that LOGO_512 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6433,12 +6575,12 @@ public class MainTests {
             }
 
             try {
-                Field ERROR_64 = Constants.class.getDeclaredField("ERROR_64");
-                if (ERROR_64.getType() != ImageIcon.class) {
+                Field error64 = Constants.class.getDeclaredField("ERROR_64");
+                if (error64.getType() != ImageIcon.class) {
                     fail("Ensure that ERROR_64 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (ERROR_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (error64.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that ERROR_64 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6450,12 +6592,12 @@ public class MainTests {
             }
 
             try {
-                Field USER_100 = Constants.class.getDeclaredField("USER_100");
-                if (USER_100.getType() != ImageIcon.class) {
+                Field user100 = Constants.class.getDeclaredField("USER_100");
+                if (user100.getType() != ImageIcon.class) {
                     fail("Ensure that USER_100 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (USER_100.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (user100.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that USER_100 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6467,12 +6609,12 @@ public class MainTests {
             }
 
             try {
-                Field SUCCESS_64 = Constants.class.getDeclaredField("SUCCESS_64");
-                if (SUCCESS_64.getType() != ImageIcon.class) {
+                Field success64 = Constants.class.getDeclaredField("SUCCESS_64");
+                if (success64.getType() != ImageIcon.class) {
                     fail("Ensure that SUCCESS_64 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (SUCCESS_64.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (success64.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that SUCCESS_64 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6484,12 +6626,12 @@ public class MainTests {
             }
 
             try {
-                Field SETTINGS_48 = Constants.class.getDeclaredField("SETTINGS_48");
-                if (SETTINGS_48.getType() != ImageIcon.class) {
+                Field settings48 = Constants.class.getDeclaredField("SETTINGS_48");
+                if (settings48.getType() != ImageIcon.class) {
                     fail("Ensure that SETTINGS_48 in class Constants is of type ImageIcon.");
                     return;
                 }
-                if (SETTINGS_48.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (settings48.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that SETTINGS_48 in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6501,13 +6643,14 @@ public class MainTests {
             }
 
             try {
-                Field HEADER_BACKGROUND_COLOR = Constants.class.getDeclaredField("HEADER_BACKGROUND_COLOR");
-                if (HEADER_BACKGROUND_COLOR.getType() != Color.class) {
+                Field headerBackgroundColor = Constants.class.getDeclaredField("HEADER_BACKGROUND_COLOR");
+                if (headerBackgroundColor.getType() != Color.class) {
                     fail("Ensure that HEADER_BACKGROUND_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (HEADER_BACKGROUND_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
-                    fail("Ensure that HEADER_BACKGROUND_COLOR in class Constants has modifiers public, static, and final.");
+                if (headerBackgroundColor.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BACKGROUND_COLOR in class Constants has modifiers " +
+                            "public, static, and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6518,13 +6661,14 @@ public class MainTests {
             }
 
             try {
-                Field HEADER_BORDER_COLOR = Constants.class.getDeclaredField("HEADER_BORDER_COLOR");
-                if (HEADER_BORDER_COLOR.getType() != Color.class) {
+                Field headerBorderColor = Constants.class.getDeclaredField("HEADER_BORDER_COLOR");
+                if (headerBorderColor.getType() != Color.class) {
                     fail("Ensure that HEADER_BORDER_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (HEADER_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
-                    fail("Ensure that HEADER_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                if (headerBorderColor.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that HEADER_BORDER_COLOR in class Constants has modifiers " +
+                            "private, static, and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6535,12 +6679,12 @@ public class MainTests {
             }
 
             try {
-                Field BACKGROUND_COLOR = Constants.class.getDeclaredField("BACKGROUND_COLOR");
-                if (BACKGROUND_COLOR.getType() != Color.class) {
+                Field backgroundColor = Constants.class.getDeclaredField("BACKGROUND_COLOR");
+                if (backgroundColor.getType() != Color.class) {
                     fail("Ensure that BACKGROUND_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (BACKGROUND_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (backgroundColor.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that BACKGROUND_COLOR in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6552,13 +6696,14 @@ public class MainTests {
             }
 
             try {
-                Field BUTTON_BORDER_COLOR = Constants.class.getDeclaredField("BUTTON_BORDER_COLOR");
-                if (BUTTON_BORDER_COLOR.getType() != Color.class) {
+                Field buttonBorder = Constants.class.getDeclaredField("BUTTON_BORDER_COLOR");
+                if (buttonBorder.getType() != Color.class) {
                     fail("Ensure that BUTTON_BORDER_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (BUTTON_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
-                    fail("Ensure that BUTTON_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                if (buttonBorder.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that BUTTON_BORDER_COLOR in class Constants has modifiers " +
+                            "private, static, and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6569,13 +6714,14 @@ public class MainTests {
             }
 
             try {
-                Field NAVIGATION_BORDER_COLOR = Constants.class.getDeclaredField("NAVIGATION_BORDER_COLOR");
-                if (NAVIGATION_BORDER_COLOR.getType() != Color.class) {
+                Field navigationBorder = Constants.class.getDeclaredField("NAVIGATION_BORDER_COLOR");
+                if (navigationBorder.getType() != Color.class) {
                     fail("Ensure that NAVIGATION_BORDER_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (NAVIGATION_BORDER_COLOR.getModifiers() != (Modifier.PRIVATE + + Modifier.STATIC + Modifier.FINAL)) {
-                    fail("Ensure that NAVIGATION_BORDER_COLOR in class Constants has modifiers private, static, and final.");
+                if (navigationBorder.getModifiers() != (Modifier.PRIVATE + Modifier.STATIC + Modifier.FINAL)) {
+                    fail("Ensure that NAVIGATION_BORDER_COLOR in class Constants has modifiers " +
+                            "private, static, and final.");
                     return;
                 }
             } catch (NoSuchFieldException e) {
@@ -6586,12 +6732,12 @@ public class MainTests {
             }
 
             try {
-                Field GRAY_COLOR = Constants.class.getDeclaredField("GRAY_COLOR");
-                if (GRAY_COLOR.getType() != Color.class) {
+                Field grayColor = Constants.class.getDeclaredField("GRAY_COLOR");
+                if (grayColor.getType() != Color.class) {
                     fail("Ensure that GRAY_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (GRAY_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (grayColor.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that GRAY_COLOR in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6603,12 +6749,12 @@ public class MainTests {
             }
 
             try {
-                Field YELLOW_COLOR = Constants.class.getDeclaredField("YELLOW_COLOR");
-                if (YELLOW_COLOR.getType() != Color.class) {
+                Field yelloColor = Constants.class.getDeclaredField("YELLOW_COLOR");
+                if (yelloColor.getType() != Color.class) {
                     fail("Ensure that YELLOW_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (YELLOW_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (yelloColor.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that YELLOW_COLOR in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6620,12 +6766,12 @@ public class MainTests {
             }
 
             try {
-                Field ERROR_COLOR = Constants.class.getDeclaredField("ERROR_COLOR");
-                if (ERROR_COLOR.getType() != Color.class) {
+                Field errorColor = Constants.class.getDeclaredField("ERROR_COLOR");
+                if (errorColor.getType() != Color.class) {
                     fail("Ensure that ERROR_COLOR in class Constants is of type Color.");
                     return;
                 }
-                if (ERROR_COLOR.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (errorColor.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that ERROR_COLOR in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6637,12 +6783,12 @@ public class MainTests {
             }
 
             try {
-                Field HEADER_BORDER = Constants.class.getDeclaredField("HEADER_BORDER");
-                if (HEADER_BORDER.getType() != Border.class) {
+                Field headerBorder = Constants.class.getDeclaredField("HEADER_BORDER");
+                if (headerBorder.getType() != Border.class) {
                     fail("Ensure that HEADER_BORDER in class Constants is of type Border.");
                     return;
                 }
-                if (HEADER_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (headerBorder.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that HEADER_BORDER in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6654,12 +6800,12 @@ public class MainTests {
             }
 
             try {
-                Field HEADER_BORDER = Constants.class.getDeclaredField("HEADER_BORDER");
-                if (HEADER_BORDER.getType() != Border.class) {
+                Field headerBorder = Constants.class.getDeclaredField("HEADER_BORDER");
+                if (headerBorder.getType() != Border.class) {
                     fail("Ensure that HEADER_BORDER in class Constants is of type Border.");
                     return;
                 }
-                if (HEADER_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (headerBorder.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that HEADER_BORDER in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6671,12 +6817,12 @@ public class MainTests {
             }
 
             try {
-                Field BUTTON_BORDER = Constants.class.getDeclaredField("BUTTON_BORDER");
-                if (BUTTON_BORDER.getType() != Border.class) {
+                Field buttonBorder = Constants.class.getDeclaredField("BUTTON_BORDER");
+                if (buttonBorder.getType() != Border.class) {
                     fail("Ensure that BUTTON_BORDER in class Constants is of type Border.");
                     return;
                 }
-                if (BUTTON_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (buttonBorder.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that BUTTON_BORDER in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6688,12 +6834,12 @@ public class MainTests {
             }
 
             try {
-                Field NAVIGATION_BORDER = Constants.class.getDeclaredField("NAVIGATION_BORDER");
-                if (NAVIGATION_BORDER.getType() != Border.class) {
+                Field navigationBorder = Constants.class.getDeclaredField("NAVIGATION_BORDER");
+                if (navigationBorder.getType() != Border.class) {
                     fail("Ensure that NAVIGATION_BORDER in class Constants is of type Border.");
                     return;
                 }
-                if (NAVIGATION_BORDER.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (navigationBorder.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that NAVIGATION_BORDER in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6705,12 +6851,12 @@ public class MainTests {
             }
 
             try {
-                Field HEADER_FONT = Constants.class.getDeclaredField("HEADER_FONT");
-                if (HEADER_FONT.getType() != Font.class) {
+                Field headerFont = Constants.class.getDeclaredField("HEADER_FONT");
+                if (headerFont.getType() != Font.class) {
                     fail("Ensure that HEADER_FONT in class Constants is of type Font.");
                     return;
                 }
-                if (HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (headerFont.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that HEADER_FONT in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6722,12 +6868,12 @@ public class MainTests {
             }
 
             try {
-                Field SUB_HEADER_FONT = Constants.class.getDeclaredField("SUB_HEADER_FONT");
-                if (SUB_HEADER_FONT.getType() != Font.class) {
+                Field subHeaderFont = Constants.class.getDeclaredField("SUB_HEADER_FONT");
+                if (subHeaderFont.getType() != Font.class) {
                     fail("Ensure that SUB_HEADER_FONT in class Constants is of type Font.");
                     return;
                 }
-                if (SUB_HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (subHeaderFont.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that SUB_HEADER_FONT in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6739,12 +6885,12 @@ public class MainTests {
             }
 
             try {
-                Field SUB_SUB_HEADER_FONT = Constants.class.getDeclaredField("SUB_SUB_HEADER_FONT");
-                if (SUB_SUB_HEADER_FONT.getType() != Font.class) {
+                Field subSubHeaderFont = Constants.class.getDeclaredField("SUB_SUB_HEADER_FONT");
+                if (subSubHeaderFont.getType() != Font.class) {
                     fail("Ensure that SUB_SUB_HEADER_FONT in class Constants is of type Font.");
                     return;
                 }
-                if (SUB_SUB_HEADER_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (subSubHeaderFont.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that SUB_SUB_HEADER_FONT in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6756,12 +6902,12 @@ public class MainTests {
             }
 
             try {
-                Field MAIN_FONT = Constants.class.getDeclaredField("MAIN_FONT");
-                if (MAIN_FONT.getType() != Font.class) {
+                Field mainFont = Constants.class.getDeclaredField("MAIN_FONT");
+                if (mainFont.getType() != Font.class) {
                     fail("Ensure that MAIN_FONT in class Constants is of type Font.");
                     return;
                 }
-                if (MAIN_FONT.getModifiers() != (Modifier.PUBLIC + + Modifier.STATIC + Modifier.FINAL)) {
+                if (mainFont.getModifiers() != (Modifier.PUBLIC + Modifier.STATIC + Modifier.FINAL)) {
                     fail("Ensure that MAIN_FONT in class Constants has modifiers public, static, and final.");
                     return;
                 }
@@ -6773,8 +6919,6 @@ public class MainTests {
             }
 
         }
-
-
 
     }
 }

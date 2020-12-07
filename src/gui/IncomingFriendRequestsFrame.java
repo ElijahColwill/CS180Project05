@@ -42,7 +42,8 @@ public final class IncomingFriendRequestsFrame extends JFrame {
      * Constructor that creates a frame for each incoming friend request.
      * Testing:
      * Verify that window has correct title Social | Incoming Friend Requests
-     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that a Frame is created that contains a header with social
+     * Icon/Text, middle content and footer with back button.
      * Verify that Incoming Friend Requests title and text is present in content area.
      * Verify that Friend Request is present with profile icon, Name and user name
      * Verify that Accept and Deny Request buttons are present with correct text.
@@ -118,7 +119,7 @@ public final class IncomingFriendRequestsFrame extends JFrame {
 
         imagePanel.add(imageLabel);
 
-        SwingUtils.addComponent(namePanel, nameLabel,0, 0, 1, 1, GridBagConstraints.LINE_START);
+        SwingUtils.addComponent(namePanel, nameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_START);
         SwingUtils.addComponent(namePanel, usernameLabel, 0, 1, 1, 1, GridBagConstraints.LINE_START);
 
         buttonPanel.add(acceptRequestButton);

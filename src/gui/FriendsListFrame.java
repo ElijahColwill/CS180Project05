@@ -35,7 +35,8 @@ public final class FriendsListFrame extends JFrame {
      * Constructor that creates a frame that allows the user to see all their friends.
      * Testing:
      * Verify that window has correct title Social | Friends List
-     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
+     * Verify that a Frame is created that contains a header with
+     * social Icon/Text, middle content and footer with back button.
      * Verify that view profile button is present for users.
      * Verify that for friends, correct Names, Usernames, and Profile Icon is present.
      * Verify that Correct title and description are present at top of content area.
@@ -119,7 +120,7 @@ public final class FriendsListFrame extends JFrame {
 
             imagePanel.add(imageLabel);
 
-            SwingUtils.addComponent(namePanel, nameLabel,0, 0, 1, 1, GridBagConstraints.LINE_START);
+            SwingUtils.addComponent(namePanel, nameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_START);
             SwingUtils.addComponent(namePanel, usernameLabel, 0, 1, 1, 1, GridBagConstraints.LINE_START);
 
             buttonPanel.add(viewProfileButton);

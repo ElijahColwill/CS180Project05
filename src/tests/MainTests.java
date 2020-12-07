@@ -113,8 +113,8 @@ public class MainTests {
         @Test(timeout = 1000)
         public void userClassSetupTest() {
             Field[] fields = User.class.getDeclaredFields();
-            if (fields.length < 7) {
-                fail("User class requires seven fields.");
+            if (fields.length < 8) {
+                fail("User class requires eight fields.");
                 return;
             }
 
@@ -164,6 +164,23 @@ public class MainTests {
                 }
             } catch (NoSuchFieldException e) {
                 fail("Ensure that you have a field password in class User " +
+                        "that is of type String and is private.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Field temp = User.class.getDeclaredField("temp");
+                if (temp.getType() != String.class) {
+                    fail("Ensure that temp in class User is of type String.");
+                    return;
+                }
+                if (temp.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that temp in class User has modifier private.");
+                    return;
+                }
+            } catch (NoSuchFieldException e) {
+                fail("Ensure that you have a field temp in class User " +
                         "that is of type String and is private.");
                 e.printStackTrace();
                 return;
@@ -401,6 +418,38 @@ public class MainTests {
                 }
             } catch (NoSuchMethodException e) {
                 fail("Ensure that you have the setPassword method that is public, takes 1 parameter of type String and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method getTemp = User.class.getDeclaredMethod("getTemp");
+                if (getTemp.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method getTemp in class User is public.");
+                    return;
+                }
+                if (!getTemp.getReturnType().equals(String.class)) {
+                    fail("Ensure that your getTemp method in class User returns String.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the getTemp method that is public and returns String.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method setTemp = User.class.getDeclaredMethod("setTemp", String.class);
+                if (setTemp.getModifiers() != Modifier.PUBLIC) {
+                    fail("Ensure that your method setTemp in class User is public.");
+                    return;
+                }
+                if (!setTemp.getReturnType().equals(void.class)) {
+                    fail("Ensure that your setTemp method in class User returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the setTemp method that is public and returns void.");
                 e.printStackTrace();
                 return;
             }
@@ -1442,8 +1491,8 @@ public class MainTests {
         @Test(timeout = 1000)
         public void clientClassSetupTest() {
             Field[] fields = Client.class.getDeclaredFields();
-            if (fields.length < 17) {
-                fail("Client class requires seventeen fields.");
+            if (fields.length < 16) {
+                fail("Client class requires sixteen fields.");
                 return;
             }
 
@@ -1496,18 +1545,6 @@ public class MainTests {
                 }
             } catch (NoSuchFieldException e) {
                 fail("Ensure that you have a field currentUsername in class Client.");
-                e.printStackTrace();
-                return;
-            }
-
-            try {
-                Field temp = Client.class.getDeclaredField("temp");
-                if (temp.getType() != String.class) {
-                    fail("Ensure that temp in class Client is of type String.");
-                    return;
-                }
-            } catch (NoSuchFieldException e) {
-                fail("Ensure that you have a field temp in class Client.");
                 e.printStackTrace();
                 return;
             }
@@ -1912,6 +1949,38 @@ public class MainTests {
                 }
             } catch (NoSuchMethodException e) {
                 fail("Ensure that you have the run method that is public and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method setTemp = Client.class.getDeclaredMethod("setTemp", String.class);
+                if (setTemp.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method setTemp in class Client is private.");
+                    return;
+                }
+                if (!setTemp.getReturnType().equals(void.class)) {
+                    fail("Ensure that your setTemp method in class Client returns void.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the setTemp method that is private and returns void.");
+                e.printStackTrace();
+                return;
+            }
+
+            try {
+                Method getTemp = Client.class.getDeclaredMethod("getTemp");
+                if (getTemp.getModifiers() != Modifier.PRIVATE) {
+                    fail("Ensure that your method getTemp in class Client is private.");
+                    return;
+                }
+                if (!getTemp.getReturnType().equals(String.class)) {
+                    fail("Ensure that your getTemp method in class Client returns String.");
+                    return;
+                }
+            } catch (NoSuchMethodException e) {
+                fail("Ensure that you have the getTemp method that is private and returns String.");
                 e.printStackTrace();
                 return;
             }
@@ -6263,19 +6332,6 @@ public class MainTests {
                 return;
             }
 
-        }
-
-        @Test
-        public void clientHandlerClassImplementationTest() {
-            try {
-                ClientHandler testClientHandler = new ClientHandler(new Socket("localhost", 2400), new BufferedReader(new FileReader("testFileClient.txt")), new PrintWriter("testFileClientOutput.txt"));
-
-                testClientHandler.readUsersList();
-
-            } catch (Exception e) {
-                fail("Error in creating ClientHandler Class: Some fields or methods not functional or present.");
-                return;
-            }
         }
 
         @Test(timeout = 1_000)

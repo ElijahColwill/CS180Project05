@@ -106,10 +106,22 @@ public class Client extends JComponent implements Runnable, ActionListener {
         return "";
     }
 
+    /**
+     * Mutator method for temp variable.
+     * Testing:
+     * Verify that correct field is set with intended value from clientHandler.
+     * @param temp New value of variable temp.
+     */
     private void setTemp(String temp) {
         sendMessage(String.format("Set temp\n%s\n%s", currentUsername, temp));
     }
 
+    /**
+     * Accessor method for temp variable.
+     * Testing:
+     * Verify that correct field is returned with intended value from ClientHandler.
+     * @return String value of variable temp.
+     */
     private String getTemp() {
         sendMessage(String.format("Get temp\n%s", currentUsername));
         return receiveMessage();

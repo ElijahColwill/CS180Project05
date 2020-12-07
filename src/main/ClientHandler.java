@@ -9,6 +9,9 @@ import java.util.ArrayList;
  * Client Handler
  *
  * This class contains the code implementation for all the client-server interactions inside a run method.
+ * This class was NOT tested for Standard Model because the run method (which utilized Concurrency) is the basis
+ * for all other called methods in the class, which means it is not realistically possible to run implementation tests.
+ * All other JUnit tests (CLass/Declaration/Fields/Methods) still present.
  *
  *
  * @author Sindhuja Kancharla
@@ -25,12 +28,21 @@ public class ClientHandler extends Thread {
     private static ArrayList<User> userList = new ArrayList<User>();       //array list that holds all the existing users
     private static ArrayList<Profile> profilesList = new ArrayList<Profile>();  //array list that holds all the existing profiles
 
+    /**
+     * Constructor that creates instance of Client Handler with three parameters.
+     * @param s Socket of server
+     * @param r BufferedReader to read messages from Server.
+     * @param w PrintWriter to write messages to Server.
+     */
     public ClientHandler(Socket s, BufferedReader r, PrintWriter w) {
         this.s = s;
         this.reader = r;
         this.writer = w;
     }
 
+    /**
+     * Run method of ClientHandler to receive and send messages to/from Client
+     */
     @Override
     public void run() {
 
@@ -236,29 +248,6 @@ public class ClientHandler extends Thread {
                         messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));
                     }
 
-                    //incoming or outgoing friend request
-//                    if (message.equalsIgnoreCase("Incoming friend request for user") ||
-//                            message.equalsIgnoreCase("Outgoing friend request for user")) {
-//
-//                        String currentUsername = reader.readLine();
-//                        boolean userExists = false;
-//
-//                        for (int i = 0; i < userList.size(); i++) {
-//
-//                            if (currentUsername.equalsIgnoreCase(userList.get(i).getUserName())) {
-//
-//                                userExists = true;
-//                                String userFullName = userList.get(i).getFullName();
-//
-//                                messageToClient(String.format("User exists\n%s\n%s", userFullName, currentUsername));
-//                            }
-//                        }
-//
-//                        if (!userExists) {          //if the user doesn't exist
-//
-//                            messageToClient("User does not exist");
-//                        }
-//                    }
 
                     //displaying all users
                     if (message.equalsIgnoreCase("Get all users")) {
@@ -272,48 +261,6 @@ public class ClientHandler extends Thread {
 
                         messageToClient(String.valueOf(allUsers));
                     }
-
-                    //accepting friend request
-//                    if (message.equalsIgnoreCase("Accept request")) {
-//
-//
-//
-//
-////                        String currentUsername = reader.readLine();
-////                        String temp = reader.readLine();        //temp is the other user
-////                        boolean userExists =  false;
-////
-////                        User currentFriend = null;
-////
-////                        for (int i = 0; i < userList.size(); i++) {
-////
-////                            if (temp.equalsIgnoreCase(userList.get(i).getUserName())) {
-////
-////                                userExists = true;
-////                                currentFriend = userList.get(i);        //gets the friend user object
-////                            }
-////                        }
-////
-////                        if (userExists) {
-////
-////                            newUser.getFriendList().add(currentFriend);     //adding friend to the user's friends list
-////                            messageToClient("Success");
-////
-////                        } else {
-////
-////                            messageToClient("User not found");
-////                        }
-//
-//                    }
-
-                    //denying friend request
-//                    if (message.equalsIgnoreCase("Deny request")) {
-//
-//                        String currentUsername = reader.readLine();
-//                        String temp = reader.readLine();
-//
-//                        messageToClient("Success");
-//                    }
 
                     if (message.equals("Send request")) {
 
@@ -494,6 +441,7 @@ public class ClientHandler extends Thread {
 
     /**
      * This method initialises the UserList array by reading from a file.
+     * @return ArrayList<User> list of users from file
      */
     public ArrayList<User> readUsersList() {
 

@@ -37,10 +37,18 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Mutator method for temp.
+     * @param temp Variable that holds temp user for ClientHandler.
+     */
     public void setTemp(String temp) {
         this.temp = temp;
     }
 
+    /**
+     * Accessor method for temp.
+     * @return Variable that holds temp user for ClientHandler.
+     */
     public String getTemp() {
         return temp;
     }

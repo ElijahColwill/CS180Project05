@@ -9,12 +9,12 @@ import java.util.ArrayList;
  * Client Handler
  *
  * This class contains the code implementation for all the client-server interactions inside a run method.
- * This class was NOT tested for Standard Model because the run method (which utilized Concurrency) is the basis
+ * This class was NOT tested with Standard Model because the run method (which utilizes Concurrency) is the basis
  * for all other called methods in the class, which means it is not realistically possible to run implementation tests.
  * All other JUnit tests (CLass/Declaration/Fields/Methods) still present.
  *
  *
- * @author Sindhuja Kancharla
+ * @author Sindhuja Kancharla, Henrik Berg, Henry Peng
  * @version December 3, 2020
  *
  */
@@ -30,6 +30,8 @@ public class ClientHandler extends Thread {
 
     /**
      * Constructor that creates instance of Client Handler with three parameters.
+     * Testing:
+     * Verify that correct variables are set with intended values when creating instance of ClientHandler.
      * @param s Socket of server
      * @param r BufferedReader to read messages from Server.
      * @param w PrintWriter to write messages to Server.
@@ -41,7 +43,33 @@ public class ClientHandler extends Thread {
     }
 
     /**
-     * Run method of ClientHandler to receive and send messages to/from Client
+     * Run method of ClientHandler to receive and send messages to/from Client.
+     * Testing:
+     * Verify that correct fields such as newUser/newProfile are created with intended values.
+     * Verify that correct messages are read and sent to server for all statements.
+     * Verify that Sign Up case takes in all fields, sets fields to correct values
+     * initializes correct user a profile and sends correct message to Client.
+     * Verify that Sign In case matches correct information with correct user, gets the correct User class,
+     * and sends correct message to Client.
+     * Verify that Change Profile case changes correct values based on User input, writes information to file,
+     * and sends correct message to Client.
+     * Verify that Delete Account case removes the correct User from userList and sends correct message to Client.
+     * Verify that Information for User case retrieves and returns the correct user, and the correct information
+     * for specified user, and sends correct message to Client.
+     * Verify that Friends for User case retrieves the correct User, finds the correct friends from
+     * friendList, and sends the correct message for Client.
+     * Verify that Get all users case retrieves all users in Server and sends the correct message to Client.
+     * Verify that Send Request case creates the correct request in both Users and gets the correct information from Client.
+     * Verify that Incoming Friend Request for User case retrieves the incoming Requests and sends correct information to Client.
+     * Verify that Outgoing Friend Request for User case retrieves the outgoing Requests and sends correct information to Client.
+     * Verify that Cancel Request case removes request from both users and sends receives correct information from Client.
+     * Verify that Accept Request case adds correct friend to correct users friendList, receives correct information from Client,
+     * sends correct information to Client, and removes request from correct lists.
+     * Verify that Deny Request case receives correct information from Client,
+     * sends correct information to Client, and removes request from correct lists.
+     * Verify that Get Temp case retrieves the correct value and receives and sends correct information to/from Client.
+     * Verify that Set Temp case sets the correct value and receives/sends correct information to/from Client.
+     * Verify that exception handling works as intended.
      */
     @Override
     public void run() {
@@ -439,6 +467,9 @@ public class ClientHandler extends Thread {
 
     /**
      * This method initialises the UserList array by reading from a file.
+     * Testing:
+     * Verify that correct users list is retrieves from file with all correct value.
+     * Verify that correct ArrayList<User> is returned.
      * @return ArrayList<User> list of users from file
      */
     public ArrayList<User> readUsersList() {
@@ -487,6 +518,8 @@ public class ClientHandler extends Thread {
 
     /**
      * This method writes back to the client.
+     * Testing:
+     * Verify that correct message is sent to Client through testing of overall Project.
      * @param message String message that needs to be written to the client.
      */
     public void messageToClient(String message) {
@@ -498,6 +531,9 @@ public class ClientHandler extends Thread {
 
     /**
      * This method reads data from a file to initialise the user's Profile.
+     * Testing:
+     * Verify that correct file is called and correct information from file is retrieved.
+     * Verify that correct profile information is read and returned.
      * @param username a String that contains the username.
      */
     public Profile readFromProfileFile(String username) {
@@ -595,7 +631,11 @@ public class ClientHandler extends Thread {
 
     /**
      * This method creates a new file for each profile object to store the data.
-     * @param profile
+     * Testing:
+     * Verify that correct information is formatted and received.
+     * Verify that correct information is written to intended file.
+     * @param username String of username of Profile to be written
+     * @param profile Profile to be written to file.
      */
     public void writeProfileToFile(String username, Profile profile) {
 
@@ -651,6 +691,9 @@ public class ClientHandler extends Thread {
 
     /**
      * This method initializes the friends list array of the user.
+     * Testing:
+     * Verify that correct user is called, the correct Friends are retrieved for said user, and the correct
+     * information in an ArrayList<User> is returned.
      * @param friendsListData a string array of friends' usernames.
      * @return an Array List of type user
      */

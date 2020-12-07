@@ -73,6 +73,10 @@ Methods:
   - Accessor method for sentRequests.
   - Return:
     - receivedRequests ArrayList that holds friend requests that the User has received.
+- getTemp()
+  - Accessor method for temp.
+  - Return:
+    - temp Variable that holds temp user for ClientHandler.
 - setFUllName()
   - Mutator method for fullName.
   - Parameters:
@@ -85,6 +89,10 @@ Methods:
   - Mutator method for password.
   - Parameters:
     - password String that holds password of user being created.
+- setTemp()
+  - Mutator method for temp.
+  - Parameters:
+    - temp Variable that holds temp user for ClientHandler.
 - writeUserToFile()
   - This method writes the user details to a file for storing this data.
   - Parameters:
@@ -362,6 +370,14 @@ Methods:
   - Creates a ViewRequestFrame and adds action listeners.
 - run()
   - run method that is run when the program is started.
+- setTemp()
+  - Mutator method for temp variable.
+  - Parameters:
+    - temp New value of variable temp.
+- getTemp()
+  - Accessor method for temp variable.
+  - Return:
+    - String value of variable temp.
   
 Testing:
 The program was run with a TestServer initially and later the actual server to test the functionality of the program.
@@ -435,6 +451,10 @@ The program was run with a TestServer initially and later the actual server to t
 - run()
   - Verify that when testing overall project for a variety of functions, the correct Frame is always called depending on user action.
   - Verify all actionListeners are added to correct buttons and are working.
+- setTemp()
+  - Verify that correct field is set with intended value from clientHandler.
+- getTemp()
+  - Verify that correct field is returned with intended value from ClientHandler.
 
 ### ClientHandler Class
 Description:  

@@ -317,11 +317,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
         //View Requests
         if (buttonPressed == viewRequestsFrame.incomingRequestsButton) {
             showIncomingFriendRequestFrame(currentUsername);
-            viewRequestsFrame.dispose();
         }
         if (buttonPressed == viewRequestsFrame.outgoingRequestsButton) {
             showOutgoingFriendRequestFrame(currentUsername);
-            viewRequestsFrame.dispose();
         }
         if (buttonPressed == viewRequestsFrame.backButton) {
             showProfileFrame(currentUsername, false);
@@ -442,18 +440,20 @@ public class Client extends JComponent implements Runnable, ActionListener {
      */
     private void showIncomingFriendRequestFrame(String username) {
         sendMessage(String.format("Incoming friend request for user\n%s", username));
-        String incomingUserExists = receiveMessage();
-        String incomingFullName = receiveMessage();
-        String incomingUsername = receiveMessage();
-        if (incomingUserExists.equals("User does not exist")) {
-            showErrorFrame("User does not exist");
+        String message = receiveMessage();
+        if (message.equals("No friends"))
+            showErrorFrame("You have no incoming requests");
+        else {
+            viewRequestsFrame.dispose();
+            String incomingFullName = receiveMessage();
+            String incomingUsername = receiveMessage();
+            temp = incomingUsername;
+            incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
+            incomingFriendRequestsFrame.backButton.addActionListener(this);
+            incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
+            incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
+            incomingFriendRequestsFrame.setVisible(true);
         }
-        temp = incomingUsername;
-        incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
-        incomingFriendRequestsFrame.backButton.addActionListener(this);
-        incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
-        incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
-        incomingFriendRequestsFrame.setVisible(true);
     }
 
     /**
@@ -465,18 +465,20 @@ public class Client extends JComponent implements Runnable, ActionListener {
      */
     private void showOutgoingFriendRequestFrame(String username) {
         sendMessage(String.format("Outgoing friend request for user\n%s", username));
-        String outgoingUserExists = receiveMessage();
-        String outgoingFullName = receiveMessage();
-        String outgoingUsername = receiveMessage();
-        if (outgoingUserExists.equals("User does not exist")) {
-            showErrorFrame("User does not exist");
+        String message = receiveMessage();
+        if (message.equals("No friends"))
+            showErrorFrame("You have no outgoing requests");
+        else {
+            viewRequestsFrame.dispose();
+            String outgoingFullName = receiveMessage();
+            String outgoingUsername = receiveMessage();
+            temp = outgoingUsername;
+            outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
+            outgoingFriendRequestsFrame.backButton.addActionListener(this);
+            outgoingFriendRequestsFrame.nextButton.addActionListener(this);
+            outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
+            outgoingFriendRequestsFrame.setVisible(true);
         }
-        temp = outgoingUsername;
-        outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
-        outgoingFriendRequestsFrame.backButton.addActionListener(this);
-        outgoingFriendRequestsFrame.nextButton.addActionListener(this);
-        outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);
-        outgoingFriendRequestsFrame.setVisible(true);
     }
 
     /**

@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  */
 
-public class ClientHandler extends Thread {
+public class ClientHandlerTwo extends Thread {
 
     final Socket s;
     final BufferedReader reader;
@@ -25,7 +25,7 @@ public class ClientHandler extends Thread {
     private static ArrayList<User> userList = new ArrayList<User>();       //array list that holds all the existing users
     private static ArrayList<Profile> profilesList = new ArrayList<Profile>();  //array list that holds all the existing profiles
 
-    public ClientHandler(Socket s, BufferedReader r, PrintWriter w) {
+    public ClientHandlerTwo(Socket s, BufferedReader r, PrintWriter w) {
         this.s = s;
         this.reader = r;
         this.writer = w;

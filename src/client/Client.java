@@ -82,7 +82,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         writer.println();
         writer.flush();
 
-        //System.out.println("Sent: " + message);
+        System.out.println("Sent: " + message);
     }
 
     /**
@@ -273,7 +273,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
             if (response.equals("Success")) {
                 showSuccessFrame("Denied Successfully");
                 incomingFriendRequestsFrame.dispose();
-                showIncomingFriendRequestFrame(currentUsername);
+                showViewRequestsFrame();
             } else {
                 showErrorFrame("Error");
             }
@@ -281,6 +281,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
 
         //Outgoing requests
         if (buttonPressed == outgoingFriendRequestsFrame.backButton) {
+            sendMessage("eeeee");
             showViewRequestsFrame();
             outgoingFriendRequestsFrame.dispose();
         }
@@ -291,7 +292,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         if (buttonPressed == outgoingFriendRequestsFrame.cancelRequestButton) {
             sendMessage(String.format("Cancel request\n%s\n%s", currentUsername, temp));
             outgoingFriendRequestsFrame.dispose();
-            showOutgoingFriendRequestFrame(currentUsername);
+            showViewRequestsFrame();
         }
 
         //Send friend request

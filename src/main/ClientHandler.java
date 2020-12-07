@@ -315,8 +315,6 @@ public class ClientHandler extends Thread {
 //                        messageToClient("Success");
 //                    }
 
-                    message = reader.readLine();
-
                     if (message.equals("Send request")) {
 
                         String sender = reader.readLine();
@@ -406,10 +404,15 @@ public class ClientHandler extends Thread {
                         String sender = reader.readLine();
                         String receiver = reader.readLine();
 
+                        System.out.println(sender);
+                        System.out.println(receiver);
+
                         for (int i = 0; i < userList.size(); i++) {
                             if (sender.equals(userList.get(i).getUserName())) {
                                 for (int j = 0; j < userList.size(); j++) {
                                     if (receiver.equals(userList.get(j).getUserName())) {
+                                        System.out.println(userList.get(i));
+                                        System.out.println(userList.get(j));
                                         userList.get(i).removeFriendRequest(userList.get(j));
                                         outgoingCounter = 0;
                                         break;
@@ -459,6 +462,9 @@ public class ClientHandler extends Thread {
                         }
 
                     }
+
+                    message = reader.readLine();
+                    System.out.println(message);
 
                 }
 

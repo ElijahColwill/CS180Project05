@@ -109,7 +109,7 @@ public final class FriendsListFrame extends JFrame {
             JLabel nameLabel = new JLabel(names[i]);
             JLabel usernameLabel = new JLabel("@" + usernames[i]);
 
-            viewProfileButton = new JButton("View Profile for @" + usernames[i]);
+            viewProfileButton = new JButton("View Profile for" + names[i]);
 
             nameLabel.setFont(Constants.SUB_HEADER_FONT);
             usernameLabel.setFont(Constants.MAIN_FONT);

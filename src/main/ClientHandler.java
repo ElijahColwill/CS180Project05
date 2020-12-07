@@ -274,43 +274,46 @@ public class ClientHandler extends Thread {
                     }
 
                     //accepting friend request
-                    if (message.equalsIgnoreCase("Accept request")) {
-
-                        String currentUsername = reader.readLine();
-                        String temp = reader.readLine();        //temp is the other user
-                        boolean userExists =  false;
-
-                        User currentFriend = null;
-
-                        for (int i = 0; i < userList.size(); i++) {
-
-                            if (temp.equalsIgnoreCase(userList.get(i).getUserName())) {
-
-                                userExists = true;
-                                currentFriend = userList.get(i);        //gets the friend user object
-                            }
-                        }
-
-                        if (userExists) {
-
-                            newUser.getFriendList().add(currentFriend);     //adding friend to the user's friends list
-                            messageToClient("Success");
-
-                        } else {
-
-                            messageToClient("User not found");
-                        }
-
-                    }
+//                    if (message.equalsIgnoreCase("Accept request")) {
+//
+//
+//
+//
+////                        String currentUsername = reader.readLine();
+////                        String temp = reader.readLine();        //temp is the other user
+////                        boolean userExists =  false;
+////
+////                        User currentFriend = null;
+////
+////                        for (int i = 0; i < userList.size(); i++) {
+////
+////                            if (temp.equalsIgnoreCase(userList.get(i).getUserName())) {
+////
+////                                userExists = true;
+////                                currentFriend = userList.get(i);        //gets the friend user object
+////                            }
+////                        }
+////
+////                        if (userExists) {
+////
+////                            newUser.getFriendList().add(currentFriend);     //adding friend to the user's friends list
+////                            messageToClient("Success");
+////
+////                        } else {
+////
+////                            messageToClient("User not found");
+////                        }
+//
+//                    }
 
                     //denying friend request
-                    if (message.equalsIgnoreCase("Deny request")) {
-
-                        String currentUsername = reader.readLine();
-                        String temp = reader.readLine();
-
-                        messageToClient("Success");
-                    }
+//                    if (message.equalsIgnoreCase("Deny request")) {
+//
+//                        String currentUsername = reader.readLine();
+//                        String temp = reader.readLine();
+//
+//                        messageToClient("Success");
+//                    }
 
                     message = reader.readLine();
 
@@ -396,71 +399,73 @@ public class ClientHandler extends Thread {
                                 }
                             }
                         }
+                    }
 
-                        if (message.equals("Cancel request")) {
+                    if (message.equals("Cancel request")) {
 
-                            String sender = reader.readLine();
-                            String receiver = reader.readLine();
+                        String sender = reader.readLine();
+                        String receiver = reader.readLine();
 
-                            for (int i = 0; i < userList.size(); i++) {
-                                if (sender.equals(userList.get(i).getUserName())) {
-                                    for (int j = 0; j < userList.size(); j++) {
-                                        if (receiver.equals(userList.get(j).getUserName())) {
-                                            userList.get(i).removeFriendRequest(userList.get(j));
-                                            break;
-                                        }
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (sender.equals(userList.get(i).getUserName())) {
+                                for (int j = 0; j < userList.size(); j++) {
+                                    if (receiver.equals(userList.get(j).getUserName())) {
+                                        userList.get(i).removeFriendRequest(userList.get(j));
+                                        break;
                                     }
-                                    break;
                                 }
+                                break;
                             }
-
                         }
 
-                        if (message.equalsIgnoreCase("Accept request")) {
+                    }
 
-                            String sender = reader.readLine();
-                            String receiver = reader.readLine();        //temp is the other user
+                    if (message.equalsIgnoreCase("Accept request")) {
+                        String sender = reader.readLine();
+                        String receiver = reader.readLine();        //temp is the other user
 
-                            for (int i = 0; i < userList.size(); i++) {
-                                if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
-                                    for (int j = 0; j < userList.size(); j++) {
-                                        if (receiver.equals(userList.get(j).getUserName())) {
-                                            userList.get(i).acceptFriend(userList.get(j));
-                                            break;
-                                        }
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
+                                for (int j = 0; j < userList.size(); j++) {
+                                    if (receiver.equals(userList.get(j).getUserName())) {
+                                        System.out.println("1");
+                                        userList.get(i).acceptFriend(userList.get(j));
+                                        System.out.println("2");
+                                        messageToClient("Success");
+                                        break;
                                     }
-                                    break;
                                 }
+                                break;
                             }
-
                         }
 
-                        if (message.equalsIgnoreCase("Deny request")) {
+                    }
 
-                            String sender = reader.readLine();
-                            String receiver = reader.readLine();        //temp is the other user
+                    if (message.equalsIgnoreCase("Deny request")) {
 
-                            for (int i = 0; i < userList.size(); i++) {
-                                if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
-                                    for (int j = 0; j < userList.size(); j++) {
-                                        if (receiver.equals(userList.get(j).getUserName())) {
-                                            userList.get(i).denyFriend(userList.get(j));
-                                            break;
-                                        }
+                        String sender = reader.readLine();
+                        String receiver = reader.readLine();        //temp is the other user
+
+                        for (int i = 0; i < userList.size(); i++) {
+                            if (sender.equalsIgnoreCase(userList.get(i).getUserName())) {
+                                for (int j = 0; j < userList.size(); j++) {
+                                    if (receiver.equals(userList.get(j).getUserName())) {
+                                        userList.get(i).denyFriend(userList.get(j));
+                                        messageToClient("Success");
+                                        break;
                                     }
-                                    break;
                                 }
+                                break;
                             }
-
                         }
 
+                    }
 
                 }
 
 
             } catch (IOException ioe) {
                 ioe.getMessage();
-
             } catch (NumberFormatException nfe) {
                 nfe.getMessage();
             } catch (FriendNotFoundException fnf) {

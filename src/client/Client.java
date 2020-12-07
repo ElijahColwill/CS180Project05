@@ -301,7 +301,7 @@ public class Client extends JComponent implements Runnable, ActionListener {
         }
         if (buttonPressed == sendFriendRequestFrame.sendRequestButton) {
             sendMessage(String.format("Send request\n%s\n%s", currentUsername,
-                    String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex())));
+                    String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedItem())));
             //System.out.println(String.valueOf(sendFriendRequestFrame.userComboBox.getSelectedIndex()));
         }
 

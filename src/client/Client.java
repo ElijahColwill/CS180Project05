@@ -445,10 +445,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
             showErrorFrame("You have no incoming requests");
         else {
             viewRequestsFrame.dispose();
-            String incomingFullName = receiveMessage();
             String incomingUsername = receiveMessage();
             temp = incomingUsername;
-            incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(incomingFullName, incomingUsername);
+            incomingFriendRequestsFrame = new gui.IncomingFriendRequestsFrame(message, incomingUsername);
             incomingFriendRequestsFrame.backButton.addActionListener(this);
             incomingFriendRequestsFrame.acceptRequestButton.addActionListener(this);
             incomingFriendRequestsFrame.denyRequestButton.addActionListener(this);
@@ -470,10 +469,9 @@ public class Client extends JComponent implements Runnable, ActionListener {
             showErrorFrame("You have no outgoing requests");
         else {
             viewRequestsFrame.dispose();
-            String outgoingFullName = receiveMessage();
             String outgoingUsername = receiveMessage();
             temp = outgoingUsername;
-            outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(outgoingFullName, outgoingUsername);
+            outgoingFriendRequestsFrame = new gui.OutgoingFriendRequestsFrame(message, outgoingUsername);
             outgoingFriendRequestsFrame.backButton.addActionListener(this);
             outgoingFriendRequestsFrame.nextButton.addActionListener(this);
             outgoingFriendRequestsFrame.cancelRequestButton.addActionListener(this);

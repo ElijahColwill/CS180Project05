@@ -43,6 +43,8 @@ public class ClientHandler extends Thread {
                 User newUser = null;
                 Profile newProfile = null;
 
+                int outgoingCounter = 0;
+
                 String message = reader.readLine();   //determining login or sign-up
 
                 while (message != null) {
@@ -196,7 +198,7 @@ public class ClientHandler extends Thread {
                             messageToClient("User does not exist");
                         }
 
-                        String nameOfUser = user.getProfile().getOwner();
+                        String nameOfUser = user.getFullName();
                         String userEmail = user.getProfile().getEmail();
                         String userLocation = user.getProfile().getLocation();
                         String userBio = user.getProfile().getBio();
@@ -317,20 +319,13 @@ public class ClientHandler extends Thread {
                         String sender = reader.readLine();
                         String receiver = reader.readLine();
 
-                        System.out.println(sender);
-                        System.out.println(receiver);
-
                         for (int i = 0; i < userList.size(); i++) {
                             if (sender.equals(userList.get(i).getUserName())) {
                                 for (int j = 0; j < userList.size(); j++) {
-                                    userList.get(i).sendFriendRequest(userList.get(j));
-                                    for (int k = 0; k < userList.get(i).getSentRequests().size(); k++) {
-                                        if (userList.get(i).getSentRequests().get(k).getRecipient().getUserName().equals(userList.get(j).getUserName())) {
-                                            userList.get(j).addReceivedRequest(userList.get(i).getSentRequests().get(k));
-                                            break;
-                                        }
+                                    if (receiver.equals(userList.get(j).getUserName())) {
+                                        userList.get(i).sendFriendRequest(userList.get(j));
+                                        break;
                                     }
-                                    break;
                                 }
                                 break;
                             }
@@ -347,6 +342,7 @@ public class ClientHandler extends Thread {
                                 ArrayList<FriendRequest> incomingRequests = userList.get(i).getReceivedRequests();
 
                                 if (incomingRequests.size() != 0) {
+                                    messageToClient(incomingRequests.get(0).getSender().getFullName());
                                     messageToClient(incomingRequests.get(0).getSender().getUserName());
                                     break;
                                 } else {
@@ -366,13 +362,18 @@ public class ClientHandler extends Thread {
                             if (userList.get(i).getUserName().equals(user)) {
                                 ArrayList<FriendRequest> outgoingRequests = userList.get(i).getSentRequests();
 
+                                if (outgoingCounter == outgoingRequests.size()) {
+                                    outgoingCounter = 0;
+                                }
+
                                 if (outgoingRequests.size() != 0) {
-                                    messageToClient(outgoingRequests.get(0).getRecipient().getUserName());
-                                    break;
+                                    messageToClient(outgoingRequests.get(outgoingCounter).getRecipient().getFullName());
+                                    messageToClient(outgoingRequests.get(outgoingCounter).getRecipient().getUserName());
+                                    outgoingCounter++;
                                 } else {
                                     messageToClient("No friends");
-                                    break;
                                 }
+                                break;
                             }
                         }
 

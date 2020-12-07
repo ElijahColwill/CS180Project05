@@ -124,7 +124,7 @@ public final class HomeFrame extends JFrame {
         SwingUtils.addComponent(headerPanel, new JLabel(" "), 12, 0, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(signInFieldPanel, usernameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
-        SwingUtils.addComponent(signInFieldPanel, usernameField, 1, 0,1, 1, GridBagConstraints.LINE_START);
+        SwingUtils.addComponent(signInFieldPanel, usernameField, 1, 0, 1, 1, GridBagConstraints.LINE_START);
         SwingUtils.addComponent(signInFieldPanel, passwordLabel, 0, 1, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(signInFieldPanel, passwordField, 1, 1, 1, 1, GridBagConstraints.LINE_START);
 

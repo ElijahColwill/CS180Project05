@@ -48,9 +48,12 @@ public final class SignUpFrame extends JFrame {
      * Constructor that creates a frame for a user to sign up.
      * Testing:
      * Verify that window has correct title Social | Sign Up
-     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
-     * Verify that Sign Up title with correct description are present with correct text, centered in top of content area.
-     * Verify that Text fields are all present with correct text next to them, and take input for Name/Username/Email/Password
+     * Verify that a Frame is created that contains a header with social Icon/Text,
+     * middle content and footer with back button.
+     * Verify that Sign Up title with correct description are present with correct text,
+     * centered in top of content area.
+     * Verify that Text fields are all present with correct text next to them,
+     * and take input for Name/Username/Email/Password
      * Verify Password field hides text.
      * Verify Sign Up button is present below text fields.
      * Verify actionListeners in dependant classes exist for buttons.

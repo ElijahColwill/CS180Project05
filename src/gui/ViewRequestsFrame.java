@@ -36,9 +36,12 @@ public final class ViewRequestsFrame extends JFrame {
      * Constructor that creates a frame to select incoming or outgoing friend requests.
      * Testing:
      * Verify that window has correct title Social | View Requests
-     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with back button.
-     * Verify that View Friend Requests title is present and centered at top of content area, with correct description
-     * Verify that Incoming Requests and Outgoing Requests buttons are present below description, centered, and with correct text.
+     * Verify that a Frame is created that contains a header with social Icon/Text,
+     * middle content and footer with back button.
+     * Verify that View Friend Requests title is present and
+     * centered at top of content area, with correct description
+     * Verify that Incoming Requests and Outgoing Requests buttons are present below description,
+     * centered, and with correct text.
      * Verify actionListeners in dependant classes exist for buttons.
      */
     public ViewRequestsFrame() {

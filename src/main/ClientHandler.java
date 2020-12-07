@@ -25,8 +25,8 @@ public class ClientHandler extends Thread {
     final BufferedReader reader;
     final PrintWriter writer;
 
-    private static ArrayList<User> userList = new ArrayList<User>();       //array list that holds all the existing users
-    private static ArrayList<Profile> profilesList = new ArrayList<Profile>();  //array list that holds all the existing profiles
+    private static ArrayList<User> userList = new ArrayList<User>();
+    private static ArrayList<Profile> profilesList = new ArrayList<Profile>();
 
     /**
      * Constructor that creates instance of Client Handler with three parameters.
@@ -59,11 +59,16 @@ public class ClientHandler extends Thread {
      * Verify that Friends for User case retrieves the correct User, finds the correct friends from
      * friendList, and sends the correct message for Client.
      * Verify that Get all users case retrieves all users in Server and sends the correct message to Client.
-     * Verify that Send Request case creates the correct request in both Users and gets the correct information from Client.
-     * Verify that Incoming Friend Request for User case retrieves the incoming Requests and sends correct information to Client.
-     * Verify that Outgoing Friend Request for User case retrieves the outgoing Requests and sends correct information to Client.
-     * Verify that Cancel Request case removes request from both users and sends receives correct information from Client.
-     * Verify that Accept Request case adds correct friend to correct users friendList, receives correct information from Client,
+     * Verify that Send Request case creates the correct request in both Users
+     and gets the correct information from Client.
+     * Verify that Incoming Friend Request for User case retrieves the incoming Requests
+     and sends correct information to Client.
+     * Verify that Outgoing Friend Request for User case retrieves the outgoing Requests
+     and sends correct information to Client.
+     * Verify that Cancel Request case removes request from both users
+     and sends receives correct information from Client.
+     * Verify that Accept Request case adds correct friend to correct users friendList,
+     receives correct information from Client,
      * sends correct information to Client, and removes request from correct lists.
      * Verify that Deny Request case receives correct information from Client,
      * sends correct information to Client, and removes request from correct lists.
@@ -244,7 +249,7 @@ public class ClientHandler extends Thread {
                         String userBio = user.getProfile().getBio();
                         String userInterests = user.getProfile().getInterests();
 
-                        messageToClient(String.format("%s\n%s\n%s\n%s\n%s\n%s",nameOfUser, currentUsername,
+                        messageToClient(String.format("%s\n%s\n%s\n%s\n%s\n%s", nameOfUser, currentUsername,
                                 userEmail, userLocation, userBio, userInterests));
 
 
@@ -269,8 +274,8 @@ public class ClientHandler extends Thread {
                         //gets all the usernames of the friends
                         for (int j = 0; j < currentUser.getFriendList().size(); j++) {
 
-                            friendsNames.append(currentUser.getFriendList().get(j).getFullName() + ",");      //string of names
-                            friendsUsernames.append(currentUser.getFriendList().get(j).getUserName() + ",");  //string of usernames
+                            friendsNames.append(currentUser.getFriendList().get(j).getFullName() + ",");
+                            friendsUsernames.append(currentUser.getFriendList().get(j).getUserName() + ",");
                         }
 
                         messageToClient(String.valueOf(friendsUsernames) + "\n" + String.valueOf(friendsNames));
@@ -478,7 +483,7 @@ public class ClientHandler extends Thread {
 
             String home = System.getProperty("user.home");
 
-            File userListFile = new File(home + File.separator + "userListFile");           //file that stores user object information
+            File userListFile = new File(home + File.separator + "userListFile");
 
             FileReader userFileReader = new FileReader(userListFile);       //file reader for userList
 
@@ -546,11 +551,11 @@ public class ClientHandler extends Thread {
 
             File profileDataFile = new File(home + File.separator + username + ".profile.txt");
             FileReader profileFileReader = new FileReader(profileDataFile);
-            BufferedReader reader = new BufferedReader(profileFileReader);
+            BufferedReader pReader = new BufferedReader(profileFileReader);
 
-            String userUsername = reader.readLine();
+            String userUsername = pReader.readLine();
 
-            String userData = reader.readLine();
+            String userData = pReader.readLine();
 
             if (userData != null) {
 
@@ -560,13 +565,13 @@ public class ClientHandler extends Thread {
                 String bio = basicUserData[1];
                 String email = basicUserData[2];
 
-                String[] friendsData = reader.readLine().split(",");
+                String[] friendsData = pReader.readLine().split(",");
 
                 ArrayList<User> listOfFriends = initialiseFriendsList(friendsData);     //gets the array list of friends
 
                 //location, interests, phoneNum
 
-                String otherData = reader.readLine();
+                String otherData = pReader.readLine();
 
                 if (otherData != null) {
 
@@ -611,7 +616,7 @@ public class ClientHandler extends Thread {
 
             }
 
-            reader.close();
+            pReader.close();
             profileFileReader.close();  //commit these changes
 
         } catch (FileNotFoundException fne) {

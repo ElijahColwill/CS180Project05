@@ -46,7 +46,8 @@ public final class HomeFrame extends JFrame {
      * Constructor that creates the home frame.
      * Testing:
      * Verify that window has correct title Social | Welcome
-     * Verify that a Frame is created that contains a header with social Icon/Text, middle content and footer with exit button.
+     * Verify that a Frame is created that contains a header with social Icon/Text,
+     * middle content and footer with exit button.
      * Verify that content area has Sign In and Sign Up titles with divider and descriptions
      * Verify that Username and Password fields take input, are present, and have correct text next to them.
      * Verify actionListeners in dependant classes exist for buttons.
@@ -123,7 +124,7 @@ public final class HomeFrame extends JFrame {
         SwingUtils.addComponent(headerPanel, new JLabel(" "), 12, 0, 1, 1, GridBagConstraints.CENTER);
 
         SwingUtils.addComponent(signInFieldPanel, usernameLabel, 0, 0, 1, 1, GridBagConstraints.LINE_END);
-        SwingUtils.addComponent(signInFieldPanel, usernameField, 1, 0 ,1, 1, GridBagConstraints.LINE_START);
+        SwingUtils.addComponent(signInFieldPanel, usernameField, 1, 0,1, 1, GridBagConstraints.LINE_START);
         SwingUtils.addComponent(signInFieldPanel, passwordLabel, 0, 1, 1, 1, GridBagConstraints.LINE_END);
         SwingUtils.addComponent(signInFieldPanel, passwordField, 1, 1, 1, 1, GridBagConstraints.LINE_START);
 

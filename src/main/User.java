@@ -132,7 +132,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * This method writes the user details to a file for storing this data.
      * @param user the user object whose data is being stored.
@@ -288,7 +288,7 @@ public class User {
      * @param location String that holds location of User.
      */
     public void createProfile(String bio, String email,
-                   String location) {
+                              String location) {
         profile = new Profile(userName, bio, email, friendList, location);
     }
 
@@ -300,7 +300,7 @@ public class User {
      * @param interests String that holds interests/hobbies of User.
      */
     public void createProfile(String bio, String email,
-                   String location, String interests) {
+                              String location, String interests) {
         profile = new Profile(userName, bio, email, friendList, location, interests);
     }
 
@@ -313,7 +313,7 @@ public class User {
      * @param phoneNum int that holds Phone Number of User.
      */
     public void createProfile(String bio, String email,
-                   String location, String interests, int phoneNum) {
+                              String location, String interests, int phoneNum) {
         profile = new Profile(userName, bio, email, friendList, location, interests, phoneNum);
     }
 
